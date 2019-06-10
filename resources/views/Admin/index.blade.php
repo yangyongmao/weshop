@@ -51,11 +51,11 @@
     <div class="list_content">
     <div class="skin_select">
       <ul class="dropdown-menu dropdown-caret">
-         <li><a class="colorpick-btn selected" href="javascript:ovid()"data-val="default"  id="default" style="background-color:#222A2D" ></a></li>
-         <li><a class="colorpick-btn" href="javascript:ovid()" data-val="blue" style="background-color:#438EB9;" ></a></li>
-         <li><a class="colorpick-btn" href="javascript:ovid()" data-val="green" style="background-color:#72B63F;" ></a></li>
-         <li><a class="colorpick-btn" href="javascript:ovid()" data-val="blue" style="background-color:#D0D0D0;" ></a></li>
-         <li><a class="colorpick-btn" href="javascript:ovid()" data-val="blue" style="background-color:#FF6868;" ></a></li>
+         <li><a class="colorpick-btn selected" href="javascript:void()"data-val="default"  id="default" style="background-color:#222A2D" ></a></li>
+         <li><a class="colorpick-btn" href="javascript:void(0)" data-val="blue" style="background-color:#438EB9;" ></a></li>
+         <li><a class="colorpick-btn" href="javascript:void(0)" data-val="green" style="background-color:#72B63F;" ></a></li>
+         <li><a class="colorpick-btn" href="javascript:void(0)" data-val="blue" style="background-color:#D0D0D0;" ></a></li>
+         <li><a class="colorpick-btn" href="javascript:void(0)" data-val="blue" style="background-color:#FF6868;" ></a></li>
         </ul>     
      </div>
      <div class="search_style">
