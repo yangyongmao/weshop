@@ -11,13 +11,11 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Controllers\Controller;
-class IndexController extends Controller
+
+class IndexController extends Check
 {
     public function index(){
-
-//        echo __adminStatic__;die();
-
-        return view("admin\index");
+        return view("admin\index\\index");
     }
 
 }
