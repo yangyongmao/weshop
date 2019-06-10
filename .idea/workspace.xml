@@ -2,10 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="c9d9d087-71d8-450a-9d51-e407537bbd96" name="默认" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
 =======
 <<<<<<< HEAD
+=======
+>>>>>>> upstream/master
     <list default="true" id="c9d9d087-71d8-450a-9d51-e407537bbd96" name="默认" comment="" />
 =======
     <list default="true" id="1c5ebdec-8b79-4547-b362-2cf94e4ea375" name="默认" comment="">
@@ -13,6 +16,9 @@
       <change afterPath="$PROJECT_DIR$/config/staticfille.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
     </list>
 >>>>>>> upstream/master
@@ -68,12 +74,15 @@
   </component>
   <component name="FileEditorManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FindInProjectRecents">
     <dirStrings>
       <dir>D:\WAMP\PhpStudy20180211\PHPTutorial\WWW\weshop</dir>
 =======
+=======
+>>>>>>> upstream/master
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/IndexController.php">
@@ -124,6 +133,9 @@
     <dirStrings>
       <dir>E:\laragon\laragon\www\weshop\app</dir>
       <dir>E:\laragon\laragon\www\weshop\vendor</dir>
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
     </dirStrings>
   </component>
@@ -330,7 +342,10 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+=======
+>>>>>>> upstream/master
 =======
 >>>>>>> upstream/master
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -372,6 +387,7 @@
   </component>
   <component name="TimeTrackingManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="852000" />
   </component>
   <component name="ToolWindowManager">
@@ -394,6 +410,20 @@
     <editor active="true" />
 >>>>>>> upstream/master
     <layout>
+=======
+    <option name="totallyTimeSpent" value="1570000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+=======
+    <option name="totallyTimeSpent" value="14530000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+>>>>>>> upstream/master
+    <layout>
+>>>>>>> upstream/master
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11353944" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
 <<<<<<< HEAD
@@ -408,6 +438,7 @@
 >>>>>>> upstream/master
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
+<<<<<<< HEAD
 >>>>>>> upstream/master
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32922733" />
@@ -431,6 +462,8 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
+=======
+>>>>>>> upstream/master
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
@@ -451,6 +484,9 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Database" order="3" />
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
     </layout>
     <layout-to-restore>
@@ -597,6 +633,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="464">
           <caret line="204" column="73" selection-start-line="204" selection-start-column="73" selection-end-line="204" selection-end-column="73" />
+<<<<<<< HEAD
         </state>
       </provider>
     </entry>
@@ -604,6 +641,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
           <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+=======
+>>>>>>> upstream/master
         </state>
       </provider>
     </entry>

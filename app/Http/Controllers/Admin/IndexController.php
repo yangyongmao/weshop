@@ -11,6 +11,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
 class IndexController extends Controller
 {
     public function index(){
@@ -18,6 +19,13 @@ class IndexController extends Controller
 //        echo __adminStatic__;die();
 
         return view("admin\index");
+=======
+
+class IndexController extends Check
+{
+    public function index(){
+        return view("admin\index\\index");
+>>>>>>> upstream/master
     }
 
 }
