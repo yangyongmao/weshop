@@ -17,13 +17,13 @@ Route::get('/', function () {
 
 //后台主页
 Route::get('admin','Admin\IndexController@index')->middleware('admin.login');
-
-//后台登录
-//Route::get('admin/login',"Admin\LoginController@login");
-
-//中间件路由     重定向到登录界面
+//登录界面
 Route::get("admin/login","Admin\LoginController@login");
 //后台登录功能
 Route::post("admin/login","Admin\LoginController@login");
 //后台退出（注销）
 Route::get("admin/loginout","Admin\LoginController@loginOut");
+//后台添加菜单
+Route::get("admin/addmenus","Admin\MenusController@add");
+//后台添加菜单执行
+Route::post("admin/addmenus","Admin\MenusController@add");
