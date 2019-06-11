@@ -25,3 +25,5 @@ Route::get('admin','Admin\IndexController@index')->middleware('admin.login');
 Route::get("admin/login","Admin\LoginController@login");
 //后台登录功能
 Route::post("admin/login","Admin\LoginController@login");
+//后台退出（注销）
+Route::get("admin/loginout","Admin\LoginController@loginOut");

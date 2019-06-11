@@ -9,16 +9,16 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use DB;
 use App\Http\Controllers\Controller;
-use Mockery\Matcher\Closure;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        return view("admin.index.index");
+        $thisAdmin = $request->session()->get("thisAdmin");
+        return view("admin.index.index")->with("thisAdmin",$thisAdmin);
     }
 
 }

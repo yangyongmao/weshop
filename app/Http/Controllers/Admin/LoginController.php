@@ -21,16 +21,14 @@ class LoginController extends Controller
         }else{
             $loginData = $request->post();
 
-            $u_account = $loginData['u_account'];
             $thisAdmin = DB::table('admin')
                 ->where([
-                    ['u_account',   '=',    $u_account],
-                    ['u_pwd',   '=',    $loginData['u_pwd']],
+                    ['u_account',   '=',    $loginData['u_account']],
+                    ['u_pwd',   '=',    md5($loginData['u_pwd'])],
                 ])
-                ->get();
+                ->first();
 
             if(!empty($thisAdmin)){
-
                 $request->session()->put("thisAdmin",$thisAdmin);
                 return json_encode(
                     [
@@ -53,6 +51,12 @@ class LoginController extends Controller
             }
 
         }
+    }
+
+    public function loginOut(Request $request)
+    {
+        $request->session()->forget("thisAdmin");
+        return redirect('admin/login');
     }
 
 
