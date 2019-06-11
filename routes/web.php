@@ -19,3 +19,5 @@ Route::get('/', function () {
 Route::get('admin','Admin\IndexController@index');
 //后台登录
 Route::get('admin/login',"Admin\LoginController@login");
+Route::any('admin/orderList',"Admin\OrderController@orderList");
+Route::any('admin/orderDel',"Admin\OrderController@orderDel");
