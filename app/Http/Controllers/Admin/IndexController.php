@@ -9,13 +9,15 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class IndexController extends Check
 {
     public function index(){
-        return view("admin\index\\index");
+        $res = DB::table('address')->select()->get();
+
+        return view("admin.index.index")->with(['data'=>$res]);
     }
 
 }
