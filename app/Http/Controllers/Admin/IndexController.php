@@ -11,11 +11,14 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Controllers\Controller;
+use Mockery\Matcher\Closure;
 
-class IndexController extends Check
+class IndexController extends Controller
 {
-    public function index(){
-        return view("admin\index\\index");
+
+    public function index()
+    {
+        return view("admin.index.index");
     }
 
 }

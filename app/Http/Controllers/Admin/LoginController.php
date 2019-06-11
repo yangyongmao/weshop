@@ -8,13 +8,53 @@
 namespace  App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
 
-    public function login()
+    public function login(Request $request)
     {
-        echo 123;die();
+        if($request->isMethod("GET")){
+            return view('Admin.login.login');
+        }else{
+            $loginData = $request->post();
+
+            $u_account = $loginData['u_account'];
+            $thisAdmin = DB::table('admin')
+                ->where([
+                    ['u_account',   '=',    $u_account],
+                    ['u_pwd',   '=',    $loginData['u_pwd']],
+                ])
+                ->get();
+
+            if(!empty($thisAdmin)){
+
+                $request->session()->put("thisAdmin",$thisAdmin);
+                return json_encode(
+                    [
+                        'errorCode' => 200,
+                        'errorMsg' => '登录成功',
+                    ],
+                    JSON_UNESCAPED_UNICODE
+                );
+
+            }else{
+
+                return json_encode(
+                    [
+                        'errorCode' => 404,
+                        'errorMsg' => '未发现此用户',
+                    ],
+                    JSON_UNESCAPED_UNICODE
+                );
+
+            }
+
+        }
     }
+
+
 
 }
