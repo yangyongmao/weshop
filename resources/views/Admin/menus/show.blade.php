@@ -31,12 +31,13 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
-                            <form class="layui-form layui-col-space5">
+                            <form class="layui-form layui-col-space5" method="post">
+                                @csrf
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input class="layui-input"  autocomplete="off" placeholder="开始日" name="m_addtime_start" id="start">
+                                    <input class="layui-input"  autocomplete="off" placeholder="开始日" name="m_addtime_start" id="start" value="{{$m_addtime_start}}">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input class="layui-input"  autocomplete="off" placeholder="截止日" name="m_addtime_end" id="end">
+                                    <input class="layui-input"  autocomplete="off" placeholder="截止日" name="m_addtime_end" id="end" value="{{$m_addtime_end}}">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
                                     <input type="text" name="m_title"  placeholder="请输入菜单名..." autocomplete="off" class="layui-input">

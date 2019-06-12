@@ -27,10 +27,12 @@ Route::post("admin/login","Admin\LoginController@login");
 //后台退出（注销）
 Route::get("admin/loginout","Admin\LoginController@loginOut");
 //后台添加菜单
-Route::get("admin/addmenus","Admin\MenusController@add");
+Route::get("admin/addmenus","Admin\MenusController@add")->middleware('admin.login');
 //后台添加菜单执行
 Route::post("admin/addmenus","Admin\MenusController@add");
 //后台菜单展示
 Route::get("admin/showmenus","Admin\MenusController@show");
+//菜单展示 条件查询提交
+Route::post("admin/showmenus","Admin\MenusController@show");
 //删除菜单
 Route::get("admin/deletemenus","Admin\MenusController@delete");
