@@ -21,3 +21,5 @@ Route::get('admin','Admin\IndexController@index');
 Route::get('admin/login',"Admin\LoginController@login");
 Route::any('admin/orderList',"Admin\OrderController@orderList");
 Route::any('admin/orderDel',"Admin\OrderController@orderDel");
+Route::any('admin/orderDelall',"Admin\OrderController@orderDelall");
+Route::any('admin/orderDesc',"Admin\OrderController@orderDesc");
