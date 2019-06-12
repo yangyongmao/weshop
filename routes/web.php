@@ -15,9 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/**
- * Jiaxinchen
- */
+
 //后台主页
 
 Route::get('admin','Admin\IndexController@index');
@@ -37,7 +35,9 @@ Route::get('admin/statuses',"Admin\AdminController@statuses");
 //管理员搜索
 //Route::get('admin/list',"Admin\AdminController@list");
 
-
+/**
+ * Jiaxinchen
+ */
 Route::get('admin','Admin\IndexController@index')->middleware('admin.login');
 //登录界面
 Route::get("admin/login","Admin\LoginController@login");
