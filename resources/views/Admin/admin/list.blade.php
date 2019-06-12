@@ -79,7 +79,7 @@
                                   <td>超级管理员</td>
                                   <td>{{date( 'Y-m-d H:i:s',$v->u_addtime)}}</td>
                                   <td class="td-status">
-                                      @if($v->status==0)
+                                    @if($v->status==0)
                                         <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
                                     @else
                                         <span class="layui-btn layui-btn-normal layui-btn-disabled">已停用</span></td>
@@ -102,7 +102,10 @@
                         </div>
                         <div class="layui-card-body ">
                             <div class="page">
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstrea/master
                                 {!!$data->links()!!}
                             </div>
                         </div>
@@ -129,7 +132,8 @@
 
        /*用户-停用*/
       function member_stop(obj,id){
-          layer.confirm('确认要修改用吗？',function(index){
+
+          layer.confirm('确认要修改吗？',function(index){
 
               $.get('statuses',{id:id},function(res){
 
@@ -147,11 +151,10 @@
                       $(obj).find('i').html('&#xe601;');
 
                       $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                      layer.msg('已启用!',{icon: 5,time:1000});
+                      layer.msg('已启用!',{icon: 1,time:1000});
                   }
               })
 
-              
           });
       }
 

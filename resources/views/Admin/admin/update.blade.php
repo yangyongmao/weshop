@@ -74,11 +74,11 @@
                   <div class="layui-form-item">
                       <label class="layui-form-label"><span class="x-red">*</span>角色</label>
                       <div class="layui-input-block">
-<<<<<<< HEAD
-                        <input type="checkbox" name="like1[write]" lay-skin="primary" title="超级管理员" checked="">
-                        <input type="checkbox" name="like1[read]" lay-skin="primary" title="编辑人员">
-                        <input type="checkbox" name="like1[write]" lay-skin="primary" title="宣传人员" checked="">
-=======
+{{--<<<<<<< HEAD--}}
+                        {{--<input type="checkbox" name="like1[write]" lay-skin="primary" title="超级管理员" checked="">--}}
+                        {{--<input type="checkbox" name="like1[read]" lay-skin="primary" title="编辑人员">--}}
+                        {{--<input type="checkbox" name="like1[write]" lay-skin="primary" title="宣传人员" checked="">--}}
+{{--=======--}}
                         @foreach($data as $v)
 
                             @if($v->flag == 1)
@@ -87,7 +87,7 @@
                                   <input type="checkbox" name="role[]" lay-skin="primary" title="{{$v->r_name}}" value="{{$v->r_id}}" >
                               @endif
                        @endforeach
->>>>>>> 8b2138b2f08383c42be4f4b78a27fd70d57f57ae
+{{-->>>>>>> 8b2138b2f08383c42be4f4b78a27fd70d57f57ae--}}
                       </div>
                   </div>
                   <div class="layui-form-item">
@@ -137,9 +137,7 @@
                 form.on('submit(add)',
                     function(data) {
                         var action = data.form.action;
-                        // console.log(action);return false;
                         $.get(action,data.field,function(res){
-                            // console.log(res);return false;
                             if(res==1){
                                 layer.alert("修改成功", {
                                         icon: 6
@@ -147,7 +145,6 @@
                                     function() {
                                         //关闭当前frame
                                         xadmin.close();
-
                                         // 可以对父窗口进行刷新
                                         xadmin.father_reload();
                                     });
@@ -167,8 +164,6 @@
                                 layer.alert("登录名重复", {
                                     icon: 4
                                 });
-<<<<<<< HEAD
-=======
                             }else if(res==4){
                                 layer.alert("角色不能为空", {
                                     icon: 3
@@ -177,9 +172,8 @@
                                 layer.alert("用户名为空", {
                                     icon: 2
                                 });
->>>>>>> 8b2138b2f08383c42be4f4b78a27fd70d57f57ae
                             }
-                        })
+                        });
                         return false;
                     });
 
