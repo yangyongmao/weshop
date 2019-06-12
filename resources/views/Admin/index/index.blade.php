@@ -45,7 +45,7 @@
                     <a onclick="xadmin.open('弹出指定宽高','http://www.baidu.com',500,300)">
                         <i class="iconfont">&#xe6a8;</i>弹出指定宽高</a></dd>
                 <dd>
-                    <a onclick="xadmin.add_tab('在tab打开','member-list.html')">
+                    <a onclick="xadmin.add_tab('在tab打开','member-list.blade.php')">
                         <i class="iconfont">&#xe6b8;</i>在tab打开</a></dd>
                 <dd>
                     <a onclick="xadmin.add_tab('在tab打开刷新','member-del.html',true)">
@@ -88,7 +88,7 @@
                             <cite>统计页面</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('会员列表(静态表格)','member-list.html')">
+                        <a onclick="xadmin.add_tab('会员列表(静态表格)','member-list.blade.php')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>会员列表(静态表格)</cite></a>
                     </li>
@@ -129,7 +129,7 @@
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('订单列表','order-list.html')">
+                        <a onclick="xadmin.add_tab('订单列表','order-list.blade.php')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite></a>
                     </li>
@@ -191,7 +191,7 @@
                             <cite>管理员列表</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('角色管理','admin-role.html')">
+                        <a onclick="xadmin.add_tab('角色管理','role/list')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>角色管理</cite></a>
                     </li>
