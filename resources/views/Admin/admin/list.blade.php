@@ -98,18 +98,18 @@
                         </div>
                         <div class="layui-card-body ">
                             <div class="page">
-<<<<<<< HEAD
-                                <div>
-                                  <a class="prev" href="">&lt;&lt;</a>
-                                  <a class="num" href="">1</a>
-                                  <span class="current">2</span>
-                                  <a class="num" href="">3</a>
-                                  <a class="num" href="">489</a>
-                                  <a class="next" href="">&gt;&gt;</a>
-                                </div>
-=======
+{{--<<<<<<< HEAD--}}
+                                {{--<div>--}}
+                                  {{--<a class="prev" href="">&lt;&lt;</a>--}}
+                                  {{--<a class="num" href="">1</a>--}}
+                                  {{--<span class="current">2</span>--}}
+                                  {{--<a class="num" href="">3</a>--}}
+                                  {{--<a class="num" href="">489</a>--}}
+                                  {{--<a class="next" href="">&gt;&gt;</a>--}}
+                                {{--</div>--}}
+{{--=======--}}
                                 {!!$data->links()!!}
->>>>>>> 8b2138b2f08383c42be4f4b78a27fd70d57f57ae
+{{-->>>>>>> 8b2138b2f08383c42be4f4b78a27fd70d57f57ae--}}
                             </div>
                         </div>
                     </div>
@@ -135,7 +135,7 @@
 
        /*用户-停用*/
       function member_stop(obj,id){
-          layer.confirm('确认要停用吗？',function(index){
+          layer.confirm('确认要修改吗？',function(index){
 
               $.get('statuses',{id:id},function(res){
 
@@ -153,11 +153,10 @@
                       $(obj).find('i').html('&#xe601;');
 
                       $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                      layer.msg('已启用!',{icon: 5,time:1000});
+                      layer.msg('已启用!',{icon: 1,time:1000});
                   }
               })
 
-              
           });
       }
 

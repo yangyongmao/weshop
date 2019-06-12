@@ -28,8 +28,7 @@ class AdminController extends Controller
             ->where('u_addtime', '<=', "%end%")
             ->orwhere('u_name', 'like', "%$username%")
             ->paginate(3);
-//        var_dump($users);die;
-//        $data = DB::table('admin');
+
         return view('admin/admin/list',['data'=>$data]);
     }
 
@@ -53,7 +52,6 @@ class AdminController extends Controller
             }
             $u_phone = $data['u_phone'];
             $u_email = $data['u_email'];
-//            echo $u_email;die;
             $arr = [
                 'u_name'=>$u_name,
                 'u_pwd'=>md5($u_pwd),
@@ -80,8 +78,6 @@ class AdminController extends Controller
             }
         }else{
             $res = DB::table('role')->get();
-//            echo '<pre>';
-//            var_dump($res);die;
             return view("admin/admin/add",['res'=>$res]);
         }
     }
@@ -181,7 +177,6 @@ class AdminController extends Controller
     public function statuses(Request $request){
         $id = $request->input('id');
         $res = DB::table('admin')->where('u_id',$id)->first();
-//        var_dump($res);die;
         $status = $res->status;
         if($status == 0){
             $res = DB::table('admin')->where('u_id',$id)->update(['status'=>1]);
