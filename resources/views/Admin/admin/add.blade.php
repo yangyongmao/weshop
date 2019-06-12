@@ -72,9 +72,13 @@
                   <div class="layui-form-item">
                       <label class="layui-form-label"><span class="x-red">*</span>角色</label>
                       <div class="layui-input-block">
-                        <input type="checkbox" name="role[]" lay-skin="primary" title="超级管理员" value="1" checked="">
-                        <input type="checkbox" name="role[]" lay-skin="primary" title="编辑人员" value="2">
-                        <input type="checkbox" name="role[]" lay-skin="primary" title="宣传人员" value="3" checked="">
+                          @foreach($res as $v)
+                              @if($v->r_id==1)
+                                <input type="checkbox" name="role[]" lay-skin="primary" title="{{$v->r_name}}" value="{{$v->r_id}}" checked>
+                              @else
+                                  <input type="checkbox" name="role[]" lay-skin="primary" title="{{$v->r_name}}" value="{{$v->r_id}}" >
+                              @endif
+                        @endforeach
                       </div>
                   </div>
                   <div class="layui-form-item">
@@ -162,6 +166,14 @@
                         }else if(res==3){
                             layer.alert("登录名重复", {
                                 icon: 4
+                            });
+                        }else if(res==4){
+                            layer.alert("角色不能为空", {
+                                icon: 3
+                            });
+                        }else if(res==5){
+                            layer.alert("用户名重复", {
+                                icon: 3
                             });
                         }
                     })
