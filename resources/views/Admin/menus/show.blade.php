@@ -33,7 +33,7 @@
                         <div class="layui-card-body ">
                             <form class="layui-form layui-col-space5">
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input class="layui-input"  autocomplete="off" placeholder="开始日" name="m_addtime_start" id="">
+                                    <input class="layui-input"  autocomplete="off" placeholder="开始日" name="m_addtime_start" id="start">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
                                     <input class="layui-input"  autocomplete="off" placeholder="截止日" name="m_addtime_end" id="end">
@@ -87,10 +87,11 @@
                                     </td>
                                     <td>{{date("Y-m-d H:i:s",$v->m_addtime)}}</td>
                                     <td class="td-manage">
-                                      <a title="编辑"  onclick="xadmin.open('编辑','member-edit.html',600,400)" href="javascript:;">
+                                      {{--<a title="编辑"  onclick="xadmin.open('编辑','updatemenus',600,400)" href="javascript:;">--}}
+                                        <a title="编辑"  onclick="pleaseDel()" href="javascript:;">
                                         <i class="layui-icon">&#xe642;</i>
                                       </a>
-                                      <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                                      <a title="删除" onclick="member_del(this,{{$v->m_id}},{{$v->m_pid}})" href="javascript:;">
                                         <i class="layui-icon">&#xe640;</i>
                                       </a>
                                     </td>
@@ -167,31 +168,58 @@
       }
 
       /*用户-删除*/
-      function member_del(obj,id){
+      function member_del(obj,m_id,m_pid){
           layer.confirm('确认要删除吗？',function(index){
+
+              $.get("deletemenus",{m_id:m_id},function (jsonMsg) {
+                  var objMsg = $.parseJSON(jsonMsg);
+                  if(objMsg.errorCode == 200){
+                      if(m_pid == 0){
+                          location.href = "";
+                      }
+                  }else{
+                      layer.msg('删除失败',{icon:1});return false;
+                  }
+              });
               //发异步删除数据
               $(obj).parents("tr").remove();
               layer.msg('已删除!',{icon:1,time:1000});
           });
       }
 
-
-
+      /**
+       *    批量删除
+       * */
       function delAll (argument) {
         var ids = [];
 
         // 获取选中的id 
         $('tbody input').each(function(index, el) {
             if($(this).prop('checked')){
-               ids.push($(this).val())
+                ids.push($(this).val())
             }
         });
   
         layer.confirm('确认要删除吗？'+ids.toString(),function(index){
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', {icon: 1});
-            $(".layui-form-checked").not('.header').parents('tr').remove();
+            console.log(ids);
+            $.get("deletemenus",{m_id:ids.toString()},function (jsonMsg) {
+                var objMsg = $.parseJSON(jsonMsg);
+                if(!(objMsg.errorCode == 200)){
+                    layer.msg('删除失败',{icon:1});return false;
+                }else{
+                    layer.msg('删除成功', {icon: 1});
+                    $(".layui-form-checked").not('.header').parents('tr').remove();
+                }
+            });
+
         });
+      }
+
+      /**
+       * 提示用户删除重新添加
+       */
+      function pleaseDel() {
+          alert('请删除重现添加');
       }
     </script>
 </html>

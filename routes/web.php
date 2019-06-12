@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/**
+ * Jiaxinchen
+ */
 //后台主页
 Route::get('admin','Admin\IndexController@index')->middleware('admin.login');
 //登录界面
@@ -29,3 +32,5 @@ Route::get("admin/addmenus","Admin\MenusController@add");
 Route::post("admin/addmenus","Admin\MenusController@add");
 //后台菜单展示
 Route::get("admin/showmenus","Admin\MenusController@show");
+//删除菜单
+Route::get("admin/deletemenus","Admin\MenusController@delete");
