@@ -30,3 +30,6 @@ Route::get('admin/del',"Admin\AdminController@del");
 Route::get('admin/update',"Admin\AdminController@update");
 //管理员是否启用
 Route::get('admin/statuses',"Admin\AdminController@statuses");
+//管理员搜索
+//Route::get('admin/list',"Admin\AdminController@list");
+
