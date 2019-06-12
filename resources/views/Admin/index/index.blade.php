@@ -326,6 +326,20 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="第三方组件">&#xe6b4;</i>
+                    <cite>菜单管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('菜单展示','admin/showmenus')" target="">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>菜单展示</cite></a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>
