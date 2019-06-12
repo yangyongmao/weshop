@@ -31,6 +31,7 @@ class MenusController extends Controller
                 'm_title' => $menusData['m_title'],
                 'm_url' => $menusData['m_url'],
                 'm_pid' => $menusData['m_pid'],
+                'm_addtime' => time(),
             ]);
 
             if($res){
@@ -59,27 +60,51 @@ class MenusController extends Controller
 
     public function show(Request $request)
     {
-        $searchData = $request->input();
-        var_dump($searchData);
-
+        $m_addtime_start = strtotime($request->input('m_addtime_start',0));
+        $m_addtime_end = strtolower($request->input('m_addtime_end',time()));
+        $m_title = $request->input('m_title','');
 
         $menusData = DB::table('menus')
-            ->whereBetween("m_addtime",[$searchData['m_addtime_start'],$searchData['m_addtime_end']])
-            ->where("m_title","like","$searchData['m_title'])
-            ->paginate(3);
+            ->whereBetween("m_addtime",[[$m_addtime_start],[$m_addtime_end]])
+            ->where("m_title","like","%". $m_title ."%")
+            ->orderBy("m_addtime","DESC")
+            ->paginate(7);
+
         return view('admin.menus.show')->with("data",$menusData);
     }
 
-    public function getTree($data = [],$pid = 0)
+    public function delete(Request $request)
     {
-        $array = [];
-        foreach ($data as $k => $v){
-            if($v->m_pid == $pid){
-                $v->child = $this->getTree($data,$v->m_id);
-                $array[] = $v;
+        if($request->ajax()){
+            $m_id = $request->get('m_id');
+
+            $res = DB::table('menus')
+                ->whereIn('m_id',(array)$m_id)
+                ->orWhereIn('m_pid',(array)$m_id)
+                ->delete();
+
+            if($res){
+
+                return json_encode(
+                    [
+                        'errorCode' => 200,
+                        'errorMsg' => '删除成功',
+                    ],
+                    JSON_UNESCAPED_UNICODE
+                );
+
+            }else{
+
+                return json_encode(
+                    [
+                        'errorCode' => 201,
+                        'errorMsg' => '删除失败',
+                    ],
+                    JSON_UNESCAPED_UNICODE
+                );
+
             }
         }
-        return (object)$array;
     }
 
 
