@@ -19,6 +19,25 @@ Route::get('/', function () {
  * Jiaxinchen
  */
 //后台主页
+
+Route::get('admin','Admin\IndexController@index');
+//后台登录
+Route::get('admin/login',"Admin\LoginController@login");
+//管理员列表
+Route::get('admin/list',"Admin\AdminController@list");
+//管理员添加
+Route::get('admin/add',"Admin\AdminController@add");
+Route::get('admin/do_add',"Admin\AdminController@add");
+//管理员删除
+Route::get('admin/del',"Admin\AdminController@del");
+//管理员修改
+Route::get('admin/update',"Admin\AdminController@update");
+//管理员是否启用
+Route::get('admin/statuses',"Admin\AdminController@statuses");
+//管理员搜索
+//Route::get('admin/list',"Admin\AdminController@list");
+
+
 Route::get('admin','Admin\IndexController@index')->middleware('admin.login');
 //登录界面
 Route::get("admin/login","Admin\LoginController@login");
@@ -36,3 +55,4 @@ Route::get("admin/showmenus","Admin\MenusController@show");
 Route::post("admin/showmenus","Admin\MenusController@show");
 //删除菜单
 Route::get("admin/deletemenus","Admin\MenusController@delete");
+
