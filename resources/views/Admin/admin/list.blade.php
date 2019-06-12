@@ -79,7 +79,7 @@
                                   <td>超级管理员</td>
                                   <td>{{date( 'Y-m-d H:i:s',$v->u_addtime)}}</td>
                                   <td class="td-status">
-                                      @if($v->status==0)
+                                    @if($v->status==0)
                                         <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
                                     @else
                                         <span class="layui-btn layui-btn-normal layui-btn-disabled">已停用</span></td>
@@ -128,11 +128,8 @@
 
        /*用户-停用*/
       function member_stop(obj,id){
-<<<<<<< HEAD
+
           layer.confirm('确认要修改吗？',function(index){
-=======
-          layer.confirm('确认要修改用吗？',function(index){
->>>>>>> 52bba9e70d8234924f25c93e612d3af511203a71
 
               $.get('statuses',{id:id},function(res){
 
