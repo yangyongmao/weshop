@@ -98,18 +98,7 @@
                         </div>
                         <div class="layui-card-body ">
                             <div class="page">
-{{--<<<<<<< HEAD--}}
-                                {{--<div>--}}
-                                  {{--<a class="prev" href="">&lt;&lt;</a>--}}
-                                  {{--<a class="num" href="">1</a>--}}
-                                  {{--<span class="current">2</span>--}}
-                                  {{--<a class="num" href="">3</a>--}}
-                                  {{--<a class="num" href="">489</a>--}}
-                                  {{--<a class="next" href="">&gt;&gt;</a>--}}
-                                {{--</div>--}}
-{{--=======--}}
                                 {!!$data->links()!!}
-{{-->>>>>>> 8b2138b2f08383c42be4f4b78a27fd70d57f57ae--}}
                             </div>
                         </div>
                     </div>

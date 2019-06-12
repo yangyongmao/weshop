@@ -8,6 +8,7 @@
 namespace  App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use function foo\func;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
