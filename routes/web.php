@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::get('admin','Admin\IndexController@index');
 //后台登录
 Route::get('admin/login',"Admin\LoginController@login");
+<<<<<<< HEAD
 //管理员列表
 Route::get('admin/list',"Admin\AdminController@list");
 //管理员添加
@@ -56,3 +57,9 @@ Route::post("admin/showmenus","Admin\MenusController@show");
 //删除菜单
 Route::get("admin/deletemenus","Admin\MenusController@delete");
 
+=======
+Route::any('admin/orderList',"Admin\OrderController@orderList");
+Route::any('admin/orderDel',"Admin\OrderController@orderDel");
+Route::any('admin/orderDelall',"Admin\OrderController@orderDelall");
+Route::any('admin/orderDesc',"Admin\OrderController@orderDesc");
+>>>>>>> 2736b62c46e7fe9be5f72e5c25ec1dd0f3c949d2
