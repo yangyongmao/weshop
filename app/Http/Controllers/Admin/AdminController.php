@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-
+//首页
     public function list(Request $request)
     {
         $arr = $request->input();
@@ -31,7 +31,7 @@ class AdminController extends Controller
 
         return view('admin/admin/list',['data'=>$data]);
     }
-
+//添加
     public function add(Request $request)
     {
         if($request->ajax()) {
@@ -81,7 +81,7 @@ class AdminController extends Controller
             return view("admin/admin/add",['res'=>$res]);
         }
     }
-
+//删除
     public function del(Request $request)
     {
         if($request->ajax()) {
@@ -95,7 +95,7 @@ class AdminController extends Controller
             }
         }
     }
-
+//修改
     public function update(Request $request){
         if($request->ajax()) {
             $data = $request->input();
@@ -173,7 +173,7 @@ class AdminController extends Controller
         }
 
     }
-
+//状态
     public function statuses(Request $request){
         $id = $request->input('id');
         $res = DB::table('admin')->where('u_id',$id)->first();
