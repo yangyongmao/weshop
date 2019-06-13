@@ -2,16 +2,16 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>后台登录-X-admin2.2</title>
+    <title>Wshop购物网后台</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="stylesheet" href="/adminStatic/css/font.css">
-    <link rel="stylesheet" href="/adminStatic/css/xadmin.css">
+    <link rel="stylesheet" href="{{asset("adminStatic/css/font.css")}}">
+    <link rel="stylesheet" href="{{asset('adminStatic/css/xadmin.css')}}">
     <!-- <link rel="stylesheet" href="./css/theme5.css"> -->
-    <script src="/adminStatic/lib/layui/layui.js" charset="utf-8"></script>
-    <script type="text/javascript" src="/adminStatic/js/xadmin.js"></script>
+    <script src="{{asset('adminStatic/lib/layui/layui.js')}}" charset="utf-8"></script>
+    <script type="text/javascript" src="{{asset('adminStatic/js/xadmin.js')}}"></script>
     <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
     <!--[if lt IE 9]>
     <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -26,7 +26,7 @@
 <!-- 顶部开始 -->
 <div class="container">
     <div class="logo">
-        <a href="./index.html">X-admin v2.2</a></div>
+        <a href="./index.html">Weshop       ❤</a></div>
     <div class="left_open">
         <a><i title="展开左侧栏" class="iconfont">&#xe699;</i></a>
     </div>
@@ -55,7 +55,7 @@
     </ul>
     <ul class="layui-nav right" lay-filter="">
         <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a href="javascript:;">Hello,{{$thisAdmin->u_name}}</a>
             <dl class="layui-nav-child">
                 <!-- 二级菜单 -->
                 <dd>
@@ -63,7 +63,7 @@
                 <dd>
                     <a onclick="xadmin.open('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
                 <dd>
-                    <a href="./login.html">退出</a></dd>
+                    <a href="admin/loginout">退出</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item to-index">
@@ -142,6 +142,19 @@
             </li>
             <li>
                 <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="商品管理">&#xe723;</i>
+                    <cite>商品管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('商品列表','')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>商品列表</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="分类管理">&#xe723;</i>
                     <cite>分类管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
@@ -173,7 +186,7 @@
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('管理员列表','admin-list.html')">
+                        <a onclick="xadmin.add_tab('管理员列表','admin/list')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>管理员列表</cite></a>
                     </li>
@@ -326,6 +339,20 @@
                     </li>
                 </ul>
             </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="第三方组件">&#xe6b4;</i>
+                    <cite>菜单管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('菜单展示','admin/showmenus')" target="">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>菜单展示</cite></a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
     </div>
 </div>
