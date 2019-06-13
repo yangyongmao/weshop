@@ -43,7 +43,7 @@
                         </div>
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加商品','/goods/goodsInsert',600,400)"><i class="layui-icon"></i>添加</button>
+                            <button class="layui-btn" onclick="xadmin.open('添加商品','/goods/goodsInsert',800,600)"><i class="layui-icon"></i>添加</button>
                         </div>
                         <div class="layui-card-body layui-table-body layui-table-main">
                             <table class="layui-table layui-form">
@@ -81,10 +81,7 @@
                                       <?php } ?>
                                     </td>
                                     <td>
-                                        <a onclick="xadmin.open('添加商品','/goods/goodsInfo?goods_id={{$v->goods_id}}}',600,400)" title="详情">
-                                            <i class="layui-icon">&#xe609;</i>
-                                        </a>
-                                        <a title="编辑"  onclick="xadmin.open('编辑','member-edit.html',600,400)" href="javascript:;">
+                                        <a title="编辑"  onclick="xadmin.open('编辑','/goods/goodsInfo?goods_id={{$v->goods_id}}}',600,400)" href="javascript:;">
                                             <i class="layui-icon">&#xe642;</i>
                                         </a>
                                         <a title="删除" onclick="member_del(this,'{{$v->goods_id}}')" href="javascript:;">

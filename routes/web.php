@@ -80,7 +80,8 @@ Route::get("admin/deletemenus","Admin\MenusController@delete");
  * yangyongmao
  */
 //商品展示
-Route::any('goods/index','Admin\GoodsController@index');
+//Route::any('goods/index','Admin\GoodsController@index');
+
 //商品详情页
 Route::get('goods/goodsInfo','Admin\GoodsController@goodsInfo');
 //商品批删
@@ -89,6 +90,8 @@ Route::get('goods/goodsDelAll','Admin\GoodsController@goodsDelAll');
 Route::get('goods/goodsDelOne','Admin\GoodsController@goodsDelOne');
 //商品修改上下架状态
 Route::get('goods/goodsUpdSale','Admin\GoodsController@goodsUpdSale');
+//商品修改
+Route::post('goods/goodsUpdGoods','Admin\GoodsController@goodsUpdGoods');
 //商品添加页面
-Route::any('1','Admin\GoodsController@goodsInsert');
+Route::any('goods/goodsInsert','Admin\GoodsController@goodsInsert');
 

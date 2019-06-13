@@ -36,13 +36,56 @@ class GoodsController extends Controller
     {
         $goods_id = $request->input('goods_id');
 
+        $catList = Db::table('cat')->select('cat_name', 'cat_id','pid')->get();
+
+        $catList = getTree($catList);
+
+        $brandList = Db::table('brand')->select('brand_id', 'brand_name')->get();
+
         $goodsList = Db::table('goods')->join('cat', 'cat.cat_id', '=', 'goods.cat_id')
             ->join('brand', 'brand.brand_id', '=', 'goods.brand_id')
             ->where('goods.goods_id', '=', "$goods_id")
-            ->select('goods.*', 'cat.cat_name', 'brand.brand_name')
+            ->select('goods.*', 'cat.cat_name','cat.cat_id', 'brand.brand_id', 'brand.brand_name')
             ->first();
 
-        return view('admin\goods.goodsInfo', ['goodsList' => $goodsList]);
+        return view('admin\goods.goodsInfo', ['goodsList' => $goodsList, 'catList'=>$catList, 'brandList'=>$brandList]);
+    }
+
+    public function goodsUpdGoods(Request $request)
+    {
+        $updData = $request->input();
+
+        $goods_id = $updData['goods_id'];
+
+        unset($updData['_token']);
+
+        unset($updData['goods_id']);
+
+        $res = DB::table('goods')->where('goods_id', $goods_id)->update($updData);
+
+        if($res){
+            return view('jump')->with([
+                //跳转信息
+                'message'=>'修改成功，正在跳转!',
+                //自己的跳转路径
+                'url' =>'/goods/index',
+                //跳转路径名称
+                'urlname' =>'商品列表',
+                //跳转等待时间（s）
+                'jumpTime'=>2,
+            ]);
+        }else{
+            return view('jump')->with([
+                //跳转信息
+                'message'=>'修改失败!',
+                //自己的跳转路径
+                'url' =>'/goods/index',
+                //跳转路径名称
+                'urlname' =>'商品列表',
+                //跳转等待时间（s）
+                'jumpTime'=>2,
+            ]);
+        }
     }
 
     public function goodsDelAll(Request $request)
@@ -93,8 +136,21 @@ class GoodsController extends Controller
 
     public function goodsInsert()
     {
-//        echo 1;die;
-        return view('admin\goods.goodsInsert');
+        $catList = Db::table('cat')->select('cat_name', 'cat_id','pid')->get();
+
+        $catList = getTree($catList);
+
+        $brandList = Db::table('brand')->select('brand_id', 'brand_name')->get();
+
+        return view('admin\goods.goodsInsert', [ 'catList'=>$catList, 'brandList'=>$brandList ]);
+    }
+
+    public function doInsert(Request $request)
+    {
+        $postData = $request->input();
+
+        echo "<pre>";
+        var_dump($postData);
     }
 
 
