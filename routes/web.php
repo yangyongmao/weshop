@@ -24,7 +24,6 @@ Route::get("admin/welcome","Admin\IndexController@welcome")->middleware('admin.l
 Route::get('admin/list',"Admin\AdminController@list");
 //管理员添加
 Route::get('admin/add',"Admin\AdminController@add");
-Route::get('admin/do_add',"Admin\AdminController@add");
 //管理员删除
 Route::get('admin/del',"Admin\AdminController@del");
 //管理员修改
