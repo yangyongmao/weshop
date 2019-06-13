@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
-class OrderController extends Check
+class OrderController extends Controller
 {
     public function orderList()
     {
