@@ -7,12 +7,15 @@
  */
 namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
-use DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
-class IndexController extends Check
+class IndexController extends Controller
 {
-    public function index(){
-        return view("admin\index\\index");
+
+    public function index(Request $request)
+    {
+        $thisAdmin = $request->session()->get("thisAdmin");
+        return view("admin.index.index")->with("thisAdmin",$thisAdmin);
     }
 }
