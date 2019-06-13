@@ -21,4 +21,11 @@ class IndexController extends Controller
         return view("admin.index.index")->with("thisAdmin",$thisAdmin);
     }
 
+    public function welcome(Request $request)
+    {
+        return view('admin.index.welcome')->with([
+            'thisAdmin' => $request->session()->get('thisAdmin'),
+        ]);
+    }
+
 }
