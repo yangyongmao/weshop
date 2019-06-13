@@ -14,11 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 //后台首页
 Route::get("admin/welcome","Admin\IndexController@welcome")->middleware('admin.login');
 //后台主页
 Route::get('admin','Admin\IndexController@index');
-//后台登录
 
 /**
  * 李新元
