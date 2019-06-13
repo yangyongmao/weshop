@@ -8,19 +8,23 @@ class OrderController extends Controller
 {
     public function orderList()
     {
-        $start = isset($_GET['start'])?strtotime($_GET['start']):'25200';
-        $end = isset($_GET['end'])?strtotime($_GET['end'])+24*60*60:time();
-        $contrller = isset($_GET['contrller'])?[$_GET['contrller']]:[1,2,3,4,5,6];
-        $username = isset($_GET['username'])?$_GET['username']:'';
 
+        $start = isset($_GET['start'])&&!empty($_GET['start'])?strtotime($_GET['start']):25200;
+        $end = isset($_GET['end'])&&!empty($_GET['end'])?strtotime($_GET['end']):time()+60*60*24;
+        $contrller = isset($_GET['contrller'])&&!empty($_GET['contrller'])?[$_GET['contrller']]:[1,2,3,4,5,6];
+        $username = isset($_GET['username'])&&!empty($_GET['username'])?$_GET['username']:'';
+        $between = [$start,$end];
         $orderList = Db::table('order')
-                        ->leftJoin('status','order.o_status','=','status.s_id')
-                        ->leftJoin('address','order.a_id','=','address.a_id')
-//                        ->whereBetween('o_addtime',[[$start],[$end]])
-                        ->whereIn('o_status',$contrller)
-                        ->where('o_num','like',"%$username%")
-                        ->orderBy('o_addtime','desc')
-                        ->paginate(5);
+                        ->join('status','order.o_status','=','status.s_id')
+                        ->join('address','order.a_id','=','address.a_id')
+                        ->whereBetween('order.o_addtime',$between)
+                        ->whereIn('order.o_status',$contrller)
+                        ->where('order.o_num','like',"%$username%")
+                        ->orderBy('order.o_addtime','desc')
+                        ->select()
+                        ->paginate(15);
+//        echo "<pre>";
+//        var_dump($orderList);die;
 
         $statusList = Db::table('status')->select()->get();
         return view('admin/order/order',['orderList' => $orderList ,'statusList' => $statusList]);
@@ -55,7 +59,8 @@ class OrderController extends Controller
                         ->orderBy('order.o_addtime','desc')
                         ->select()
                         ->get();
-        echo "<pre>";
-        var_dump($orderDesc);die;
+//        echo "<pre>";
+//        var_dump($orderDesc);die;
+        return view('admin/order/desc');
     }
 }
