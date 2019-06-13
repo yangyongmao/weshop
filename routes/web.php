@@ -17,7 +17,6 @@ Route::get('/', function () {
 
 
 //后台主页
-
 Route::get('admin','Admin\IndexController@index');
 //后台登录
 Route::get('admin/login',"Admin\LoginController@login");
@@ -34,8 +33,6 @@ Route::get('admin/del',"Admin\AdminController@del");
 Route::get('admin/update',"Admin\AdminController@update");
 //管理员是否启用
 Route::get('admin/statuses',"Admin\AdminController@statuses");
-//管理员搜索
-//Route::get('admin/list',"Admin\AdminController@list");
 
 /**
  * Jiaxinchen
@@ -58,9 +55,11 @@ Route::post("admin/showmenus","Admin\MenusController@show");
 //删除菜单
 Route::get("admin/deletemenus","Admin\MenusController@delete");
 
+
 /**
  * 曹跃峰
  */
+
 Route::any('admin/orderList',"Admin\OrderController@orderList");
 Route::any('admin/orderDel',"Admin\OrderController@orderDel");
 Route::any('admin/orderDelall',"Admin\OrderController@orderDelall");

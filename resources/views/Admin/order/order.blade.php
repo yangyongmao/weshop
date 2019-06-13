@@ -38,7 +38,7 @@
 
                                 <div class="layui-input-inline layui-show-xs-block">
                                     <select name="contrller">
-                                        <option value="0">订单状态</option>
+                                        <option value="">订单状态</option>
                                         @foreach($statusList as $k => $v)
                                         <option value="{{$v->s_id}}">{{$v->status}}</option>
                                         @endforeach
