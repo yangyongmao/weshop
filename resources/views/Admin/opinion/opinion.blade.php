@@ -30,7 +30,7 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
-                            <form class="layui-form layui-col-space5" method="get" action="orderList">
+                            <form class="layui-form layui-col-space5" method="get" action="opinionList">
                                 <div class="layui-input-inline layui-show-xs-block">
                                     <input class="layui-input" placeholder="开始日" name="start" id="start"></div>
                                 <div class="layui-input-inline layui-show-xs-block">
@@ -38,14 +38,14 @@
 
                                 <div class="layui-input-inline layui-show-xs-block">
                                     <select name="contrller">
-                                        <option value="">订单状态</option>
-                                        @foreach($statusList as $k => $v)
-                                        <option value="{{$v->s_id}}">{{$v->status}}</option>
-                                        @endforeach
+                                        <option value="">审阅状态</option>
+                                        <option value="1">未审阅</option>
+                                        <option value="2">已审阅</option>
+
                                     </select>
                                 </div>
                                 <div class="layui-input-inline layui-show-xs-block">
-                                    <input type="text" name="username" placeholder="请输入订单号" autocomplete="off" class="layui-input"></div>
+                                    <input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input"></div>
                                 <div class="layui-input-inline layui-show-xs-block">
                                     <button class="layui-btn" lay-submit="" lay-filter="sreach">
                                         <i class="layui-icon">&#xe615;</i></button>
@@ -55,7 +55,7 @@
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()">
                                 <i class="layui-icon"></i>批量删除</button>
-                           </div>
+                            </div>
                         <div id="contentbox">
                         <div class="layui-card-body ">
                             <table class="layui-table layui-form">
@@ -64,29 +64,31 @@
                                         <th>
                                             <input type="checkbox" name="" lay-filter="checkall"  lay-skin="primary">
                                         </th>
-                                        <th>订单编号</th>
-                                        <th>收货人</th>
-                                        <th>总金额</th>
-                                        <th>应付金额</th>
-                                        <th>订单状态</th>
-                                        <th>下单时间</th>
+                                        <th>建议人</th>
+                                        <th>时间</th>
+                                        <th>邮箱</th>
+                                        <th>是否审阅</th>
                                         <th>操作</th></tr>
                                 </thead>
                                 <tbody>
-                                @foreach($orderList as $k => $v)
+                                @foreach($opinionList as $k => $v)
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="id" lay-skin="primary" value="{{$v->o_id}}"></td>
-                                        <td>{{$v->o_num}}</td>
-                                        <td>{{$v->a_name}}:{{$v->a_call}}</td>
-                                        <td>{{$v->o_total}}</td>
-                                        <td>{{$v->o_price}}</td>
-                                        <td>{{$v->status}}</td>
-                                        <td>{{date('Y-m-d H:i:s',$v->o_addtime)}}</td>
+                                            <input type="checkbox" name="id" lay-skin="primary" value="{{$v->id}}"></td>
+                                        <td>{{$v->u_id}}马云</td>
+                                        <td>{{date('Y-m-d H:i:s',$v->addtime)}}</td>
+                                        <td>{{$v->u_id}}245@qq.com</td>
+                                        <td>
+                                            @if($v->is_ok == 1)
+                                                未审阅
+                                            @else
+                                                已审阅
+                                            @endif
+                                        </td>
                                         <td class="td-manage">
-                                            <a title="查看" onclick="xadmin.open('编辑','orderDesc?id={{$v->o_id}}')" href="javascript:;">
+                                            <a title="查看" onclick="xadmin.open('编辑','orderDesc?id={{$v->id}}')" href="javascript:;">
                                                 <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="删除" onclick="member_del(this,{{$v->o_id}})" href="javascript:;">
+                                            <a title="删除" onclick="member_del(this,{{$v->id}})" href="javascript:;">
                                                 <i class="layui-icon">&#xe640;</i></a>
                                         </td>
                                     </tr>
@@ -98,7 +100,7 @@
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
-                                    {{ $orderList->links() }}
+                                {{$opinionList->links()}}
 {{--                                    <a class="prev" href="">&lt;&lt;</a>--}}
 {{--                                    <a class="num" href="">1</a>--}}
 {{--                                    <span class="current">2</span>--}}
@@ -233,6 +235,7 @@
                 });
             });
         }
+
 
     </script>
 

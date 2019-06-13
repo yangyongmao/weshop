@@ -61,5 +61,7 @@ Route::get("admin/showmenus","Admin\MenusController@show");
 Route::post("admin/showmenus","Admin\MenusController@show");
 //删除菜单
 Route::get("admin/deletemenus","Admin\MenusController@delete");
+//用户意见
+Route::any("admin/opinionList","Admin\OpinionController@opinionList");
 
 
