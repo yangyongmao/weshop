@@ -8,6 +8,7 @@ class OrderController extends Controller
 {
     public function orderList()
     {
+
         $start = isset($_GET['start'])&&!empty($_GET['start'])?strtotime($_GET['start']):25200;
         $end = isset($_GET['end'])&&!empty($_GET['end'])?strtotime($_GET['end']):time()+60*60*24;
         $contrller = isset($_GET['contrller'])&&!empty($_GET['contrller'])?[$_GET['contrller']]:[1,2,3,4,5,6];
@@ -24,6 +25,7 @@ class OrderController extends Controller
                         ->paginate(15);
 //        echo "<pre>";
 //        var_dump($orderList);die;
+
         $statusList = Db::table('status')->select()->get();
         return view('admin/order/order',['orderList' => $orderList ,'statusList' => $statusList]);
     }
