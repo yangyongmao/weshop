@@ -20,7 +20,7 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form">
+                <form class="layui-form" id="layui-form">
 
                     <div class="layui-form-item">
                         <label for="L_username" class="layui-form-label">
@@ -40,28 +40,25 @@
                             <span class="x-red">*</span>评论内容</label>
                         <div class="layui-input-inline">
                             {{--<input type="text" id="L_username" name="m_url" required="" lay-verify="m_url" autocomplete="off" class="layui-input">--}}
-                            <textarea  id="L_username" required="" lay-verify="m_url" autocomplete="off" class="layui-input" cols="100" rows="100" style="width:230px;height: 200px; " disabled>{{$comm}}</textarea>
+                            <textarea  id="L_username" required="" lay-verify="" autocomplete="off" class="layui-input" cols="100" rows="100" style="width:230px;height: 200px; " disabled>{{$comm}}</textarea>
                         </div>
                         {{--<div class="layui-form-mid layui-word-aux">URL最长为30个字符\若是父级，'/'表示</div>--}}
                     </div>
 
                     <div class="layui-form-item">
                         <label for="L_username" class="layui-form-label">
-                            <span class="x-red">*</span>评论内容</label>
+                            <span class="x-red">*</span>回复客户</label>
                         <div class="layui-input-inline">
-                            {{--<input type="text" id="L_username" name="m_url" required="" lay-verify="m_url" autocomplete="off" class="layui-input">--}}
-                            <textarea  id="L_username" required="" lay-verify="m_url" autocomplete="off" class="layui-input" cols="100" rows="100" style="width:230px;height: 200px; "></textarea>
+                            <textarea name="reply_comment" id="reply_comment" required="" lay-verify="m_reply" autocomplete="off" class="layui-input" cols="100" rows="100" style="width:230px;height: 200px; ">{{$old_reply}}</textarea>
                         </div>
-                        {{--<div class="layui-form-mid layui-word-aux">URL最长为30个字符\若是父级，'/'表示</div>--}}
                     </div>
-
+                    <input type="hidden" name="comm_id" value="{{$comm_id}}">
                     @csrf
 
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
                         <button class="layui-btn" lay-filter="add" lay-submit="">增加</button>
                     </div>
-
                 </form>
             </div>
         </div>
@@ -79,9 +76,9 @@
                             return '菜单标题最大为6个汉字';
                         }
                     },
-                    m_url:function(value){
-                       if(value.length <= 0 || value.length > 30){
-                           return '菜单路由最长为30个字符';
+                    m_reply:function(value){
+                       if(value.length <= 0){
+                           return '回复内容不可为空';
                        }
                     },
                     // pass: [/(.+){6,12}$/, '密码必须6到12位'],
@@ -97,17 +94,15 @@
                     /**
                      * 异步添加数据
                      */
-                    // console.log(data);
-                    var m_title = $("input[name='m_title']").val();
-                    var m_url = $("input[name='m_url']").val();
-                    var m_pid = $("select[name='m_pid']").val();
+                    var comm_id = $("input[name='comm_id']").val(); //回复的文章id
+                    var reply_comment = $("textarea[name='reply_comment']").val();
                     var _token = $("input[name='_token']").val();
+                    // console.log(reply_comment);return false;
 
-                    $.post("/admin/addmenus",{m_title:m_title,m_url:m_url,m_pid:m_pid,_token:_token},function (jsonMsg) {
+                    $.post("",{pid:comm_id,comment:reply_comment,_token:_token},function (jsonMsg) {
                         var objMsg = $.parseJSON(jsonMsg);
-                        if(objMsg.errorCode == 200){
-                            // location.href="admin/showmenus";
-                        }else{
+                        // console.log(objMsg);return false;
+                        if(objMsg.errorCode == 200){}else{
                             alert("添加菜单失败");return false;
                         }
                     });
@@ -118,11 +113,11 @@
                     function() {
                         //关闭当前frame
                         xadmin.close();
-
                         // 可以对父窗口进行刷新 
                         xadmin.father_reload();
                     });
                     return false;
+
                 });
 
             });

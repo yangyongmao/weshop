@@ -120,6 +120,15 @@ class CommentsController extends Controller
             $good_id = $request->get('good_id');
             $u_id = $request->get('u_id');
 
+            //检查已有的回复
+            $oldReply = DB::table('goodscomments')
+                ->where([
+                    'pid' => $comm_id,
+                    'type' => 4,
+                ])
+                ->select(DB::raw("comment"))
+                ->first();
+
             //发布的用户
             $user = '北京的购物狂';
             //关于的商品
@@ -134,10 +143,73 @@ class CommentsController extends Controller
                 ->first();
 
             return view('admin.comments.reply')->with([
+                'comm_id' => $comm_id,
+                'u_id' => $u_id,
                 'user' => $user,
                 'good' => $good->goods_name,
                 'comm' => $comm->comment,
+                'old_reply' => !empty($oldReply->comment) ? $oldReply->comment : '',
             ]);
+        }else{
+                /**
+                 *  回复用户评论
+                 */
+                if($request->ajax()){
+                    //处理数据
+                    $data = $request->post();
+                    unset($data['_token']);
+                    $data['addtime'] = time();
+                    $data['type'] = 4;
+
+                    //检查是否回复过
+                    $haveOldReply = DB::table('goodscomments')
+                        ->where([
+                            'pid' => $data['pid'],
+                            'type' => 4
+                        ])
+                        ->select(DB::raw("id"))
+                        ->first();
+
+                    //判断以前是否回复过
+                    if(!empty($haveOldReply->id)){
+                        $res = DB::table('goodscomments')
+                            ->where(['pid' => $data['pid']])
+                            ->update($data);
+                    }else{
+                        $res = DB::table('goodscomments')->insert($data);
+                    }
+
+                    if($res){
+
+                        if(!empty($haveOldReply->id)){
+                            json_encode(
+                                [
+                                    'errorCode' => 200,
+                                    'errorMsg' => '更新回复成功',
+                                ],
+                                JSON_UNESCAPED_UNICODE
+                            );
+                        }else{
+                            json_encode(
+                                [
+                                    'errorCode' => 200,
+                                    'errorMsg' => '回复成功',
+                                ],
+                                JSON_UNESCAPED_UNICODE
+                            );
+                        }
+                    }else{
+
+                        json_encode(
+                            [
+                                'errorCode' => 201,
+                                'errorMsg' => '回复失败',
+                            ],
+                            JSON_UNESCAPED_UNICODE
+                        );
+
+                    }
+                }
         }
     }
 

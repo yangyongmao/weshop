@@ -16,6 +16,10 @@ Route::get('/', function () {
 });
 
 
+/**
+ * 主页
+ */
+Route::get("admin/welcome","Admin\IndexController@welcome");
 
 
 /**
@@ -59,7 +63,7 @@ Route::post("admin/showcomments","Admin\CommentsController@show")->middleware('a
 Route::get('admin/deletecomments',"Admin\CommentsController@delete")->middleware('admin.login');
 //回复商品的评论
 Route::get("admin/replycomm","Admin\CommentsController@reply")->middleware('admin.login');
-
+Route::post("admin/replycomm","Admin\CommentsController@reply")->middleware('admin.login');
 
 
 
