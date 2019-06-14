@@ -34,3 +34,11 @@ Route::post("admin/addmenus","Admin\MenusController@add");
 Route::get("admin/showmenus","Admin\MenusController@show");
 //删除菜单
 Route::get("admin/deletemenus","Admin\MenusController@delete");
+//品牌菜单展示
+Route::any("admin/brandmenus","Admin\BrandController@show");
+//后台添加品牌执行
+Route::any("admin/brandadd","Admin\BrandController@add");
+//品牌删除
+Route::any("admin/brandelete","Admin\BrandController@delete");
+//品牌展示
+Route::any("admin/brandallow","Admin\BrandController@allow");
