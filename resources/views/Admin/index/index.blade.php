@@ -147,7 +147,7 @@
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('商品列表','')">
+                        <a onclick="xadmin.add_tab('商品列表','/goods/index')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商品列表</cite></a>
                     </li>
