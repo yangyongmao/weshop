@@ -15,21 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//商品展示
-Route::any('goods/index','Admin\GoodsController@index');
-//商品详情页
-Route::get('goods/goodsInfo','Admin\GoodsController@goodsInfo');
-//商品批删
-Route::get('goods/goodsDelAll','Admin\GoodsController@goodsDelAll');
-//商品单删
-Route::get('goods/goodsDelOne','Admin\GoodsController@goodsDelOne');
-//商品修改上下架状态
-Route::get('goods/goodsUpdSale','Admin\GoodsController@goodsUpdSale');
-//商品添加页面
-Route::any('1','Admin\GoodsController@goodsInsert');
+
+
 
 /**
- * 李新元
+ * lixinyuan
  */
 //管理员列表
 Route::get('admin/list',"Admin\AdminController@list");
@@ -92,9 +82,22 @@ Route::post('goods/goodsUpdGoods', 'Admin\GoodsController@goodsUpdGoods');
 Route::any('goods/goodsInsert', 'Admin\GoodsController@goodsInsert');
 //执行添加
 Route::any('goods/doInsert', 'Admin\GoodsController@doInsert');
+//商品展示
+Route::any('goods/index','Admin\GoodsController@index');
+//商品详情页
+Route::get('goods/goodsInfo','Admin\GoodsController@goodsInfo');
+//商品批删
+Route::get('goods/goodsDelAll','Admin\GoodsController@goodsDelAll');
+//商品单删
+Route::get('goods/goodsDelOne','Admin\GoodsController@goodsDelOne');
+//商品修改上下架状态
+Route::get('goods/goodsUpdSale','Admin\GoodsController@goodsUpdSale');
+//商品添加页面
+Route::any('1','Admin\GoodsController@goodsInsert');
 
-
-
+/**
+ * caoyuefeng
+ */
 Route::any('admin/orderList',"Admin\OrderController@orderList");
 Route::any('admin/orderDel',"Admin\OrderController@orderDel");
 Route::any('admin/orderDelall',"Admin\OrderController@orderDelall");
