@@ -10,6 +10,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class GoodsController extends Controller
 {
@@ -17,7 +18,7 @@ class GoodsController extends Controller
     {
         $keyword = $request->input('keyword');
 
-        $wheres = !empty($keyword) ? $keyword : '';
+        $wheres = !empty($keyword) ? $keyword : '%%';
 
         $goodsList = Db::table('goods')->join('cat', 'cat.cat_id', '=', 'goods.cat_id')
             ->join('brand', 'brand.brand_id', '=', 'goods.brand_id')
@@ -26,7 +27,7 @@ class GoodsController extends Controller
                 $query->where('goods.goods_name', 'like', "%$wheres%")
                     ->orWhere('cat.cat_name', 'like', "%$wheres%")
                     ->orWhere('brand.brand_name', 'like', "%$wheres%");
-            })->select('goods.goods_id', 'goods.goods_sn', 'goods.goods_name', 'goods.goods_number', 'goods.is_on_sale', 'cat.cat_name', 'brand.brand_name')
+            })->select('goods.goods_id','goods_img', 'goods.goods_sn', 'goods.goods_name', 'goods.goods_number', 'goods.is_on_sale', 'cat.cat_name', 'brand.brand_name')
             ->paginate(15);
 
         return view('admin\goods.index', ['goodsList' => $goodsList]);
@@ -53,9 +54,17 @@ class GoodsController extends Controller
 
     public function goodsUpdGoods(Request $request)
     {
+        $img = $request->file('goods_img')->store('public/goodsImg');
+
+        $img = str_replace('public', '', $img);
+
+        $postData['goods_img'] = $img;
+
         $updData = $request->input();
 
         $goods_id = $updData['goods_id'];
+
+        unset($postData['_token']);
 
         unset($updData['_token']);
 
@@ -63,28 +72,10 @@ class GoodsController extends Controller
 
         $res = DB::table('goods')->where('goods_id', $goods_id)->update($updData);
 
-        if($res){
-            return view('jump')->with([
-                //跳转信息
-                'message'=>'修改成功，正在跳转!',
-                //自己的跳转路径
-                'url' =>'/goods/index',
-                //跳转路径名称
-                'urlname' =>'商品列表',
-                //跳转等待时间（s）
-                'jumpTime'=>2,
-            ]);
+        if( $res ){
+            return json_encode(['code'=>'1', 'msg'=>'success']);
         }else{
-            return view('jump')->with([
-                //跳转信息
-                'message'=>'修改失败!',
-                //自己的跳转路径
-                'url' =>'/goods/index',
-                //跳转路径名称
-                'urlname' =>'商品列表',
-                //跳转等待时间（s）
-                'jumpTime'=>2,
-            ]);
+            return json_encode(['code'=>'2', 'msg'=>'error']);
         }
     }
 
@@ -136,7 +127,7 @@ class GoodsController extends Controller
 
     public function goodsInsert()
     {
-        $catList = Db::table('cat')->select('cat_name', 'cat_id','pid')->get();
+        $catList = Db::table('cat')->select('cat_name', 'cat_id', 'pid')->get();
 
         $catList = getTree($catList);
 
@@ -147,10 +138,30 @@ class GoodsController extends Controller
 
     public function doInsert(Request $request)
     {
+        $img = $request->file('goods_img')->store('public/goodsImg');
+
+        $img = str_replace('public', '', $img);
+
         $postData = $request->input();
 
-        echo "<pre>";
-        var_dump($postData);
+        unset($postData['_token']);
+
+        $postData['goods_img'] = $img;
+
+        $postData['add_time'] = date('Y-m-d H:i:s', time()) ;
+
+        $goods_sn = 'wsp'.time().rand(111,999);
+
+        $postData['goods_sn'] = $goods_sn;
+//        var_dump($postData);die;
+        $res = Db::table('goods')->insert( $postData );
+
+        if($res){
+            return json_encode(['code'=>1, 'msg'=>'success']);
+        }else{
+            return json_encode(['code'=>2, 'msg'=>'error']);
+        }
+
     }
 
 

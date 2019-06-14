@@ -57,6 +57,7 @@
                                     <th>分类</th>
                                     <th>品牌</th>
                                     <th>商品名称</th>
+                                    <th>图片</th>
                                     <th>库存</th>
                                     <th>是否上架</th>
                                     <th>操作</th></tr>
@@ -72,6 +73,7 @@
                                     <td>{{$v->cat_name}}</td>
                                     <td>{{$v->brand_name}}</td>
                                     <td>{{$v->goods_name}}</td>
+                                    <td><img src="{{asset('storage'.$v->goods_img)}}" alt=""></td>
                                     <td>{{$v->goods_number}}</td>
                                     <td class="td-status">
                                       <?php if( $v->is_on_sale == 1 ){ ?>

@@ -19,11 +19,19 @@
     </head>
     <body>
         <div class="layui-fluid">
-        <form action="goodsUpdGoods" method="post">
+        <form class="layui-form" id="form-data">
             @csrf
             <div class="layui-row">
                 <input type="hidden" value="{{$goodsList->goods_id}}" name="goods_id" required="" lay-verify="nikename" autocomplete="off" class="layui-input">
-                  <div class="layui-form-item">
+                <div class="layui-form-item">
+                    <label for="L_email" class="layui-form-label">
+                        商品名称:
+                    </label>
+                    <div class="layui-form-mid layui-word-aux">
+                        <input type="text" value="{{$goodsList->goods_name}}" name="goods_number" required="" lay-verify="nikename" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
                       <label for="L_email" class="layui-form-label">
                           分类:
                       </label>
@@ -90,14 +98,6 @@
                     </div>
                     <div class="layui-form-item">
                         <label for="L_email" class="layui-form-label">
-                            描述:
-                        </label>
-                        <div class="layui-form-mid layui-word-aux">
-                            <input type="text" value="{{$goodsList->goods_brief}}" name="goods_brief" required="" lay-verify="nikename" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label for="L_email" class="layui-form-label">
                             详细描述:
                         </label>
                         <div class="layui-form-mid layui-word-aux">
@@ -109,7 +109,8 @@
                             商品图片:
                         </label>
                         <div class="layui-form-mid layui-word-aux">
-                            {{--{{$goodsList->goods_brief}}--}}
+                            <img src="{{asset('storage'.$goodsList->goods_img)}}" alt="" :width="300px" height="150px">
+                            <input type="file" name="goods_img" value="{{$goodsList->goods_img}}" required="" lay-verify="required" autocomplete="off">
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -180,44 +181,6 @@
                     </div>
                     <div class="layui-form-item">
                         <label for="L_email" class="layui-form-label">
-                            是否促销:
-                        </label>
-                        <div class="layui-form-mid layui-word-aux">
-                            <?php if( $goodsList->is_promote == 1 ){ ?>
-                                <input type="radio" name="is_promote" value="1" checked="checked">是
-                                <input type="radio" name="is_promote" value="2">否
-                            <?php }elseif($goodsList->is_promote == 2){ ?>
-                                <input type="radio" name="is_promote" value="1">是
-                                <input type="radio" name="is_promote" value="2" checked="checked">否
-                            <?php } ?>
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label for="L_email" class="layui-form-label">
-                            促销价:
-                        </label>
-                        <div class="layui-form-mid layui-word-aux">
-                            <input type="text" value="{{$goodsList->promote_price}}" name="promote_price" required="" lay-verify="nikename" autocomplete="off" class="layui-input">
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label for="L_email" class="layui-form-label">
-                            促销开始时间:
-                        </label>
-                        <div class="layui-form-mid layui-word-aux">
-                            {{$goodsList->promote_start_date}}
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label for="L_email" class="layui-form-label">
-                            促销结束时间:
-                        </label>
-                        <div class="layui-form-mid layui-word-aux">
-                            {{$goodsList->promote_end_date}}
-                        </div>
-                    </div>
-                    <div class="layui-form-item">
-                        <label for="L_email" class="layui-form-label">
                             商品添加时间:
                         </label>
                         <div class="layui-form-mid layui-word-aux">
@@ -231,10 +194,10 @@
         </div>
 
         <script>
-            layui.use(['form', 'layer'],function() {
+            layui.use(['form', 'layer', 'jquery'], function() {
                 $ = layui.jquery;
                 var form = layui.form,
-                layer = layui.layer;
+                    layer = layui.layer;
 
                 // 自定义验证规则
                 // form.verify({
@@ -250,24 +213,57 @@
                 //         }
                 //     }
                 // });
-
                 //监听提交
-                // form.on('submit(add)',function(data) {
-                    // console.log(data);
-                    // //发异步，把数据提交给php
-                    // layer.alert("增加成功", {
-                    //     icon: 6
-                    // },
-                    // function() {
-                    //     //关闭当前frame
-                    //     xadmin.close();
-                    //
-                    //     // 可以对父窗口进行刷新
-                    //     xadmin.father_reload();
-                    // });
-                    // // return false;
-                // });
+                form.on('submit(add)',
+                    function (data) {
+                        let formObj = document.getElementById("form-data");
+                        let formData = new FormData(formObj);
+                        let goods_img = $("input[name='goods_img']")[0].files[0];
+                        formData.append('goods_img',goods_img);
+                        let _token = $("input[name='_token']").val();
+                        // console.log(_token);
+                        // console.log(formData.get('goods_img'));
+                        $.ajax({
+                            url: '/goods/goodsUpdGoods',
+                            type: 'POST',
+                            data: formData,
+                            dataType: 'json',
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (msg) {
+                                console.log(msg);
+                                if( msg.code=='1' ){
+                                    layer.alert("修改成功", {
+                                            icon: 6
+                                        },
+                                        function() {
+                                            // 获得frame索引
+                                            var index = parent.layer.getFrameIndex(window.name);
+                                            //关闭当前frame
+                                            parent.layer.close(index);
+                                        });
+                                    return false;
+                                }else{
+                                    layer.alert("修改失败", {
 
+                                        },
+                                        function() {
+                                            // 获得frame索引
+                                            var index = parent.layer.getFrameIndex(window.name);
+                                            //关闭当前frame
+                                            parent.layer.close(index);
+                                        });
+                                    return false;
+                                }
+                            },
+                            error: function () {
+                                alert('false');
+                                return false;
+                            }
+                        });
+                        return false;
+                    });
             });
         </script>
         {{--<script>--}}
