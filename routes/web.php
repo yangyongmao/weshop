@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 //后台首页
 Route::get("admin/welcome","Admin\IndexController@welcome")->middleware('admin.login');
 //后台主页
@@ -55,11 +54,16 @@ Route::get("admin/showmenus","Admin\MenusController@show");
 Route::post("admin/showmenus","Admin\MenusController@show");
 //删除菜单
 Route::get("admin/deletemenus","Admin\MenusController@delete");
-//商品评论审核
+//商品评论审核 展示
 Route::get("admin/showcomments","Admin\CommentsController@show")->middleware('admin.login');
 Route::post("admin/showcomments","Admin\CommentsController@show")->middleware('admin.login');
-//删除评论
+//删除商品的评论
 Route::get('admin/deletecomments',"Admin\CommentsController@delete")->middleware('admin.login');
+//回复商品的评论
+Route::get("admin/replycomm","Admin\CommentsController@reply")->middleware('admin.login');
+
+
+
 
 /**
  * 曹跃峰

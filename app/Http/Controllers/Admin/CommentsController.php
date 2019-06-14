@@ -30,6 +30,16 @@ class CommentsController extends Controller
          *      是否有回复信息，设置新字段
          */
         $commData = DB::table('goodscomments')
+            ->select(
+                DB::raw("
+                    *,
+                    case 
+                    when type=1 then '好评'  
+                    when type=2 then '中评' 
+                    when type=3 then '差评'
+                    end as comm_type
+                ")
+            )
             ->whereBetween("addtime",[[$startTime],[$endTime]])
             ->where([
                 ['pid','=',0],
@@ -37,6 +47,22 @@ class CommentsController extends Controller
             ])
             ->orderBy("addtime","ASC")
             ->paginate(5);
+
+        /**
+         * 检查每条数据是否有回复
+         */
+        foreach ($commData as $commkey => $v) {
+                $replyData = DB::table('goodscomments')
+                    ->where("pid","=",$v->id)
+                    ->select(DB::raw("id"))
+                    ->first();
+
+                if(!empty($replyData)){
+                    $v->reply_id = $replyData->id;
+                }else{
+                    $v->reply_id = '';
+                }
+        }
 
         return view('admin.comments.show')
             ->with([
@@ -86,7 +112,34 @@ class CommentsController extends Controller
         }
     }
 
+    public function reply(Request $request)
+    {
+        if($request->isMethod("GET")){
 
+            $comm_id = $request->get('comm_id');
+            $good_id = $request->get('good_id');
+            $u_id = $request->get('u_id');
+
+            //发布的用户
+            $user = '北京的购物狂';
+            //关于的商品
+            $good = DB::table('goods')
+                ->where("goods_id","=",$good_id)
+                ->select(DB::raw("goods_name"))
+                ->first();
+            //评论信息
+            $comm = DB::table('goodscomments')
+                ->where("id","=",$comm_id)
+                ->select(DB::raw("comment"))
+                ->first();
+
+            return view('admin.comments.reply')->with([
+                'user' => $user,
+                'good' => $good->goods_name,
+                'comm' => $comm->comment,
+            ]);
+        }
+    }
 
 
 }
