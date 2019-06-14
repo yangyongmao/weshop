@@ -18,9 +18,9 @@ class IndexController extends Controller
         $thisAdmin = $request->session()->get("thisAdmin");
         return view("admin.index.index")->with("thisAdmin",$thisAdmin);
     }
-<<<<<<< HEAD
-}
-=======
+
+
+
 
     public function welcome(Request $request)
     {
@@ -30,4 +30,3 @@ class IndexController extends Controller
     }
 
 }
->>>>>>> upstream/master

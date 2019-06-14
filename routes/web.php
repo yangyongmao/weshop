@@ -21,7 +21,6 @@ Route::get('admin','Admin\IndexController@index');
 Route::get("admin/welcome","Admin\IndexController@welcome")->middleware('admin.login');
 //后台主页
 Route::get('admin','Admin\IndexController@index');
-<<<<<<< HEAD
 //后台登录
 Route::get('admin/login',"Admin\LoginController@login");
 
@@ -43,12 +42,9 @@ Route::get('goods/goodsUpdSale','Admin\GoodsController@goodsUpdSale');
 //商品添加页面
 Route::any('1','Admin\GoodsController@goodsInsert');
 
-=======
-
 /**
  * 李新元
  */
->>>>>>> upstream/master
 //管理员列表
 Route::get('admin/list',"Admin\AdminController@list");
 //管理员添加
@@ -87,12 +83,10 @@ Route::post("admin/showcomments","Admin\CommentsController@show")->middleware('a
 Route::get('admin/deletecomments',"Admin\CommentsController@delete")->middleware('admin.login');
 
 /**
-<<<<<<< HEAD
  * yangyongmao
  */
 //商品展示
 //Route::any('goods/index','Admin\GoodsController@index');
-
 //商品详情页
 Route::get('goods/goodsInfo', 'Admin\GoodsController@goodsInfo');
 //商品批删
@@ -108,13 +102,11 @@ Route::any('goods/goodsInsert', 'Admin\GoodsController@goodsInsert');
 //执行添加
 Route::any('goods/doInsert', 'Admin\GoodsController@doInsert');
 
-=======
- * 曹跃峰
- */
+
+
 Route::any('admin/orderList',"Admin\OrderController@orderList");
 Route::any('admin/orderDel',"Admin\OrderController@orderDel");
 Route::any('admin/orderDelall',"Admin\OrderController@orderDelall");
 Route::any('admin/orderDesc',"Admin\OrderController@orderDesc");
 //用户意见
 Route::any("admin/opinionList","Admin\OpinionController@opinionList");
->>>>>>> upstream/master
