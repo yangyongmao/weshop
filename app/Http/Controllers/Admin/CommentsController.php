@@ -106,9 +106,7 @@ class CommentsController extends Controller
                     );
 
                 }
-
             }
-
         }
     }
 
@@ -116,9 +114,9 @@ class CommentsController extends Controller
     {
         if($request->isMethod("GET")){
 
-            $comm_id = $request->get('comm_id');
-            $good_id = $request->get('good_id');
-            $u_id = $request->get('u_id');
+            $comm_id    = $request->get('comm_id');  //商品评论表主键id
+            $good_id      = $request->get('good_id');    //商品id 用于查询商品信息
+            $u_id            = $request->get('u_id');          //评论者id
 
             //检查已有的回复
             $oldReply = DB::table('goodscomments')
@@ -143,12 +141,12 @@ class CommentsController extends Controller
                 ->first();
 
             return view('admin.comments.reply')->with([
-                'comm_id' => $comm_id,
-                'u_id' => $u_id,
-                'user' => $user,
-                'good' => $good->goods_name,
-                'comm' => $comm->comment,
-                'old_reply' => !empty($oldReply->comment) ? $oldReply->comment : '',
+                'comm_id'   => $comm_id,
+                'u_id'           => $u_id,
+                'user'           => $user,
+                'good'          => $good->goods_name,
+                'comm'        => $comm->comment,
+                'old_reply'   => !empty($oldReply->comment) ? $oldReply->comment : '',
             ]);
         }else{
                 /**

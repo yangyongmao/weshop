@@ -57,7 +57,7 @@
 
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
-                        <button class="layui-btn" lay-filter="add" lay-submit="">增加</button>
+                        <button class="layui-btn" lay-filter="add" lay-submit="">回复</button>
                     </div>
                 </form>
             </div>
@@ -103,18 +103,18 @@
                         var objMsg = $.parseJSON(jsonMsg);
                         // console.log(objMsg);return false;
                         if(objMsg.errorCode == 200){}else{
-                            alert("添加菜单失败");return false;
+                            alert("回复评论失败");return false;
                         }
                     });
                     //发异步，把数据提交给php
-                    layer.alert("增加成功", {
+                    layer.alert("回复成功", {
                         icon: 6
                     },
                     function() {
                         //关闭当前frame
                         xadmin.close();
                         // 可以对父窗口进行刷新 
-                        xadmin.father_reload();
+                        // xadmin.father_reload();
                     });
                     return false;
 

@@ -7,8 +7,9 @@
  */
 
 namespace App\Http\Controllers\Admin;
+use function foo\func;
 use Illuminate\Http\Request;
-use DB;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,19 +19,30 @@ class GoodsController extends Controller
     {
         $keyword = $request->input('keyword');
 
-        $wheres = !empty($keyword) ? $keyword : '%%';
+        $wheres = !empty($keyword) ? $keyword : '';
 
-        $goodsList = Db::table('goods')->join('cat', 'cat.cat_id', '=', 'goods.cat_id')
-            ->join('brand', 'brand.brand_id', '=', 'goods.brand_id')
-            ->where('goods.is_delete', '=', '2')
+        $goodsList = DB::table('goods')
+            ->where([
+            'goods.is_delete' => '2'
+            ])
             ->where(function ($query) use ($wheres) {
                 $query->where('goods.goods_name', 'like', "%$wheres%")
                     ->orWhere('cat.cat_name', 'like', "%$wheres%")
                     ->orWhere('brand.brand_name', 'like', "%$wheres%");
-            })->select('goods.goods_id','goods_img', 'goods.goods_sn', 'goods.goods_name', 'goods.goods_number', 'goods.is_on_sale', 'cat.cat_name', 'brand.brand_name')
-            ->paginate(15);
+            })
+            ->leftJoin("cat",function($query){
+                return $query->on("goods.cat_id","=","cat.cat_id");
+            })
+            ->leftJoin("brand",function ($query){
+                return $query->on("goods.brand_id","=","brand.brand_id");
+            })
+            ->select('goods.goods_id','goods_img', 'goods.goods_sn', 'goods.goods_name', 'goods.goods_number', 'goods.is_on_sale', 'cat.cat_name', 'brand.brand_name')
+            ->paginate(5);
 
-        return view('admin\goods.index', ['goodsList' => $goodsList]);
+        return view('admin\goods.index')
+            ->with([
+                'goodsList' => $goodsList,
+            ]);
     }
 
     public function goodsInfo(Request $request)
@@ -43,7 +55,8 @@ class GoodsController extends Controller
 
         $brandList = Db::table('brand')->select('brand_id', 'brand_name')->get();
 
-        $goodsList = Db::table('goods')->join('cat', 'cat.cat_id', '=', 'goods.cat_id')
+        $goodsList = Db::table('goods')
+            ->join('cat', 'cat.cat_id', '=', 'goods.cat_id')
             ->join('brand', 'brand.brand_id', '=', 'goods.brand_id')
             ->where('goods.goods_id', '=', "$goods_id")
             ->select('goods.*', 'cat.cat_name','cat.cat_id', 'brand.brand_id', 'brand.brand_name')

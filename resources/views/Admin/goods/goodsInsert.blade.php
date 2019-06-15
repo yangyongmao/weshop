@@ -175,6 +175,7 @@
                                         icon: 6
                                     },
                                     function() {
+                                        xadmin.father_reload();
                                         // 获得frame索引
                                         var index = parent.layer.getFrameIndex(window.name);
                                         //关闭当前frame
