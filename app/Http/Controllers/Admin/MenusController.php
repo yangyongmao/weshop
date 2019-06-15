@@ -80,7 +80,8 @@ class MenusController extends Controller
         return view('admin.menus.show')->with([
                 'data' => $menusData,
                 'm_addtime_start' => date('Y-m-d',$m_addtime_start),
-                'm_addtime_end' => date('Y-m-d',$m_addtime_end)
+                'm_addtime_end' => date('Y-m-d',$m_addtime_end),
+                'm_title' => $m_title,
             ]);
     }
 
@@ -90,8 +91,8 @@ class MenusController extends Controller
             $m_id = $request->get('m_id');
 
             $res = DB::table('menus')
-                ->whereIn('m_id',(array)$m_id)
-                ->orWhereIn('m_pid',(array)$m_id)
+                ->whereIn('m_id',explode(',',$m_id))
+                ->orWhereIn('m_pid',explode(',',$m_id))
                 ->delete();
 
             if($res){
