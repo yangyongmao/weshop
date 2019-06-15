@@ -33,10 +33,10 @@
                         <div class="layui-card-body ">
                             <form class="layui-form layui-col-space5">
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start">
+                                    <input class="layui-input"  autocomplete="off" placeholder="开始日" name="start" id="start" value="{{$start}}">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">
+                                    <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end" value="{{$end}}">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
                                     <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
@@ -76,7 +76,11 @@
                                   <td>{{$v->u_name}}</td>
                                   <td>{{$v->u_phone}}</td>
                                   <td>{{$v->u_email}}</td>
-                                  <td>超级管理员</td>
+                                    <td>
+                                    @foreach($v->child as $va)
+                                        {{$va->r_name}}，
+                                    @endforeach
+                                    </td>
                                   <td>{{date( 'Y-m-d H:i:s',$v->u_addtime)}}</td>
                                   <td class="td-status">
                                     @if($v->status==0)
@@ -102,10 +106,6 @@
                         </div>
                         <div class="layui-card-body ">
                             <div class="page">
-<<<<<<< HEAD
-
-=======
->>>>>>> upstrea/master
                                 {!!$data->links()!!}
                             </div>
                         </div>

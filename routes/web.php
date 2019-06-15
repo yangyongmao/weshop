@@ -34,9 +34,22 @@ Route::get('admin/update',"Admin\AdminController@update");
 Route::get('admin/statuses',"Admin\AdminController@statuses");
 //角色展示
 Route::get('role/list',"Admin\RoleController@list");
-//角色添加
-Route::post('role/add',"Admin\RoleController@add");
-
+//角色添加 post
+Route::get('role/add',"Admin\RoleController@add");
+//角色修改及权限的更改
+Route::get('role/update',"Admin\RoleController@update");
+//角色删除
+Route::get('role/del',"Admin\RoleController@del");
+//权限展示
+Route::get('node/list',"Admin\NodeController@list");
+//权限分类添加
+Route::get('node/add',"Admin\NodeController@add");
+//权限分类删除
+Route::get('node/del',"Admin\NodeController@del");
+//权限分类修改
+Route::get('node/update',"Admin\NodeController@update");
+//子权限展示
+Route::get('do_node/list',"Admin\DonodeController@list");
 /**
  * Jiaxinchen
  */
