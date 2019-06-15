@@ -42,6 +42,7 @@ class GoodsController extends Controller
         return view('admin\goods.index')
             ->with([
                 'goodsList' => $goodsList,
+                'wheres'=> $wheres
             ]);
     }
 
