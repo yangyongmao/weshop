@@ -49,7 +49,7 @@
                 </div>
                 <div class="layui-card-header">
                     <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                    <button class="layui-btn" onclick="xadmin.open('添加用户','brandadd',600,400)"><i class="layui-icon"></i>添加</button>
+                    <button class="layui-btn " onclick="xadmin.open('添加用户','brandadd',600,400)"><i class="layui-icon"></i>添加</button>
                 </div>
                 <div class="layui-card-body layui-table-body layui-table-main">
                     <table class="layui-table layui-form">
@@ -81,7 +81,7 @@
                                 <td>{{$v->brand_desc}}</td>
                                 <td>{{$v->scort}}</td>
                                 <td id="{{$v->is_show}}">
-                                    <button class="layui-btn"   value="{{$v->brand_id}}">
+                                    <button class="layui-btn add"   value="{{$v->brand_id}}">
                                         @if($v->is_show == 0)
                                     展示
                                     @else
@@ -123,7 +123,7 @@
         var $ = layui.jquery;
 
 
-        $('.layui-btn').click(function () {
+        $('.add').click(function () {
             var brand_id =$(this).val();
             var name = $(this);
             var is_show = $(this).parents('td').attr('id');
@@ -202,7 +202,7 @@
         });
 
         layer.confirm('确认要删除吗？'+ids.toString(),function(index){
-            console.log(ids);
+
             $.get("brandelete",{brand_id:ids.toString()},function (jsonMsg) {
                 var objMsg = $.parseJSON(jsonMsg);
                 if(!(objMsg.errorCode == 200)){

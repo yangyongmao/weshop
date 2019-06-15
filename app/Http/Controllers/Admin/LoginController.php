@@ -8,6 +8,10 @@
 namespace  App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+<<<<<<< HEAD
+=======
+use function foo\func;
+>>>>>>> upstream/master
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -25,6 +29,10 @@ class LoginController extends Controller
                 ->where([
                     ['u_account',   '=',    $loginData['u_account']],
                     ['u_pwd',   '=',    md5($loginData['u_pwd'])],
+<<<<<<< HEAD
+=======
+                    ['status','=',0],
+>>>>>>> upstream/master
                 ])
                 ->first();
 

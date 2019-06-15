@@ -60,6 +60,7 @@ class MenusController extends Controller
 
     public function show(Request $request)
     {
+<<<<<<< HEAD
         $m_addtime_start = strtotime($request->input('m_addtime_start',0));
         $m_addtime_end = strtolower($request->input('m_addtime_end',time()));
         $m_title = $request->input('m_title','');
@@ -71,6 +72,31 @@ class MenusController extends Controller
             ->paginate(7);
 
         return view('admin.menus.show')->with("data",$menusData);
+=======
+        $m_addtime_start = $request->post('m_addtime_start','1970-01-01');
+        $m_addtime_end = $request->post('m_addtime_end',time());
+        $m_title = $request->post('m_title');
+
+        /**
+         * 判断时间是否是int 是int为时间戳形式
+         */
+        $m_addtime_start = is_int($m_addtime_start) ? $m_addtime_start : strtotime($m_addtime_start);
+        $m_addtime_end = is_int($m_addtime_end) ? $m_addtime_end : strtotime($m_addtime_end) + 24*60*60;
+        $m_title = empty($m_title) ? '' : $m_title;
+
+        $menusData = DB::table('menus')
+            ->whereBetween("m_addtime",[[$m_addtime_start],[$m_addtime_end]])
+            ->where("m_title","like","%$m_title%")
+            ->orderBy("m_addtime","DESC")
+            ->paginate(7);
+
+        return view('admin.menus.show')->with([
+                'data' => $menusData,
+                'm_addtime_start' => date('Y-m-d',$m_addtime_start),
+                'm_addtime_end' => date('Y-m-d',$m_addtime_end),
+                'm_title' => $m_title,
+            ]);
+>>>>>>> upstream/master
     }
 
     public function delete(Request $request)
@@ -79,8 +105,13 @@ class MenusController extends Controller
             $m_id = $request->get('m_id');
 
             $res = DB::table('menus')
+<<<<<<< HEAD
                 ->whereIn('m_id',(array)$m_id)
                 ->orWhereIn('m_pid',(array)$m_id)
+=======
+                ->whereIn('m_id',explode(',',$m_id))
+                ->orWhereIn('m_pid',explode(',',$m_id))
+>>>>>>> upstream/master
                 ->delete();
 
             if($res){

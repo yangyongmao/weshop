@@ -31,6 +31,7 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
+<<<<<<< HEAD
                             <form class="layui-form layui-col-space5">
                                 <div class="layui-inline layui-show-xs-block">
                                     <input class="layui-input"  autocomplete="off" placeholder="开始日" name="m_addtime_start" id="start">
@@ -40,6 +41,18 @@
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
                                     <input type="text" name="m_title"  placeholder="请输入菜单名..." autocomplete="off" class="layui-input">
+=======
+                            <form class="layui-form layui-col-space5" method="post">
+                                @csrf
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input class="layui-input"  autocomplete="off" placeholder="开始日" name="m_addtime_start" id="start" value="{{$m_addtime_start}}">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input class="layui-input"  autocomplete="off" placeholder="截止日" name="m_addtime_end" id="end" value="{{$m_addtime_end}}">
+                                </div>
+                                <div class="layui-inline layui-show-xs-block">
+                                    <input type="text" name="m_title"  placeholder="请输入菜单名..." autocomplete="off" class="layui-input" value="{{$m_title}}">
+>>>>>>> upstream/master
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
                                     <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -113,6 +126,10 @@
             </div>
         </div> 
     </body>
+<<<<<<< HEAD
+=======
+    <script src="/adminStatic/js/jquery.min.js"></script>
+>>>>>>> upstream/master
     <script>
       layui.use(['laydate','form'], function(){
         var laydate = layui.laydate;
@@ -143,6 +160,19 @@
 
       });
 
+<<<<<<< HEAD
+=======
+
+      /**
+       * 搜索后分页 将a连接带上搜索值
+       */
+      $(".page-item").on('click',function () {
+          var url = $(this).children().prop('href');
+          var newUrl = url + '&m_title=' + $("input[name='m_title']").val();
+          $(this).children().prop('href',newUrl);
+      });
+
+>>>>>>> upstream/master
        /*用户-停用*/
       function member_stop(obj,id){
           layer.confirm('确认要停用吗？',function(index){
