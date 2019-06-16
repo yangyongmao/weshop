@@ -62,6 +62,7 @@
                                     <th>用户昵称</th>
                                     <th>关于商品</th>
                                     <th>评论内容</th>
+                                    <th>评论类型</th>
                                     <th>发表时间</th>
                                     <th>操作</th>
                                   </tr>
@@ -72,14 +73,15 @@
                                     <td>
                                       <input type="checkbox" name="m_id" value="{{$v->id}}"   lay-skin="primary">
                                     </td>
-                                    <td>{{$v->u_id}}</td>
+                                    <td>{{$v->id}}</td>
                                     <td>{{$v->u_id}}</td>
                                     <td>{{$v->goods_id}}</td>
                                     <td>{{$v->comment}}</td>
+                                    <td>{{$v->comm_type}}</td>
                                     <td>{{date("Y-m-d H:i:s",$v->addtime)}}</td>
                                     <td class="td-manage">
                                       {{--<a title="编辑"  onclick="xadmin.open('编辑','updatemenus',600,400)" href="javascript:;">--}}
-                                        <a title="编辑"  onclick="pleaseDel()" href="javascript:;">
+                                        <a title="编辑"  onclick="xadmin.open('回复此评论','replycomm?comm_id={{$v->id}}&good_id={{$v->goods_id}}&u_id={{$v->u_id}}',600,400)" href="javascript:;">
                                         <i class="layui-icon">&#xe642;</i>
                                       </a>
                                       <a title="删除" onclick="member_del(this,{{$v->id}})" href="javascript:;">
@@ -87,7 +89,6 @@
                                       </a>
                                     </td>
                                   </tr>
-
                                 @endforeach
                                 </tbody>
                             </table>
@@ -220,8 +221,8 @@
       /**
        * 提示用户删除重新添加
        */
-      function pleaseDel() {
-          alert('请删除重现添加');
-      }
+      // function pleaseDel() {
+      //     alert('请删除重现添加');
+      // }
     </script>
 </html>

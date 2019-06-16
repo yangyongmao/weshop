@@ -14,37 +14,27 @@
 Route::get('/', function () {
     return view('welcome');
 });
-//后台首页
-Route::get("admin/welcome","Admin\IndexController@welcome")->middleware('admin.login');
-
-
-
-//后台主页
-
-//Route::get('admin','Admin\IndexController@index');
-////后台登录
-//Route::get('admin/login',"Admin\LoginController@login");
-
-
 
 
 /**
- * 李新元
+ * 主页
  */
+Route::get("admin/welcome","Admin\IndexController@welcome");
 
+
+/**
+ * lixinyuan
+ */
 //管理员列表
 Route::get('admin/list',"Admin\AdminController@list");
 //管理员添加
 Route::get('admin/add',"Admin\AdminController@add");
-Route::get('admin/do_add',"Admin\AdminController@add");
 //管理员删除
 Route::get('admin/del',"Admin\AdminController@del");
 //管理员修改
 Route::get('admin/update',"Admin\AdminController@update");
 //管理员是否启用
 Route::get('admin/statuses',"Admin\AdminController@statuses");
-//管理员搜索
-//Route::get('admin/list',"Admin\AdminController@list");
 
 /**
  * Jiaxinchen
@@ -66,26 +56,62 @@ Route::get("admin/showmenus","Admin\MenusController@show");
 Route::post("admin/showmenus","Admin\MenusController@show");
 //删除菜单
 Route::get("admin/deletemenus","Admin\MenusController@delete");
-
-//用户意见
-Route::any("admin/opinionList","Admin\OpinionController@opinionList");
-
-
-
-//商品评论审核
+//商品评论审核 展示
 Route::get("admin/showcomments","Admin\CommentsController@show")->middleware('admin.login');
 Route::post("admin/showcomments","Admin\CommentsController@show")->middleware('admin.login');
-//删除评论
+//删除商品的评论
 Route::get('admin/deletecomments',"Admin\CommentsController@delete")->middleware('admin.login');
+//回复商品的评论
+Route::get("admin/replycomm","Admin\CommentsController@reply")->middleware('admin.login');
+Route::post("admin/replycomm","Admin\CommentsController@reply")->middleware('admin.login');
+
+
 
 /**
- * 曹跃峰
+ * yangyongmao
+ */
+//商品展示
+//Route::any('goods/index','Admin\GoodsController@index');
+//商品详情页
+Route::get('goods/goodsInfo', 'Admin\GoodsController@goodsInfo');
+//商品批删
+Route::get('goods/goodsDelAll', 'Admin\GoodsController@goodsDelAll');
+//商品单删
+Route::get('goods/goodsDelOne', 'Admin\GoodsController@goodsDelOne');
+//商品修改上下架状态
+Route::get('goods/goodsUpdSale', 'Admin\GoodsController@goodsUpdSale');
+//商品修改
+Route::post('goods/goodsUpdGoods', 'Admin\GoodsController@goodsUpdGoods');
+//商品添加页面
+Route::any('goods/goodsInsert', 'Admin\GoodsController@goodsInsert');
+//执行添加
+Route::any('goods/doInsert', 'Admin\GoodsController@doInsert');
+//商品展示
+Route::any('goods/index','Admin\GoodsController@index');
+//商品详情页
+Route::get('goods/goodsInfo','Admin\GoodsController@goodsInfo');
+//商品批删
+Route::get('goods/goodsDelAll','Admin\GoodsController@goodsDelAll');
+//商品单删
+Route::get('goods/goodsDelOne','Admin\GoodsController@goodsDelOne');
+//商品修改上下架状态
+Route::get('goods/goodsUpdSale','Admin\GoodsController@goodsUpdSale');
+//商品添加页面
+Route::any('1','Admin\GoodsController@goodsInsert');
+
+/**
+ * caoyuefeng
  */
 Route::any('admin/orderList',"Admin\OrderController@orderList");
 Route::any('admin/orderDel',"Admin\OrderController@orderDel");
 Route::any('admin/orderDelall',"Admin\OrderController@orderDelall");
 Route::any('admin/orderDesc',"Admin\OrderController@orderDesc");
+<<<<<<< HEAD
 Route::any('admin/opinionDelall',"Admin\OpinionController@opinionDelall");
 Route::any('admin/opinionDel',"Admin\OpinionController@opinionDel");
 Route::any('admin/opinionDesc','Admin\OpinionController@opinionDesc');
 
+=======
+//用户意见
+Route::any("admin/opinionList","Admin\OpinionController@opinionList");
+>>>>>>> 33215cef4ab58c1a227000b5c9225d29aabdd133
