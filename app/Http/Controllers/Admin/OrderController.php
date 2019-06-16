@@ -56,9 +56,8 @@ class OrderController extends Controller
                         ->leftJoin('status','order.o_status','=','status.s_id')
                         ->leftJoin('address','order.a_id','=','address.a_id')
                         ->where('o_id','=',"$id")
-                        ->orderBy('order.o_addtime','desc')
                         ->select()
-                        ->get();
+                        ->first();
 //        echo "<pre>";
 //        var_dump($orderDesc);die;
         return view('admin/order/desc');

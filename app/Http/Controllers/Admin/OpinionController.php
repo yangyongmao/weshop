@@ -23,4 +23,31 @@ class OpinionController extends Controller
                             ->paginate(15);
         return view('admin/opinion/opinion',['opinionList' => $opinionList]);
     }
+    public function opinionDel()
+    {
+        $o_id = $_GET['id'];
+        $res = Db::table('user_opinion')->where('id', '=', "$o_id")->delete();
+        if($res){
+            echo json_encode(['msg' => 1]);
+        }else{
+            echo json_encode(['msg' => 0]);
+        }
+    }
+    public function opinionDelall()
+    {
+        $ids = $_GET['ids'];
+        $res = Db::table('user_opinion')->whereIn('id',$ids)->delete();
+        if($res){
+            echo json_encode(['msg' => 1]);
+        }else{
+            echo json_encode(['msg' => 0]);
+        }
+    }
+    public function opinionDesc()
+    {
+        $id = $_GET['id'];
+        $opinionDesc = Db::table('user_opinion')->where('id','=',"$id")->first();
+
+        return view('admin/opinion/desc',['opinionDesc' => $opinionDesc]);
+    }
 }

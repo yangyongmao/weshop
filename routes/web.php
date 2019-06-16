@@ -85,4 +85,7 @@ Route::any('admin/orderList',"Admin\OrderController@orderList");
 Route::any('admin/orderDel',"Admin\OrderController@orderDel");
 Route::any('admin/orderDelall',"Admin\OrderController@orderDelall");
 Route::any('admin/orderDesc',"Admin\OrderController@orderDesc");
+Route::any('admin/opinionDelall',"Admin\OpinionController@opinionDelall");
+Route::any('admin/opinionDel',"Admin\OpinionController@opinionDel");
+Route::any('admin/opinionDesc','Admin\OpinionController@opinionDesc');
 

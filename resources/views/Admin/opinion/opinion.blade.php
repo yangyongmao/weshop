@@ -86,7 +86,7 @@
                                             @endif
                                         </td>
                                         <td class="td-manage">
-                                            <a title="查看" onclick="xadmin.open('编辑','orderDesc?id={{$v->id}}')" href="javascript:;">
+                                            <a title="查看" onclick="xadmin.open('编辑','opinionDesc?id={{$v->id}}')" href="javascript:;">
                                                 <i class="layui-icon">&#xe63c;</i></a>
                                             <a title="删除" onclick="member_del(this,{{$v->id}})" href="javascript:;">
                                                 <i class="layui-icon">&#xe640;</i></a>
@@ -185,7 +185,7 @@
             function(index) {
                 //发异步删除数据
                 $.ajax({
-                    url:'orderDel',
+                    url:'opinionDel',
                     data:{id:id},
                     dataType:'json',
                     type:'GET',
@@ -218,7 +218,7 @@
             layer.confirm('确认要删除吗？'+ids.toString(),function(index) {
                 //捉到所有被选中的，发异步进行删除
                 $.ajax({
-                    url: 'orderDelall',
+                    url: 'opinionDelall',
                     data: {ids: ids},
                     dataType: 'json',
                     type: 'GET',
