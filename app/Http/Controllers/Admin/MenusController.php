@@ -90,6 +90,16 @@ class MenusController extends Controller
         if($request->ajax()){
             $m_id = $request->get('m_id');
 
+            if(empty($m_id)){
+                return json_encode(
+                    [
+                        'errorCode' => 201,
+                        'errorMsg' => '删除失败',
+                    ],
+                    JSON_UNESCAPED_UNICODE
+                );
+            }
+
             $res = DB::table('menus')
                 ->whereIn('m_id',explode(',',$m_id))
                 ->orWhereIn('m_pid',explode(',',$m_id))
