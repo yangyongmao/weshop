@@ -64,6 +64,13 @@ Route::get('admin/deletecomments',"Admin\CommentsController@delete")->middleware
 //回复商品的评论
 Route::get("admin/replycomm","Admin\CommentsController@reply")->middleware('admin.login');
 Route::post("admin/replycomm","Admin\CommentsController@reply")->middleware('admin.login');
+//查询商品分类
+Route::get("admin/showcate","Admin\CateController@show")->middleware("admin.login");
+//添加商品分类
+Route::get("admin/addcate","Admin\CateController@add")->middleware("admin.login");
+Route::post("admin/addcate","Admin\CateController@add")->middleware("admin.login");
+//删除商品分类
+Route::get("admin/deletecate","Admin\CateController@delete")->middleware("admin.login");
 
 
 
