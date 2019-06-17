@@ -80,7 +80,7 @@
                                             <i class="icon iconfont">&#xe707;</i>
                                         </a>
                                         <a title="添加规格" onclick="xadmin.open('添加规格','addcate',600,400)" href="javascript:;">
-                                            <i class="layui-icon">&#xe6b2;</i>
+                                            <i class="icon iconfont">&#xe6fa;</i>
                                         </a>
                                         <a title="删除" onclick="member_del(this,{{$v->cat_id}})" href="javascript:;">
                                             <i class="layui-icon">&#xe640;</i>
