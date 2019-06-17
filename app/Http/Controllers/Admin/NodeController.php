@@ -17,7 +17,7 @@ class NodeController extends Controller
 {
     public function list(Request $request){
 
-            $data = DB::table("modules")->get();
+            $data = DB::table("modules")->paginate(5);
 
             return view('admin/node/list',['data'=>$data]);
     }

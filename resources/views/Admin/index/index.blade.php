@@ -130,13 +130,14 @@
                 <ul class="sub-menu">
                     <li>
                         <a onclick="xadmin.add_tab('订单列表','order-list.blade.php')">
+                        <a onclick="xadmin.add_tab('订单列表','admin/orderList')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('订单列表1','order-list1.html')">
+                        <a onclick="xadmin.add_tab('用户意见反馈','admin/opinionList')">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>订单列表1</cite></a>
+                            <cite>用户意见反馈</cite></a>
                     </li>
                 </ul>
             </li>
@@ -147,7 +148,7 @@
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('商品列表','')">
+                        <a onclick="xadmin.add_tab('商品列表','/goods/index')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>商品列表</cite></a>
                     </li>
@@ -339,6 +340,7 @@
                     </li>
                 </ul>
             </li>
+
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="第三方组件">&#xe6b4;</i>
@@ -349,6 +351,20 @@
                         <a onclick="xadmin.add_tab('菜单展示','admin/showmenus')" target="">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>菜单展示</cite></a>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="第三方组件">&#xe6b4;</i>
+                    <cite>客服中心</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('评论管理','admin/showcomments')" target="">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>评论管理</cite></a>
                     </li>
                 </ul>
             </li>
@@ -372,7 +388,7 @@
         </div>
         <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src='' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src='admin/welcome' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
         </div>
         <div id="tab_show"></div>

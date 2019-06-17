@@ -6,10 +6,10 @@
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
-        <link rel="stylesheet" href="./css/font.css">
-        <link rel="stylesheet" href="./css/xadmin.css">
-        <script src="./lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" src="./js/xadmin.js"></script>
+        <link rel="stylesheet" href="/adminStatic/css/font.css">
+        <link rel="stylesheet" href="/adminStatic/css/xadmin.css">
+        <script src="/adminStatic/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/adminStatic/js/xadmin.js"></script>
         <!--[if lt IE 9]>
           <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
           <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
@@ -34,31 +34,31 @@
                             <form class="layui-form layui-col-space5">
                                 
                                 <div class="layui-inline layui-show-xs-block">
-                                    <select name="cateid">
+                                    <select name="m_content" id="m_id">
                                       <option>规则分类</option>
-                                      <option>文章</option>
-                                      <option>会员</option>
-                                      <option>权限</option>
+                                        @foreach($data as $v)
+                                      <option id="{{$v->m_id}}" name="{{$v->m_content}}">{{$v->m_content}}</option>
+                                            @endforeach
                                     </select>
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
-                                    <select name="contrller">
-                                      <option>请控制器</option>
-                                      <option>Index</option>
-                                      <option>Goods</option>
-                                      <option>Cate</option>
-                                    </select>
+
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="username" name="n_name" required="" lay-verify="required"
+                                               autocomplete="off" class="layui-input" placeholder="请填写控制器于方法名">
+                                    </div>
+
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
-                                    <select name="action">
-                                      <option>请方法</option>
-                                      <option>add</option>
-                                      <option>login</option>
-                                      <option>checklogin</option>
-                                    </select>
+
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="username" name="n_remarks" required="" lay-verify="required"
+                                               autocomplete="off" class="layui-input" placeholder="请描述控制器于方法名">
+                                    </div>
+
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
-                                    <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon"></i>增加</button>
+                                    <button class="layui-btn"  lay-submit="" lay-filter="add"><i class="layui-icon"></i>增加</button>
                                 </div>
                             </form>
                         </div>
@@ -79,23 +79,25 @@
                                   <th>操作</th>
                               </thead>
                               <tbody>
+                              @foreach($res as $v)
                                 <tr>
                                   <td>
                                    <input type="checkbox" name=""  lay-skin="primary">
                                   </td>
-                                  <td>1</td>
-                                  <td>admin/user/userlist</td>
-                                  <td>会员列表</td>
-                                  <td>会员相关</td>
+                                  <td>{{$v->n_id}}</td>
+                                  <td>{{$v->n_name}}</td>
+                                  <td>{{$v->n_remarks}}</td>
+                                  <td>{{$v->m_content}}</td>
                                   <td class="td-manage">
-                                    <a title="编辑"  onclick="xadmin.open('编辑','xxx.html')" href="javascript:;">
+                                    <a title="编辑"  onclick="xadmin.open('编辑','update?n_id={{$v->n_id}}')" href="javascript:;">
                                       <i class="layui-icon">&#xe642;</i>
                                     </a>
-                                    <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+                                    <a title="删除" onclick="member_del(this,'{{$v->n_id}}')" href="javascript:;">
                                       <i class="layui-icon">&#xe640;</i>
                                     </a>
                                   </td>
                                 </tr>
+                                  @endforeach
                               </tbody>
                             </table>
                         </div>
@@ -130,6 +132,27 @@
         laydate.render({
           elem: '#end' //指定元素
         });
+          form.on('submit(add)',
+              function(data) {
+                    // console.log(data);return false
+                  $.get('add',data.field,function(res){
+                      // console.log(res);return false;
+                      if(res==1){
+                          layer.alert("增加成功", {
+                              icon: 6
+                          },
+                          function() {
+                              //关闭当前frame
+                              xadmin.close();
+
+                              // 可以对父窗口进行刷新
+                              xadmin.father_reload();
+                          });
+                      }
+                  });
+                  return false;
+              });
+
       });
 
        /*用户-停用*/
@@ -154,14 +177,23 @@
               }
               
           });
+
       }
 
       /*用户-删除*/
-      function member_del(obj,id){
+      function member_del(obj,n_id){
           layer.confirm('确认要删除吗？',function(index){
               //发异步删除数据
-              $(obj).parents("tr").remove();
-              layer.msg('已删除!',{icon:1,time:1000});
+             $.get('del',{n_id:n_id},function(res){
+                 if(res==1){
+                     $(obj).parents("tr").remove();
+                     layer.msg('已删除!',{icon:1,time:1000});
+                 }else if(res == 2){
+                     layer.alert("删除失败", {
+                         icon: 4
+                     });
+                 }
+             })
           });
       }
 

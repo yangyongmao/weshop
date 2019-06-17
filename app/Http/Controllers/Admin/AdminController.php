@@ -30,7 +30,7 @@ class AdminController extends Controller
         $data = DB::table('admin')
             ->whereBetween("u_addtime",[[$start],[$end]])
             ->where('u_name', 'like', "%$username%")
-            ->paginate(20);
+            ->paginate(5);
         foreach ($data as $v){
             $child = DB::table('admin_role')
                 ->leftJoin('role',function($join){
@@ -137,7 +137,7 @@ class AdminController extends Controller
             $u_email = $data['u_email'];
             $arr = [
                 'u_name'=>$u_name,
-                'u_pwd'=>md5($u_pwd),
+                '  u_pwd'=>md5($u_pwd),
                 'u_account'=>$u_account,
                 'u_phone'=>$u_phone,
                 'u_email'=>$u_email,
