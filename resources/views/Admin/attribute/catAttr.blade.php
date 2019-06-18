@@ -34,7 +34,7 @@
                 <div class="layui-card-body ">
                     <form class="layui-form layui-col-space5" action="/attribute/catAttr" method="get">
                         @csrf
-                        <input type="hidden" name="cat_id" value="{{$attrInfo->cat_id}}">
+                        <input type="hidden" name="cat_id" id="cat_id" value="{{$attrInfo->cat_id}}">
                         <div class="layui-inline layui-show-xs-block">
                             <input type="text" name="attr_name"  placeholder="请输入属性名" autocomplete="off" class="layui-input">
                         </div>
@@ -47,7 +47,7 @@
                     <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
                 </div>
                 <div class="layui-card-body layui-table-body layui-table-main">
-                    <h3>分类名称:{{$attrInfo->cat_name}} <input type="hidden" id="cat_id" value="{{$attrInfo->cat_id}}"></h3>
+                    <h3>分类名称:{{$attrInfo->cat_name}}</h3>
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
