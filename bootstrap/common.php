@@ -14,7 +14,7 @@ function getTree($catLiat, $pid = 0, $level=1)
         if( $v->pid == $pid ){
             $v->level = $level;
             $arr[] = $v;
-            getTree($catLiat, $v->cat_id, $level++);
+            getTree($catLiat, $v->cat_id, $level+1);
         }
     }
     return $arr;
