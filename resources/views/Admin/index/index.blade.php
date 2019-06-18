@@ -339,10 +339,6 @@
                     </li>
                 </ul>
             </li>
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/master
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="第三方组件">&#xe6b4;</i>
@@ -356,7 +352,6 @@
                     </li>
                 </ul>
             </li>
-<<<<<<< HEAD
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="第三方组件">&#xe6b4;</i>
@@ -367,8 +362,6 @@
                         <a onclick="xadmin.add_tab('品牌展示','admin/brandmenus')" target="">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>品牌展示</cite></a>
-=======
-
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="第三方组件">&#xe6b4;</i>
@@ -379,7 +372,6 @@
                         <a onclick="xadmin.add_tab('评论管理','admin/showcomments')" target="">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>评论管理</cite></a>
->>>>>>> upstream/master
                     </li>
                 </ul>
             </li>

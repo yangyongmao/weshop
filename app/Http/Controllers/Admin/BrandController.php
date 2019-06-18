@@ -85,11 +85,12 @@ class BrandController extends Controller
 
     public function show(Request $request)
     {
-        $m_addtime_start = strtotime($request->input('m_addtime_start',0));
-        $m_addtime_end = strtolower($request->input('m_addtime_end',time()));
-        $m_title = $request->input('m_title','');
+
+        $brand_title = $request->input('brand_name','');
 
         $menusData = DB::table('brand')
+            ->where('brand_name','like','%'.$brand_title.'%')
+            ->orderBy('scort')
             ->paginate(7);
 
         return view('admin.brand.show')->with("data",$menusData);
