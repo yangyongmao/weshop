@@ -55,6 +55,8 @@
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()">
                                 <i class="layui-icon"></i>批量删除</button>
+                            <button class="layui-btn" onclick="is_ok()">
+                                <i class="layui-icon"></i>批量审阅</button>
                             </div>
                         <div id="contentbox">
                         <div class="layui-card-body ">
@@ -78,7 +80,7 @@
                                         <td>{{$v->u_id}}马云</td>
                                         <td>{{date('Y-m-d H:i:s',$v->addtime)}}</td>
                                         <td>{{$v->u_id}}245@qq.com</td>
-                                        <td>
+                                        <td name="{{$v->is_ok}}">
                                             @if($v->is_ok == 1)
                                                 未审阅
                                             @else
@@ -185,8 +187,8 @@
             function(index) {
                 //发异步删除数据
                 $.ajax({
-                    url:'opinionDel',
-                    data:{id:id},
+                    url:'opinionDelall',
+                    data:{ids:id},
                     dataType:'json',
                     type:'GET',
                     success:function(e){
@@ -235,7 +237,45 @@
                 });
             });
         }
+        function is_ok(argument){
+            var ids = [];
+            var email = [];
+            var flag = 1;
+            // 获取选中的id
+            $('tbody input').each(function(index, el) {
+                if($(this).prop('checked')){
+                    ids.push($(this).val());
+                    email.push($(this).parent().next().next().next().text());
+                    if($(this).parent().next().next().next().next().attr('name') == 2){
+                        alert('选的的已审阅，请重新选择');
+                        flag = 0;
+                    }
+                }
+            });
+            if(flag == 0){
+                return false;
+            }
+            layer.confirm('确认要审阅吗？'+ids.toString(),function(index) {
+                //捉到所有被选中的，发异步进行删除
+                $.ajax({
+                    url: 'isokAll',
+                    data: {ids: ids,email:email},
+                    dataType: 'json',
+                    type: 'GET',
+                    success: function (e) {
+                        // console.log(e);
+                        if(e.msg == 1){
+                            layer.msg('审阅成功', {icon: 1});
+                            $(".layui-form-checked").not('.header').parent().next().next().next().next().text('已审阅');
+                        }else{
+                            history.go(0);
+                        }
 
+                    }
+
+                });
+            });
+        }
 
     </script>
 

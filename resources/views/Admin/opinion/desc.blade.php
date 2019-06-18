@@ -100,8 +100,8 @@
         var email = $('#email').text();
         if(txt == '删除'){
             $.ajax({
-                url:'opinionDel',
-                data:{id:id},
+                url:'opinionDelall',
+                data:{ids:id},
                 dataType:'json',
                 type:'GET',
                 success:function(e){
@@ -119,12 +119,17 @@
             })
         }else if(txt == '发送反馈邮件'){
             $.ajax({
-                url:'',
+                url:'isokAll',
                 data:{id:id,email:email},
                 dataType: 'json',
                 type:'GET',
                 success:function(e){
                     console.log(e)
+                    if(e.msg == 1){
+
+                    }else{
+
+                    }
                 }
             })
         }

@@ -70,48 +70,36 @@ Route::post("admin/replycomm","Admin\CommentsController@reply")->middleware('adm
 /**
  * yangyongmao
  */
-//商品展示
-//Route::any('goods/index','Admin\GoodsController@index');
+
 //商品详情页
-Route::get('goods/goodsInfo', 'Admin\GoodsController@goodsInfo');
+Route::get('goods/goodsInfo', 'Admin\GoodsController@goodsInfo')->middleware('check.module');
 //商品批删
-Route::get('goods/goodsDelAll', 'Admin\GoodsController@goodsDelAll');
+Route::get('goods/goodsDelAll', 'Admin\GoodsController@goodsDelAll')->middleware('check.module');
 //商品单删
-Route::get('goods/goodsDelOne', 'Admin\GoodsController@goodsDelOne');
+Route::get('goods/goodsDelOne', 'Admin\GoodsController@goodsDelOne')->middleware('check.module');
 //商品修改上下架状态
-Route::get('goods/goodsUpdSale', 'Admin\GoodsController@goodsUpdSale');
+Route::get('goods/goodsUpdSale', 'Admin\GoodsController@goodsUpdSale')->middleware('check.module');
 //商品修改
-Route::post('goods/goodsUpdGoods', 'Admin\GoodsController@goodsUpdGoods');
+Route::post('goods/goodsUpdGoods', 'Admin\GoodsController@goodsUpdGoods')->middleware('check.module');
 //商品添加页面
-Route::any('goods/goodsInsert', 'Admin\GoodsController@goodsInsert');
+Route::any('goods/goodsInsert', 'Admin\GoodsController@goodsInsert')->middleware('check.module');
 //执行添加
-Route::any('goods/doInsert', 'Admin\GoodsController@doInsert');
+Route::any('goods/doInsert', 'Admin\GoodsController@doInsert')->middleware('check.module');
 //商品展示
-Route::any('goods/index','Admin\GoodsController@index');
-//商品详情页
-Route::get('goods/goodsInfo','Admin\GoodsController@goodsInfo');
-//商品批删
-Route::get('goods/goodsDelAll','Admin\GoodsController@goodsDelAll');
-//商品单删
-Route::get('goods/goodsDelOne','Admin\GoodsController@goodsDelOne');
-//商品修改上下架状态
-Route::get('goods/goodsUpdSale','Admin\GoodsController@goodsUpdSale');
-//商品添加页面
-Route::any('1','Admin\GoodsController@goodsInsert');
+Route::any('goods/index','Admin\GoodsController@index')->middleware('check.module');
+
 
 /**
  * caoyuefeng
  */
-Route::any('admin/orderList',"Admin\OrderController@orderList");
-Route::any('admin/orderDel',"Admin\OrderController@orderDel");
-Route::any('admin/orderDelall',"Admin\OrderController@orderDelall");
-Route::any('admin/orderDesc',"Admin\OrderController@orderDesc");
-<<<<<<< HEAD
-Route::any('admin/opinionDelall',"Admin\OpinionController@opinionDelall");
-Route::any('admin/opinionDel',"Admin\OpinionController@opinionDel");
-Route::any('admin/opinionDesc','Admin\OpinionController@opinionDesc');
+Route::any('admin/orderList',"Admin\OrderController@orderList")->middleware('check.module');
+Route::any('admin/orderDelall',"Admin\OrderController@orderDelall")->middleware('check.module');
+Route::any('admin/orderDesc',"Admin\OrderController@orderDesc")->middleware('check.module');
 
-=======
+Route::any('admin/opinionDelall',"Admin\OpinionController@opinionDelall")->middleware('check.module');
+Route::any('admin/opinionDesc','Admin\OpinionController@opinionDesc')->middleware('check.module');
+
+Route::any('admin/isokAll','Admin\OpinionController@isokAll')->middleware('check.module');
 //用户意见
-Route::any("admin/opinionList","Admin\OpinionController@opinionList");
->>>>>>> 33215cef4ab58c1a227000b5c9225d29aabdd133
+Route::any("admin/opinionList","Admin\OpinionController@opinionList")->middleware('check.module');
+
