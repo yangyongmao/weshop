@@ -50,9 +50,7 @@ class LoginController extends Controller
                     ],
                     JSON_UNESCAPED_UNICODE
                 );
-
             }
-
         }
     }
 

@@ -8,7 +8,6 @@
 
 namespace  App\Http\Controllers\Admin;
 
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 //use DB;
@@ -20,16 +19,34 @@ class AdminController extends Controller
     public function list(Request $request)
     {
         $arr = $request->input();
-        $username = isset($arr['username']) ? $arr['username'] :'';
-        $start = isset($arr['start']) ? $arr['start'] :'';
-        $end = isset($arr['end']) ? $arr['end'] :'';
-        $data = DB::table('admin')
-            ->where('u_addtime', '>=', "%$start%")
-            ->where('u_addtime', '<=', "%end%")
-            ->orwhere('u_name', 'like', "%$username%")
-            ->paginate(3);
 
-        return view('admin/admin/list',['data'=>$data]);
+        $username = isset($arr['username']) ? $arr['username'] :'';
+        $start = $request->input('start','1970-01-01');
+        $end = $request->input('end',time());
+
+        $start = is_int($start) ? $start : strtotime($start);
+        $end = is_int($end) ? $end : strtotime($end) + 24*60*60;
+
+        $data = DB::table('admin')
+            ->whereBetween("u_addtime",[[$start],[$end]])
+            ->where('u_name', 'like', "%$username%")
+            ->paginate(5);
+        foreach ($data as $v){
+            $child = DB::table('admin_role')
+                ->leftJoin('role',function($join){
+                    $join->on('admin_role.r_id','=','role.r_id');
+                })
+                ->where('admin_role.u_id',$v->u_id)
+                ->get();
+            $v->child=$child;
+        }
+//        echo "<pre>";
+//        var_dump($data);die;
+        return view('admin/admin/list')->with([
+            'data' => $data,
+            'start' => date('Y-m-d',$start),
+            'end' => date('Y-m-d',$end)
+        ]);
     }
 //添加
     public function add(Request $request)
