@@ -32,14 +32,8 @@
                     <div class="layui-card">
                         <div class="layui-card-body ">
                             <form class="layui-form layui-col-space5" method="get">
-                                {{--<div class="layui-inline layui-show-xs-block">--}}
-                                    {{--<input class="layui-input"  autocomplete="off" placeholder="开始日" name="m_addtime_start" id="start" value="{{$m_addtime_start}}">--}}
-                                {{--</div>--}}
-                                {{--<div class="layui-inline layui-show-xs-block">--}}
-                                    {{--<input class="layui-input"  autocomplete="off" placeholder="截止日" name="m_addtime_end" id="end" value="{{$m_addtime_end}}">--}}
-                                {{--</div>--}}
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input type="text" name="sear_cat_name"  placeholder="请输入分类名..." autocomplete="off" class="layui-input" value="{{$sear_cat_name}}">
+                                    <input type="text" name="sear_cat_name"  placeholder="请输入所属分类名..." autocomplete="off" class="layui-input" value="{{$sear_cat_name}}">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
                                     <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -48,7 +42,7 @@
                         </div>
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加用户','addcate',600,400)"><i class="layui-icon"></i>添加</button>
+                            <button class="layui-btn" onclick="pleaseGoCat()"><i class="layui-icon"></i>添加</button>
                         </div>
                         <div class="layui-card-body layui-table-body layui-table-main">
                             <table class="layui-table layui-form">
@@ -58,37 +52,35 @@
                                       <input type="checkbox" lay-filter="checkall" name="" lay-skin="primary">
                                     </th>
                                     <th>ID</th>
-                                    <th>分类名称</th>
-                                    <th>分类描述</th>
+                                    <th>所属分类</th>
+                                    <th>规格名称</th>
+                                    <th>所属组</th>
+                                    <th>显示位置</th>
                                     <th>操作</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($catData as $k => $v)
+                                @foreach($standardData as $k => $v)
                                   <tr>
                                     <td>
-                                      <input type="checkbox" name="m_id" value="{{$v->cat_id}}"   lay-skin="primary">
+                                      <input type="checkbox" name="m_id" value="{{$v->id}}"   lay-skin="primary">
                                     </td>
-                                    <td>{{$v->cat_id}}</td>
+                                    <td>{{$v->id}}</td>
                                     <td>{{$v->cat_name}}</td>
-                                    <td>{{$v->cat_desc}}</td>
+                                    <td>{{$v->name}}</td>
+                                    <td>{{$v->group_name}}</td>
+                                    <td>{{$v->show_posi_desc}}</td>
                                     <td class="td-manage">
-                                        <a title="查看属性" onclick="xadmin.open('{{$v->cat_name}}拥有的属性','',600,400)" href="javascript:;">
-                                            <i class="icon iconfont">&#xe6ba;</i>
-                                        </a>
-                                        <a title="查看规格" onclick="xadmin.open('{{$v->cat_name}}拥有的规格','showcatstandard?cat_id={{$v->cat_id}}&cat_name={{$v->cat_name}}')" href="javascript:;">
+                                        <a title="已有规格值" onclick="xadmin.open('{{$v->name}}拥有的规格值','showstandardvalue?id={{$v->id}}&standard_name={{$v->name}}')" href="javascript:;">
                                             <i class="icon iconfont">&#xe6e6;</i>
+                                        </a>
+                                        <a title="添加规格值" onclick="xadmin.open('给={{$v->name}}=添加规格值','addstandardvalue?standard_id={{$v->id}}')" href="javascript:;">
+                                            <i class="icon iconfont">&#xe6b9;</i>
                                         </a>
                                         <a title="编辑"  onclick="pleaseDel()" href="javascript:;">
                                             <i class="layui-icon">&#xe642;</i>
                                         </a>
-                                        <a title="添加属性" onclick="xadmin.open('添加属性','addcate',600,400)" href="javascript:;">
-                                            <i class="icon iconfont">&#xe707;</i>
-                                        </a>
-                                        <a title="添加规格" onclick="xadmin.open('添加规格','addstandard?cat_id={{$v->cat_id}}',600,400)" href="javascript:;">
-                                            <i class="icon iconfont">&#xe6fa;</i>
-                                        </a>
-                                        <a title="删除" onclick="member_del(this,{{$v->cat_id}})" href="javascript:;">
+                                        <a title="删除" onclick="member_del(this,{{$v->id}})" href="javascript:;">
                                             <i class="layui-icon">&#xe640;</i>
                                         </a>
                                     </td>
@@ -101,7 +93,7 @@
                         <div class="layui-card-body ">
                             <div class="page">
                                 <div>
-                                    {{$catData->links()}}
+                                    {{$standardData->links()}}
                                 </div>
                             </div>
                         </div>
@@ -115,7 +107,6 @@
       layui.use(['laydate','form'], function(){
         var laydate = layui.laydate;
         var  form = layui.form;
-
 
         // 监听全选
         form.on('checkbox(checkall)', function(data){
@@ -138,17 +129,15 @@
           elem: '#end' //指定元素
         });
 
-
       });
-
 
       /**
        * 搜索后分页 将a连接带上搜索值
        */
       $(".page-item").on('click',function () {
-          var url = $(this).children().prop('href');
-          var newUrl = url + '&sear_cat_name=' + $("input[name='sear_cat_name']").val();
-          $(this).children().prop('href',newUrl);
+          // var url = $(this).children().prop('href');
+          // var newUrl = url + '&sear_cat_name=' + $("input[name='sear_cat_name']").val();
+          // $(this).children().prop('href',newUrl);
       });
 
        /*用户-停用*/
@@ -179,16 +168,16 @@
       function member_del(obj,cat_id){
           layer.confirm('确认要删除吗？',function(index){
 
-              $.get("deletecate",{cat_id:cat_id},function (jsonMsg) {
-                  var objMsg = $.parseJSON(jsonMsg);
-                  if(objMsg.errorCode == 200){
-                      if(m_pid == 0){
-                          location.href = "";
-                      }
-                  }else{
-                      layer.msg('删除失败',{icon:1});return false;
-                  }
-              });
+              // $.get("deletecate",{cat_id:cat_id},function (jsonMsg) {
+              //     var objMsg = $.parseJSON(jsonMsg);
+              //     if(objMsg.errorCode == 200){
+              //         if(m_pid == 0){
+              //             location.href = "";
+              //         }
+              //     }else{
+              //         layer.msg('删除失败',{icon:1});return false;
+              //     }
+              // });
               //发异步删除数据
               $(obj).parents("tr").remove();
               layer.msg('已删除!',{icon:1,time:1000});
@@ -228,6 +217,13 @@
        */
       function pleaseDel() {
           alert('请删除重现添加');
+      }
+
+      /**
+       * 提示此页面不可添加规格 请到分类页面指定添加
+       */
+      function pleaseGoCat() {
+          layer.alert("请前往商品分类列表指定所属分类添加规格",{icon:4});
       }
     </script>
 </html>

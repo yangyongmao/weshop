@@ -71,6 +71,19 @@ Route::get("admin/addcate","Admin\CateController@add")->middleware("admin.login"
 Route::post("admin/addcate","Admin\CateController@add")->middleware("admin.login");
 //删除商品分类
 Route::get("admin/deletecate","Admin\CateController@delete")->middleware("admin.login");
+//给分类添加规格
+Route::get("admin/addstandard","Admin\StandardController@addStandard")->middleware('admin.login');
+//执行添加规格
+Route::post("admin/addstandard","Admin\StandardController@addStandard")->middleware('admin.login');
+//查看分类拥有的规格
+Route::get("admin/showcatstandard","Admin\StandardController@show")->middleware('admin.login');
+//商品规格展示表
+Route::get("admin/showstandard","Admin\StandardController@selfList")->middleware("admin.login");
+//查看规格的子Value
+Route::get("admin/showstandardvalue","Admin\StandardController@value")->middleware("admin.login");
+//添加规格子value
+Route::get("admin/addstandardvalue","Admin\StandardController@addChildValue")->middleware('admin.login');
+Route::post("admin/addstandardvalue","Admin\StandardController@addChildValue")->middleware('admin.login');
 
 
 

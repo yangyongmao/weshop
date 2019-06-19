@@ -168,6 +168,32 @@
             </li>
             <li>
                 <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="商品属性">&#xe723;</i>
+                    <cite>商品属性</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('商品分类','admin/showcate')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>查看分类</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="商品规格">&#xe723;</i>
+                    <cite>商品规格</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('查看规格','admin/showstandard')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>查看规格</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="城市联动">&#xe723;</i>
                     <cite>城市联动</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
