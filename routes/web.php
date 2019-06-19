@@ -19,6 +19,7 @@ Route::get('/', function () {
  * Jiaxinchen
  */
 //后台主页
+Route::get("admin","Admin\IndexController@index")->middleware("admin.login");
 
 /**
  * 主页
