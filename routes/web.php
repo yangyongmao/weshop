@@ -35,10 +35,8 @@ Route::get('admin/del',"Admin\AdminController@del");
 Route::get('admin/update',"Admin\AdminController@update");
 //管理员是否启用
 Route::get('admin/statuses',"Admin\AdminController@statuses");
-
 //角色展示
 Route::get('role/list',"Admin\RoleController@list");
-
 //角色添加 post
 Route::get('role/add',"Admin\RoleController@add");
 //角色修改及权限的更改

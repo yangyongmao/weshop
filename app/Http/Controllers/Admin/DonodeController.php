@@ -56,6 +56,7 @@ class DonodeController extends Controller
         $res = DB::table('node')->where('n_id',$n_id)->delete();
         if($res){
             DB::table('node_modules')->where('n_id',$n_id)->delete();
+            DB::table('role_node')->where('n_id',$n_id)->delete();
             return 1;
         }else{
             return 2;

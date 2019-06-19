@@ -141,7 +141,8 @@ class RoleController extends Controller
                     }
                 }
             }
-
+//            echo "<pre>";
+//            print_r($res);die;
             return view('admin/role/update',['data'=>$data,'res'=>$res]);
         }
     }
