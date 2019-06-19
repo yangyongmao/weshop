@@ -130,34 +130,32 @@ Route::post("admin/addstandardvalue","Admin\StandardController@addChildValue")->
 /**
  * yangyongmao
  */
-//商品展示
-//Route::any('goods/index','Admin\GoodsController@index');
 //商品详情页
 Route::get('goods/goodsInfo', 'Admin\GoodsController@goodsInfo');
-//商品批删
-Route::get('goods/goodsDelAll', 'Admin\GoodsController@goodsDelAll');
-//商品单删
-Route::get('goods/goodsDelOne', 'Admin\GoodsController@goodsDelOne');
-//商品修改上下架状态
-Route::get('goods/goodsUpdSale', 'Admin\GoodsController@goodsUpdSale');
 //商品修改
 Route::post('goods/goodsUpdGoods', 'Admin\GoodsController@goodsUpdGoods');
 //商品添加页面
 Route::any('goods/goodsInsert', 'Admin\GoodsController@goodsInsert');
-//执行添加
+//商品执行添加
 Route::any('goods/doInsert', 'Admin\GoodsController@doInsert');
 //商品展示
 Route::any('goods/index','Admin\GoodsController@index');
-//商品详情页
-Route::get('goods/goodsInfo','Admin\GoodsController@goodsInfo');
 //商品批删
 Route::get('goods/goodsDelAll','Admin\GoodsController@goodsDelAll');
 //商品单删
 Route::get('goods/goodsDelOne','Admin\GoodsController@goodsDelOne');
 //商品修改上下架状态
 Route::get('goods/goodsUpdSale','Admin\GoodsController@goodsUpdSale');
-//商品添加页面
-Route::any('1','Admin\GoodsController@goodsInsert');
+//分类添加属性
+Route::any('/attribute/attrInsert', 'Admin\AttributeController@attrInsert');
+//分类 属性 列表
+Route::get('/attribute/catAttr', 'Admin\AttributeController@catAttr');
+//分类 属性 批删
+Route::get('/attribute/attrDelAll', 'Admin\AttributeController@attrDelAll');
+//分类 属性 单删
+Route::get('/attribute/attrDelOne', 'Admin\AttributeController@attrDelOne');
+//分类 属性 修改
+Route::get('/attribute/attrUpd', 'Admin\AttributeController@attrUpd');
 
 /**
  * caoyuefeng

@@ -37,7 +37,9 @@
                             <select name="cat_id" id="">
                                 <option value="0">顶级分类</option>
                                 @foreach( $catList as $k => $v )
-                                    <option value="{{$v->cat_id}}">{{$v->cat_name}}</option>
+                                    <option value="{{$v->cat_id}}">
+                                        |<?php echo str_repeat('—', $v->level) ?>{{$v->cat_name}}
+                                    </option>
                                 @endforeach
                             </select></div>
                     </div>

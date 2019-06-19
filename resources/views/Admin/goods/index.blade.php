@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="/adminStatic/css/font.css">
         <link rel="stylesheet" href="/adminStatic/css/xadmin.css">
         <script src="/adminStatic/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="/adminStatic/js/jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="/adminStatic/js/xadmin.js"></script>
         <!--[if lt IE 9]>
           <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
@@ -34,7 +35,7 @@
                             <form class="layui-form layui-col-space5" method="post" action="/goods/index">
                                 @csrf
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input type="text" name="keyword"  placeholder="请输入..." autocomplete="off" class="layui-input">
+                                    <input type="text" name="keyword"  placeholder="请输入..." autocomplete="off" class="layui-input" value="{{$wheres}}">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
                                     <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
@@ -132,6 +133,8 @@
         laydate.render({
           elem: '#end' //指定元素
         });
+
+
 
       });
 
@@ -238,3 +241,16 @@
       }
     </script>
 </html>
+<script>
+    $('.page-link').click(function(){
+
+        var where = $("input[name='keyword']").val();
+
+        var href = $(this).attr('href');
+
+        var newHref = href+'&keyword='+where;
+
+        $(this).attr('href',newHref);
+
+    })
+</script>

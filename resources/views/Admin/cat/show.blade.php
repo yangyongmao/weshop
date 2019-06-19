@@ -82,10 +82,17 @@
                                         <a title="编辑"  onclick="pleaseDel()" href="javascript:;">
                                             <i class="layui-icon">&#xe642;</i>
                                         </a>
-                                        <a title="添加属性" onclick="xadmin.open('添加属性','addcate',600,400)" href="javascript:;">
+                                        <a title="添加属性" onclick="xadmin.open('添加属性','/attribute/attrInsert?cat_id={{$v->cat_id}}',600,400)" href="javascript:;">
                                             <i class="icon iconfont">&#xe707;</i>
                                         </a>
+
+                                        <a title="属性列表" href="/attribute/catAttr?cat_id={{$v->cat_id}}" >
+                                            <i class="icon iconfont">&#xe6fa;</i>
+                                        </a>
+                                        <a title="添加规格" onclick="xadmin.open('添加规格','addcate',600,400)" href="javascript:;">
+
                                         <a title="添加规格" onclick="xadmin.open('添加规格','addstandard?cat_id={{$v->cat_id}}',600,400)" href="javascript:;">
+
                                             <i class="icon iconfont">&#xe6fa;</i>
                                         </a>
                                         <a title="删除" onclick="member_del(this,{{$v->cat_id}})" href="javascript:;">
