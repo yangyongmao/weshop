@@ -26,6 +26,7 @@ class LoginController extends Controller
                 ->where([
                     ['u_account',   '=',    $loginData['u_account']],
                     ['u_pwd',   '=',    md5($loginData['u_pwd'])],
+
                     ['status','=',0],
                 ])
                 ->first();

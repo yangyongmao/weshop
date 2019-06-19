@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/**
+ * Jiaxinchen
+ */
+//后台主页
 
 /**
  * 主页
@@ -47,11 +51,22 @@ Route::post("admin/login","Admin\LoginController@login");
 //后台退出（注销）
 Route::get("admin/loginout","Admin\LoginController@loginOut");
 //后台添加菜单
+Route::get("admin/addmenus","Admin\MenusController@add");
 Route::get("admin/addmenus","Admin\MenusController@add")->middleware('admin.login');
 //后台添加菜单执行
 Route::post("admin/addmenus","Admin\MenusController@add");
 //后台菜单展示
 Route::get("admin/showmenus","Admin\MenusController@show");
+//删除菜单
+Route::get("admin/deletemenus","Admin\MenusController@delete");
+//品牌菜单展示
+Route::any("admin/brandmenus","Admin\BrandController@show");
+//后台添加品牌执行
+Route::any("admin/brandadd","Admin\BrandController@add");
+//品牌删除
+Route::any("admin/brandelete","Admin\BrandController@delete");
+//品牌展示
+Route::any("admin/brandallow","Admin\BrandController@allow");
 //菜单展示 条件查询提交
 Route::post("admin/showmenus","Admin\MenusController@show");
 //删除菜单
