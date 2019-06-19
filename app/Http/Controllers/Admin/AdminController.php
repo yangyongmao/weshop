@@ -45,7 +45,8 @@ class AdminController extends Controller
         return view('admin/admin/list')->with([
             'data' => $data,
             'start' => date('Y-m-d',$start),
-            'end' => date('Y-m-d',$end)
+            'end' => date('Y-m-d',$end),
+            'username' => $username
         ]);
     }
 //添加

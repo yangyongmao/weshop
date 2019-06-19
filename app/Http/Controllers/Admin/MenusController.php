@@ -60,7 +60,8 @@ class MenusController extends Controller
 
     public function show(Request $request)
     {
-        $m_addtime_start = strtotime($request->input('m_addtime_start',0));
+//        echo 1;die;
+        $m_addtime_start = strtotime($request->input('m_addtime_start',1970-01-01));
         $m_addtime_end = strtolower($request->input('m_addtime_end',time()));
         $m_title = $request->input('m_title','');
 
@@ -70,7 +71,7 @@ class MenusController extends Controller
             ->orderBy("m_addtime","DESC")
             ->paginate(7);
 
-        return view('admin.menus.show')->with("data",$menusData);
+//        return view('admin.menus.show')->with("data",$menusData);
         $m_addtime_start = $request->post('m_addtime_start','1970-01-01');
         $m_addtime_end = $request->post('m_addtime_end',time());
         $m_title = $request->post('m_title');
@@ -87,7 +88,7 @@ class MenusController extends Controller
             ->where("m_title","like","%$m_title%")
             ->orderBy("m_addtime","DESC")
             ->paginate(7);
-
+//        var_dump($menusData);die;
         return view('admin.menus.show')->with([
                 'data' => $menusData,
                 'm_addtime_start' => date('Y-m-d',$m_addtime_start),
