@@ -45,7 +45,7 @@
                     <a onclick="xadmin.open('弹出指定宽高','http://www.baidu.com',500,300)">
                         <i class="iconfont">&#xe6a8;</i>弹出指定宽高</a></dd>
                 <dd>
-                    <a onclick="xadmin.add_tab('在tab打开','member-list.html')">
+                    <a onclick="xadmin.add_tab('在tab打开','member-list.blade.php')">
                         <i class="iconfont">&#xe6b8;</i>在tab打开</a></dd>
                 <dd>
                     <a onclick="xadmin.add_tab('在tab打开刷新','member-del.html',true)">
@@ -88,7 +88,7 @@
                             <cite>统计页面</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('会员列表(静态表格)','member-list.html')">
+                        <a onclick="xadmin.add_tab('会员列表(静态表格)','member-list.blade.php')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>会员列表(静态表格)</cite></a>
                     </li>
@@ -129,6 +129,7 @@
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
+                        <a onclick="xadmin.add_tab('订单列表','order-list.blade.php')">
                         <a onclick="xadmin.add_tab('订单列表','admin/orderList')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite></a>
@@ -168,6 +169,32 @@
             </li>
             <li>
                 <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="商品属性">&#xe723;</i>
+                    <cite>商品属性</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('商品分类','admin/showcate')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>查看分类</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="商品规格">&#xe723;</i>
+                    <cite>商品规格</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('查看规格','admin/showstandard')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>查看规格</cite></a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="城市联动">&#xe723;</i>
                     <cite>城市联动</cite>
                     <i class="iconfont nav_right">&#xe697;</i></a>
@@ -191,17 +218,17 @@
                             <cite>管理员列表</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('角色管理','admin-role.html')">
+                        <a onclick="xadmin.add_tab('角色管理','role/list')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>角色管理</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('权限分类','admin-cate.html')">
+                        <a onclick="xadmin.add_tab('权限分类','node/list')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>权限分类</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('权限管理','admin-rule.html')">
+                        <a onclick="xadmin.add_tab('权限管理','do_node/list')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>权限管理</cite></a>
                     </li>
@@ -339,7 +366,6 @@
                     </li>
                 </ul>
             </li>
-
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="第三方组件">&#xe6b4;</i>
@@ -353,7 +379,16 @@
                     </li>
                 </ul>
             </li>
-
+            <li>
+                <a href="javascript:;">
+                    <i class="iconfont left-nav-li" lay-tips="第三方组件">&#xe6b4;</i>
+                    <cite>品牌管理</cite>
+                    <i class="iconfont nav_right">&#xe697;</i></a>
+                <ul class="sub-menu">
+                    <li>
+                        <a onclick="xadmin.add_tab('品牌展示','admin/brandmenus')" target="">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>品牌展示</cite></a>
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="第三方组件">&#xe6b4;</i>

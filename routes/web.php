@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/**
+ * Jiaxinchen
+ */
+//后台主页
+Route::get("admin","Admin\IndexController@index")->middleware("admin.login");
 
 /**
  * 主页
@@ -35,6 +40,30 @@ Route::get('admin/del',"Admin\AdminController@del");
 Route::get('admin/update',"Admin\AdminController@update");
 //管理员是否启用
 Route::get('admin/statuses',"Admin\AdminController@statuses");
+//角色展示
+Route::get('role/list',"Admin\RoleController@list");
+//角色添加 post
+Route::get('role/add',"Admin\RoleController@add");
+//角色修改及权限的更改
+Route::get('role/update',"Admin\RoleController@update");
+//角色删除
+Route::get('role/del',"Admin\RoleController@del");
+//权限展示
+Route::get('node/list',"Admin\NodeController@list");
+//权限分类添加
+Route::get('node/add',"Admin\NodeController@add");
+//权限分类删除
+Route::get('node/del',"Admin\NodeController@del");
+//权限分类修改
+Route::get('node/update',"Admin\NodeController@update");
+//子权限展示
+Route::get('do_node/list',"Admin\DonodeController@list");
+//子权限添加
+Route::get('do_node/add',"Admin\DonodeController@add");
+//子权限删除
+Route::get('do_node/del',"Admin\DonodeController@del");
+//子权限删除
+Route::get('do_node/update',"Admin\DonodeController@update");
 
 /**
  * Jiaxinchen
@@ -47,11 +76,22 @@ Route::post("admin/login","Admin\LoginController@login");
 //后台退出（注销）
 Route::get("admin/loginout","Admin\LoginController@loginOut");
 //后台添加菜单
+Route::get("admin/addmenus","Admin\MenusController@add");
 Route::get("admin/addmenus","Admin\MenusController@add")->middleware('admin.login');
 //后台添加菜单执行
 Route::post("admin/addmenus","Admin\MenusController@add");
 //后台菜单展示
 Route::get("admin/showmenus","Admin\MenusController@show");
+//删除菜单
+Route::get("admin/deletemenus","Admin\MenusController@delete");
+//品牌菜单展示
+Route::any("admin/brandmenus","Admin\BrandController@show");
+//后台添加品牌执行
+Route::any("admin/brandadd","Admin\BrandController@add");
+//品牌删除
+Route::any("admin/brandelete","Admin\BrandController@delete");
+//品牌展示
+Route::any("admin/brandallow","Admin\BrandController@allow");
 //菜单展示 条件查询提交
 Route::post("admin/showmenus","Admin\MenusController@show");
 //删除菜单
@@ -71,6 +111,19 @@ Route::get("admin/addcate","Admin\CateController@add")->middleware("admin.login"
 Route::post("admin/addcate","Admin\CateController@add")->middleware("admin.login");
 //删除商品分类
 Route::get("admin/deletecate","Admin\CateController@delete")->middleware("admin.login");
+//给分类添加规格
+Route::get("admin/addstandard","Admin\StandardController@addStandard")->middleware('admin.login');
+//执行添加规格
+Route::post("admin/addstandard","Admin\StandardController@addStandard")->middleware('admin.login');
+//查看分类拥有的规格
+Route::get("admin/showcatstandard","Admin\StandardController@show")->middleware('admin.login');
+//商品规格展示表
+Route::get("admin/showstandard","Admin\StandardController@selfList")->middleware("admin.login");
+//查看规格的子Value
+Route::get("admin/showstandardvalue","Admin\StandardController@value")->middleware("admin.login");
+//添加规格子value
+Route::get("admin/addstandardvalue","Admin\StandardController@addChildValue")->middleware('admin.login');
+Route::post("admin/addstandardvalue","Admin\StandardController@addChildValue")->middleware('admin.login');
 
 
 

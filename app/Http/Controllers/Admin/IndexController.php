@@ -17,6 +17,7 @@ class IndexController extends Controller
     {
         $thisAdmin = $request->session()->get("thisAdmin");
         return view("admin.index.index")->with("thisAdmin",$thisAdmin);
+
     }
 
 
