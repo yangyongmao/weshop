@@ -73,7 +73,7 @@
                                     <td>{{$v->cat_name}}</td>
                                     <td>{{$v->cat_desc}}</td>
                                     <td class="td-manage">
-                                        <a title="查看属性" onclick="xadmin.open('{{$v->cat_name}}拥有的属性','',600,400)" href="javascript:;">
+                                        <a title="查看属性" onclick="xadmin.open('{{$v->cat_name}}拥有的属性','/attribute/catAttr?cat_id={{$v->cat_id}}',1100,500)" href="javascript:;">
                                             <i class="icon iconfont">&#xe6ba;</i>
                                         </a>
                                         <a title="查看规格" onclick="xadmin.open('{{$v->cat_name}}拥有的规格','showcatstandard?cat_id={{$v->cat_id}}&cat_name={{$v->cat_name}}')" href="javascript:;">
@@ -85,14 +85,7 @@
                                         <a title="添加属性" onclick="xadmin.open('添加属性','/attribute/attrInsert?cat_id={{$v->cat_id}}',600,400)" href="javascript:;">
                                             <i class="icon iconfont">&#xe707;</i>
                                         </a>
-
-                                        <a title="属性列表" href="/attribute/catAttr?cat_id={{$v->cat_id}}" >
-                                            <i class="icon iconfont">&#xe6fa;</i>
-                                        </a>
-                                        <a title="添加规格" onclick="xadmin.open('添加规格','addcate',600,400)" href="javascript:;">
-
                                         <a title="添加规格" onclick="xadmin.open('添加规格','addstandard?cat_id={{$v->cat_id}}',600,400)" href="javascript:;">
-
                                             <i class="icon iconfont">&#xe6fa;</i>
                                         </a>
                                         <a title="删除" onclick="member_del(this,{{$v->cat_id}})" href="javascript:;">

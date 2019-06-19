@@ -174,9 +174,9 @@
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('商品分类','admin/showcate')">
+                        <a onclick="xadmin.add_tab('查看属性','')">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>查看分类</cite></a>
+                            <cite>查看属性</cite></a>
                     </li>
                 </ul>
             </li>
