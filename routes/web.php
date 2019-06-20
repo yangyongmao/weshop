@@ -16,6 +16,33 @@ Route::get('/', function () {
 });
 
 /**
+ * ====================
+ * =======前台路由========
+ * ====================
+ */
+
+/**
+ * jiaxinchen
+ */
+Route::get("","IndexController@index");
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * ====================
+ * =======后台路由========
+ * ====================
+ */
+
+/**
  * Jiaxinchen
  */
 //后台主页
@@ -25,7 +52,6 @@ Route::get("admin","Admin\IndexController@index")->middleware("admin.login");
  * 主页
  */
 Route::get("admin/welcome","Admin\IndexController@welcome");
-
 
 /**
  * lixinyuan
