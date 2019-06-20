@@ -60,7 +60,7 @@ class MenusController extends Controller
 
     public function show(Request $request)
     {
-        $m_addtime_start = $request->input('m_addtime_start',0);
+        $m_addtime_start = $request->input('m_addtime_start','1970-01-01');
         $m_addtime_end = $request->input('m_addtime_end',time());
         $m_title = $request->input('m_title','');
 
