@@ -185,7 +185,6 @@
     }
 
 //    及点及改
-    /*用户-删除*/
     function member_upd(obj,id){
             var name = $(obj).parent().prev().html();
             var a = '<input type="text" id="'+id+'" value="'+name+'" onblur="member_doUpd(this,\'\'+id+\'\', \'\'+value+\'\')" autocomplete="off" class="layui-input">';
