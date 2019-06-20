@@ -40,9 +40,13 @@
                               <option value="0">顶级分类</option>
                               @foreach( $catList as $k => $v )
                                   <?php if( $goodsList->cat_id == $v->cat_id ){ ?>
-                                      <option value="{{$v->cat_id}}" selected="selected">{{$v->cat_name}}</option>
+                                      <option value="{{$v->cat_id}}" selected="selected">
+                                          |<?php echo str_repeat('—', $v->level) ?>{{$v->cat_name}}
+                                      </option>
                                   <?php }else{ ?>
-                                      <option value="{{$v->cat_id}}">{{$v->cat_name}}</option>
+                                      <option value="{{$v->cat_id}}">
+                                          |<?php echo str_repeat('—', $v->level) ?>{{$v->cat_name}}
+                                      </option>
                                   <?php }?>
                               @endforeach
                           </select>

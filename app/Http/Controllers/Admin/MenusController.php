@@ -60,9 +60,9 @@ class MenusController extends Controller
 
     public function show(Request $request)
     {
-        $m_addtime_start = $request->post('m_addtime_start','1970-01-01');
-        $m_addtime_end = $request->post('m_addtime_end',time());
-        $m_title = $request->post('m_title');
+        $m_addtime_start = $request->input('m_addtime_start',0);
+        $m_addtime_end = $request->input('m_addtime_end',time());
+        $m_title = $request->input('m_title','');
 
         /**
          * 判断时间是否是int 是int为时间戳形式
@@ -78,11 +78,11 @@ class MenusController extends Controller
             ->paginate(7);
 
         return view('admin.menus.show')->with([
-                'data' => $menusData,
-                'm_addtime_start' => date('Y-m-d',$m_addtime_start),
-                'm_addtime_end' => date('Y-m-d',$m_addtime_end),
-                'm_title' => $m_title,
-            ]);
+            "data" => $menusData,
+            "m_addtime_start" => date("Y-m-d",$m_addtime_start),
+            "m_addtime_end" => date("Y-m-d",$m_addtime_end),
+            "m_title" => $request->post('m_title'),
+        ]);
     }
 
     public function delete(Request $request)
@@ -101,6 +101,7 @@ class MenusController extends Controller
             }
 
             $res = DB::table('menus')
+                ->whereIn('m_id',(array)$m_id)
                 ->whereIn('m_id',explode(',',$m_id))
                 ->orWhereIn('m_pid',explode(',',$m_id))
                 ->delete();

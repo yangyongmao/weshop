@@ -78,8 +78,8 @@
                   var _token = $("input[name='_token']").val();
 
                   $.post("",{u_account:u_account,u_pwd:u_pwd,_token:_token},function (jsonMsg) {
+                      // console.log(jsonMsg);return false;
                       var objMsg = $.parseJSON(jsonMsg);
-
                       if(objMsg.errorCode == 200){
                           location.href="/admin";
                       }else{

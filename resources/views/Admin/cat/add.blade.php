@@ -33,10 +33,10 @@
 
                     <div class="layui-form-item">
                         <label for="username" class="layui-form-label">
-                            <span class="x-red">*</span>父级菜单</label>
+                            <span class="x-red">*</span>父级分类</label>
                         <div class="layui-input-inline">
                             <select id="" name="pid" class="valid">
-                                <option value="0">父级分类</option>
+                                <option value="0">最高级</option>
                                 @foreach ($dadData as $k => $v)
                                     <option value="{{   $v->cat_id    }}">{{ $v->cat_name }}</option>
                                 @endforeach

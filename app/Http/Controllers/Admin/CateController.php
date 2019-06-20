@@ -125,8 +125,8 @@ class CateController extends Controller
             }
 
         }
-
     }
+
 
 
 }
