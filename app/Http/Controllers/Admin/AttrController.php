@@ -44,4 +44,17 @@ class AttrController extends Controller
                 ]);
     }
 
+    public function addOption(Request $request)
+    {
+        $attr_id = $request->input('attr_id');
+
+        return view('admin\attr.addOption',['attr_id'=>$attr_id]);
+    }
+
+    public function doAddOption(Request $request)
+    {
+        $data = $request->input();
+        return json_encode($data);
+    }
+
 }

@@ -43,7 +43,7 @@
                         </div>
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加属性','/attr/addAttr',600,400)"><i class="layui-icon"></i>添加</button>
+                            <button class="layui-btn" onclick="xadmin.open('添加属性','/attr/addAttr',800,500)"><i class="layui-icon"></i>添加</button>
                         </div>
                         <div class="layui-card-body layui-table-body layui-table-main">
                             <table class="layui-table layui-form">
@@ -67,7 +67,7 @@
                                     <td>{{$v->name}}</td>
                                     <td>{{$v->cat_name}}</td>
                                     <td class="td-manage">
-                                        <a title="添加属性值" onclick="xadmin.open('添加属性值','',600,400)"  href="javascript:;">
+                                        <a title="添加属性值" onclick="xadmin.open('添加属性值','/attr/addOption?attr_id={{$v->id}}',600,400)"  href="javascript:;">
                                             <i class="layui-icon">&#xe630;</i>
                                         </a>
                                         <a title="属性值列表" onclick="xadmin.open('属性值列表','',600,400)"  href="javascript:;">
