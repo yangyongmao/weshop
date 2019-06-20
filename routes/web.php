@@ -26,15 +26,15 @@ Route::get("admin/welcome","Admin\IndexController@welcome");
  * lixinyuan
  */
 //管理员列表
-Route::get('admin/list',"Admin\AdminController@list");
+Route::get('admin/list',"Admin\AdminController@list")->middleware('check.module');
 //管理员添加
-Route::get('admin/add',"Admin\AdminController@add");
+Route::get('admin/add',"Admin\AdminController@add")->middleware('check.module');
 //管理员删除
-Route::get('admin/del',"Admin\AdminController@del");
+Route::get('admin/del',"Admin\AdminController@del")->middleware('check.module');
 //管理员修改
-Route::get('admin/update',"Admin\AdminController@update");
+Route::get('admin/update',"Admin\AdminController@update")->middleware('check.module');
 //管理员是否启用
-Route::get('admin/statuses',"Admin\AdminController@statuses");
+Route::get('admin/statuses',"Admin\AdminController@statuses")->middleware('check.module');
 
 /**
  * Jiaxinchen
@@ -47,30 +47,30 @@ Route::post("admin/login","Admin\LoginController@login");
 //后台退出（注销）
 Route::get("admin/loginout","Admin\LoginController@loginOut");
 //后台添加菜单
-Route::get("admin/addmenus","Admin\MenusController@add")->middleware('admin.login');
+Route::get("admin/addmenus","Admin\MenusController@add")->middleware('admin.login')->middleware('check.module');
 //后台添加菜单执行
-Route::post("admin/addmenus","Admin\MenusController@add");
+Route::post("admin/addmenus","Admin\MenusController@add")->middleware('check.module');
 //后台菜单展示
-Route::get("admin/showmenus","Admin\MenusController@show");
+Route::get("admin/showmenus","Admin\MenusController@show")->middleware('check.module');
 //菜单展示 条件查询提交
-Route::post("admin/showmenus","Admin\MenusController@show");
+Route::post("admin/showmenus","Admin\MenusController@show")->middleware('check.module');
 //删除菜单
-Route::get("admin/deletemenus","Admin\MenusController@delete");
+Route::get("admin/deletemenus","Admin\MenusController@delete")->middleware('check.module');
 //商品评论审核 展示
-Route::get("admin/showcomments","Admin\CommentsController@show")->middleware('admin.login');
-Route::post("admin/showcomments","Admin\CommentsController@show")->middleware('admin.login');
+Route::get("admin/showcomments","Admin\CommentsController@show")->middleware('admin.login')->middleware('check.module');
+Route::post("admin/showcomments","Admin\CommentsController@show")->middleware('admin.login')->middleware('check.module');
 //删除商品的评论
-Route::get('admin/deletecomments',"Admin\CommentsController@delete")->middleware('admin.login');
+Route::get('admin/deletecomments',"Admin\CommentsController@delete")->middleware('admin.login')->middleware('check.module');
 //回复商品的评论
-Route::get("admin/replycomm","Admin\CommentsController@reply")->middleware('admin.login');
-Route::post("admin/replycomm","Admin\CommentsController@reply")->middleware('admin.login');
+Route::get("admin/replycomm","Admin\CommentsController@reply")->middleware('admin.login')->middleware('check.module');
+Route::post("admin/replycomm","Admin\CommentsController@reply")->middleware('admin.login')->middleware('check.module');
 //查询商品分类
-Route::get("admin/showcate","Admin\CateController@show")->middleware("admin.login");
+Route::get("admin/showcate","Admin\CateController@show")->middleware("admin.login")->middleware('check.module');
 //添加商品分类
-Route::get("admin/addcate","Admin\CateController@add")->middleware("admin.login");
-Route::post("admin/addcate","Admin\CateController@add")->middleware("admin.login");
+Route::get("admin/addcate","Admin\CateController@add")->middleware("admin.login")->middleware('check.module');
+Route::post("admin/addcate","Admin\CateController@add")->middleware("admin.login")->middleware('check.module');
 //删除商品分类
-Route::get("admin/deletecate","Admin\CateController@delete")->middleware("admin.login");
+Route::get("admin/deletecate","Admin\CateController@delete")->middleware("admin.login")->middleware('check.module');
 
 
 

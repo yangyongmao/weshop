@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class checkModule
+class CheckModule
 {
     /**
      * Handle an incoming request.
