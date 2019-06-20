@@ -13,27 +13,9 @@
 			<div class="top center" id="top">
 				<div class="left fl">
 					<ul>
-						<li><a href="http://www.mi.com/" target="_blank">小米商城</a></li>
-						<li>|</li>
-						<li><a href="">MIUI</a></li>
-						<li>|</li>
-						<li><a href="">{{}}</a></li>
-						<li>|</li>
-						<li><a href="">米聊</a></li>
-						<li>|</li>
-						<li><a href="">游戏</a></li>
-						<li>|</li>
-						<li><a href="">多看阅读</a></li>
-						<li>|</li>
-						<li><a href="">云服务</a></li>
-						<li>|</li>
-						<li><a href="">金融</a></li>
-						<li>|</li>
-						<li><a href="">小米商城移动版</a></li>
-						<li>|</li>
-						<li><a href="">问题反馈</a></li>
-						<li>|</li>
-						<li><a href="">Select Region</a></li>
+						<li v-for="site in lis">
+							<a href="" target="">{{site.name}}</a>
+						</li>
 						<div class="clear"></div>
 					</ul>
 				</div>
@@ -41,11 +23,9 @@
 					<div class="gouwuche fr"><a href="">购物车</a></div>
 					<div class="fr">
 						<ul>
-							<li><a href="./login.html" target="_blank">登录</a></li>
-							<li>|</li>
-							<li><a href="./register.html" target="_blank" >注册</a></li>
-							<li>|</li>
-							<li><a href="">消息通知</a></li>
+							<li v-for="(v,k) in fun">
+								<a v-bind:href="v.href" target="_blank" :data-num="k">{{v.name}}</a>
+							</li>
 						</ul>
 					</div>
 					<div class="clear"></div>
@@ -1539,6 +1519,22 @@
 <script src="/indexStatic/js/vue.js"></script>
 <script>
 	var vue = new Vue({
-
+		el:'#top',
+		data:{
+		    test:'测试',
+			lis:[
+				{name:'首页'},
+				{name:'云服务'},
+				{name:'金融'},
+				{name:'问题反馈'},
+				{name:'活动预告'},
+				{name:'关于我们'},
+			],
+            fun:[
+				{name:'登录',href:'login'},
+				{name:'注册'},
+				{name:'消息通知'},
+			]
+		},
 	});
 </script>
