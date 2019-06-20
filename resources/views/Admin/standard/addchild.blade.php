@@ -134,7 +134,7 @@
                  */
                 $(".addDiv").on("click",function () {
                     var str="<tr class='no1_tr'>"+$(this).parent().parent().html()+"</tr>";
-                    var str=str.replace('addDiv','removeDiv');		// 将类名add替换为del，在下面的代码中我们要给del添加事件
+                        var str=str.replace('addDiv','removeDiv');		// 将类名add替换为del，在下面的代码中我们要给del添加事件
                     var str=str.replace('+','-');			// 将+符号替换为-符号
                     $(this).parent().parent().after(str);
                     // console.log(str);return false;

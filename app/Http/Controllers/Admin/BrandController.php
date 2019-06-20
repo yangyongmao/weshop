@@ -22,6 +22,7 @@ class BrandController extends Controller
         if($request->ajax()){
 
             $menusData = $request->post();
+
             unset($menusData['_token']);
 
             $file   = $request->file('brand_logo');
