@@ -27,7 +27,7 @@ Route::get('/', function () {
 //前台主页
 Route::get("","IndexController@index");
 //前台登录页面跳转
-Route::get("login","LoginController@login");
+Route::any("login","LoginController@login");
 
 
 
