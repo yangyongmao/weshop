@@ -3,7 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-
+use http\Env\Request;
+use Illuminate\Support\Facades\DB;
 class Token
 {
     /**
@@ -13,21 +14,22 @@ class Token
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle( $request, Closure $next)
     {
-        // echo $request->token;
-        // var_dump(session($request->token));
-        // var_dump(empty(session($request->token)));
-        if (!isset($request->token) || empty(session($request->token))) {
-            echo 123;
+        $token = $request->input('token');
+        $data = DB::table('user')->where('token',$token)->first();
+        if (!isset($request->token) || empty($data->token)) {
+
             return response()->json(
                 ['code'=>'101','message'=>'令牌不存在']
-            );
+            )->setEncodingOptions(JSON_UNESCAPED_UNICODE);
         }
-        if ((time()-session($request->token))>7200) {
+//        $token = $data->token;
+//        echo $token;die;
+        if ((time()-($data->time)) > 7200) {
             return response()->json(
                 ['code'=>'102','message'=>'令牌已经过期']
-            );
+            )->setEncodingOptions(JSON_UNESCAPED_UNICODE);
         }
 
         return $next($request);
