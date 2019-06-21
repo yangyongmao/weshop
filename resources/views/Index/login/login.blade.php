@@ -55,6 +55,7 @@
 	$("input[type='button']").on('click',function () {
 		$.post("login",{uname:$("input[name='uname']").val(),upwd:$("input[name='upwd']").val(),captcha:$("input[name='captcha']").val()},function (jsonMsg) {
 			let objMsg = $.parseJSON(jsonMsg);
+			console.log(objMsg);return false;
 			if(objMsg.code != 200){
 				alert(objMsg.errorMsg);return false;
 			}
