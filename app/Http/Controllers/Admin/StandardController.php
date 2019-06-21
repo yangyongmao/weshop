@@ -156,7 +156,7 @@ class StandardController extends Controller
 
             }else{
 
-                json_encode(
+               return json_encode(
                     [
                         'errorCode' => 201,
                         'errorMsg' => '添加失败',

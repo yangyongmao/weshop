@@ -217,6 +217,15 @@ Route::get('/attribute/attrDelAll', 'Admin\AttributeController@attrDelAll');
 Route::get('/attribute/attrDelOne', 'Admin\AttributeController@attrDelOne');
 //分类 属性 修改
 Route::get('/attribute/attrUpd', 'Admin\AttributeController@attrUpd');
+//所有属性列表
+Route::any('/attr/attrList', 'Admin\AttrController@attrList');
+//添加属性页面
+Route::any('/attr/addAttr', 'Admin\AttrController@addAttr');
+
+
+
+
+
 
 
 /**

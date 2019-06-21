@@ -35,6 +35,7 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
+
                 <form class="layui-form">
 
                     <table>
@@ -42,48 +43,16 @@
                             <th>规格子值</th>
                         </tr>
 
-                        <tr class="no1_tr">
-                            <td>
-                                <input type="text" id="L_username" name="value[]" required="" lay-verify="m_title" autocomplete="off" class="layui-input names">
-                            </td>
-                            <td>
-                                <button class="layui-btn addDiv" style="width: 28px;height: 28px;" type="button">+</button>
-                            </td>
-                        </tr>
-                        <tr class="no1_tr">
-                            <td>
-                                <input type="text" id="L_username" name="value[]" required="" lay-verify="m_title" autocomplete="off" class="layui-input names">
-                            </td>
-                            <td>
-                                <button class="layui-btn removeDiv" style="width: 28px;height: 28px;" type="button">-</button>
-                            </td>
-                        </tr>
-                        <tr class="no1_tr">
-                            <td>
-                                <input type="text" id="L_username" name="value[]" required="" lay-verify="m_title" autocomplete="off" class="layui-input names">
-                            </td>
-                            <td>
-                                <button class="layui-btn removeDiv" style="width: 28px;height: 28px;" type="button">-</button>
-                            </td>
-                        </tr><tr class="no1_tr">
-                            <td>
-                                <input type="text" id="L_username" name="value[]" required="" lay-verify="m_title" autocomplete="off" class="layui-input names">
-                            </td>
-                            <td>
-                                <button class="layui-btn removeDiv" style="width: 28px;height: 28px;" type="button">-</button>
-                            </td>
-                        </tr><tr class="no1_tr">
-                            <td>
-                                <input type="text" id="L_username" name="value[]" required="" lay-verify="m_title" autocomplete="off" class="layui-input names">
-                            </td>
-                            <td>
-                                <button class="layui-btn removeDiv" style="width: 28px;height: 28px;" type="button">-</button>
-                            </td>
-                        </tr>
-
+                            <tr class="no1_tr">
+                                <td>
+                                    <input type="text" id="L_username" name="value[]" required="" lay-verify="m_title" autocomplete="off" class="layui-input names">
+                                </td>
+                                <td>
+                                    <button class="layui-btn addDiv" style="width: 28px;height: 28px;" type="button">+</button>
+                                </td>
+                            </tr>
                         @csrf
                         <input type="hidden" name="standard_id" value="{{$standard_id}}">
-
                     </table>
                     {{--提交表单按钮--}}
                     <div class="layui-form-item" style="margin-top: 20px;">
@@ -92,6 +61,7 @@
                     </div>
 
                 </form>
+
             </div>
         </div>
         <script>
@@ -163,6 +133,11 @@
                  * 动态添加多条菜单
                  */
                 $(".addDiv").on("click",function () {
+                    var str="<tr class='no1_tr'>"+$(this).parent().parent().html()+"</tr>";
+                        var str=str.replace('addDiv','removeDiv');		// 将类名add替换为del，在下面的代码中我们要给del添加事件
+                    var str=str.replace('+','-');			// 将+符号替换为-符号
+                    $(this).parent().parent().after(str);
+                    // console.log(str);return false;
                     // let lessdiv = $(".no1_tr:first").html();
                     //
                     // let alldiv = lessdiv.replace("<button class=\"layui-btn addDiv\" style=\"width: 28px;height: 28px;\" type=\"button\">+</button>"

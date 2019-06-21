@@ -12,7 +12,7 @@ class IndexController extends Controller
 
     public function index()
     {
-        echo "你好,这里是前台";
+        return view('index.index.index');
     }
 
 

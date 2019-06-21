@@ -143,9 +143,6 @@
         });
       });
 
-      /**
-       * 搜索后分页 将a连接带上搜索值
-       */
       $(".page-item").on('click',function () {
           var url = $(this).children().prop('href');
           var newUrl = url + '&m_title=' + $("input[name='m_title']").val();
