@@ -20,19 +20,21 @@ class Code extends Model
         return json_encode(['errorCode'=>$code,'errorMsg'=>$message,'data'=>$data],JSON_UNESCAPED_UNICODE);
     }
     //登录
-    public function login($arr){
+    public function login($arr)
+    {
 
-        $data = DB::table('user')->where(['uname'=>$arr['uname'],'upwd'=>md5($arr['upwd'])])->first();
+        $data = DB::table('user')->where(['uname' => $arr['uname'], 'upwd' => md5($arr['upwd'])])->first();
 
-
-        if(!empty($data)){
+        if (!empty($data)) {
             $list = get_object_vars($data);
-            $token = md5($list['upwd'].time());
-            DB::table('user')->where('uname',$arr['uname'])->update(['token'=>$token,'time'=>time()]);
+            $token = md5($list['upwd'] . time());
+            DB::table('user')->where('uname', $arr['uname'])->update(['token' => $token, 'time' => time()]);
 
-            return $this->message('200','登录成功',$token);
-        }else{
-            return $this->message('500','账号密码错误');
+            if (!empty($data)) {
+                return $this->message('200', '登录成功');
+            } else {
+                return $this->message('500', '账号密码错误');
+            }
         }
     }
     //重置
