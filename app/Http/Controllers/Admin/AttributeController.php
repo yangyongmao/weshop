@@ -117,4 +117,7 @@ class AttributeController extends Controller
             return json_encode(['code'=>'2', 'msg'=>'error']);
         }
     }
+
+
+
 }

@@ -44,4 +44,50 @@ class AttrController extends Controller
                 ]);
     }
 
+    public function addOption(Request $request)
+    {
+        $attr_id = $request->input('attr_id');
+
+        return view('admin\attr.addOption',['attr_id'=>$attr_id]);
+    }
+
+    public function doAddOption(Request $request)
+    {
+        $data = $request->input('data');
+
+        $attrName = $data['name'];
+
+        $attrName = str_replace('，', ',', $attrName);
+
+        $arr_attr = explode(',', $attrName);
+
+        $attrName = array_filter($arr_attr) ;
+
+        foreach ($attrName as $k => $v){
+            $arr[$k]['value'] = $v;
+            $arr[$k]['attr_id'] = $data['attr_id'];
+        }
+
+        $res = DB::table('attribute_option')->insert($arr);
+
+        if($res){
+            return json_encode(['code'=>1, 'msg'=>'success']);
+        }else{
+            return json_encode(['code'=>2, 'msg'=>'error']);
+        }
+    }
+
+    public function optionList(Request $request)
+    {
+        $attr_id = $request->input('attr_id');
+
+        $optionList = DB::table('attribute_option')->where('attr_id', $attr_id)->select('value', 'id')->get();
+
+        return view('admin\attr.optionList')
+                ->with([
+                    'optionList'=>$optionList
+                ]);
+
+    }
+
 }

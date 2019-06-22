@@ -20,27 +20,14 @@
 <body>
 <div class="layui-fluid">
     <div class="layui-row">
-        <form class="layui-form">
+        <form class="layui-form" method="post">
+            <input type="hidden" name="attr_id" value="{{$attr_id}}">
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>分类名称</label>
-                <div class="layui-input-inline">
-                    <select name="cat_id" id="">
-                        <option value="0">顶级分类</option>
-                        @foreach( $catList as $k => $v )
-                            <option value="{{$v->cat_id}}">
-                                |<?php echo str_repeat('-', $v->level) ?>{{$v->cat_name}}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>属性名称</label>
+                    <span class="x-red">*</span>属性值名称</label>
                 <div class="layui-input-inline">
                     <input type="text" id="username" name="name" required="" lay-verify="required" autocomplete="off" class="layui-input">
-                    多个属性请用逗号隔开
+                    多个属性值请用逗号隔开
                 </div>
             </div>
 <div class="layui-form-item">
@@ -55,27 +42,12 @@
             var form = layui.form,
                 layer = layui.layer;
 
-            //自定义验证规则
-            // form.verify({
-            //     nikename: function(value) {
-            //         if (value.length < 5) {
-            //             return '昵称至少得5个字符啊';
-            //         }
-            //     },
-            //     pass: [/(.+){6,12}$/, '密码必须6到12位'],
-            //     repass: function(value) {
-            //         if ($('#L_pass').val() != $('#L_repass').val()) {
-            //             return '两次密码不一致';
-            //         }
-            //     }
-            // });
-
             //监听提交
             form.on('submit(add)',
                 function(data) {
                     console.log(data.field);
                     $.ajax({
-                        url: '/attribute/attrInsert',
+                        url: '/attr/doAddOption',
                         type: 'POST',
                         data: {data:data.field},
                         dataType: 'json',

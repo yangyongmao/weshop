@@ -191,6 +191,12 @@ Route::get('/attribute/attrUpd', 'Admin\AttributeController@attrUpd');
 Route::any('/attr/attrList', 'Admin\AttrController@attrList');
 //添加属性页面
 Route::any('/attr/addAttr', 'Admin\AttrController@addAttr');
+//添加属性值页面
+Route::get('/attr/addOption', 'Admin\AttrController@addOption');
+//执行添加属性值
+Route::post('/attr/doAddOption', 'Admin\AttrController@doAddOption');
+//属性值列表
+Route::get('/attr/optionList', 'Admin\AttrController@optionList');
 
 
 
