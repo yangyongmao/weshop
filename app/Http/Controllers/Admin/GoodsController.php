@@ -167,7 +167,7 @@ class GoodsController extends Controller
         $goods_sn = 'wsp'.time().rand(111,999);
 
         $postData['goods_sn'] = $goods_sn;
-//        var_dump($postData);die;
+
         $res = Db::table('goods')->insert( $postData );
 
         if($res){
