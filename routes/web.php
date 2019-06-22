@@ -28,7 +28,8 @@ Route::get('/', function () {
 Route::get("","IndexController@index");
 //前台登录页面跳转
 Route::any("login","LoginController@login");
-
+//注册功能
+Route::any('register','RegisterController@register');
 
 
 

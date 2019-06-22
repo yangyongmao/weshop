@@ -31,7 +31,7 @@ class Code extends Model
             DB::table('user')->where('uname', $arr['uname'])->update(['token' => $token, 'time' => time()]);
 
             if (!empty($data)) {
-                return $this->message('200', '登录成功');
+                return $this->message('200', '登录成功',['token' => $token]);
             } else {
                 return $this->message('500', '账号密码错误');
             }
