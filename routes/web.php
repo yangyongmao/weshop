@@ -24,7 +24,11 @@ Route::get('/', function () {
 /**
  * jiaxinchen
  */
+//前台主页
 Route::get("","IndexController@index");
+//前台登录页面跳转
+Route::any("login","LoginController@login");
+
 
 
 

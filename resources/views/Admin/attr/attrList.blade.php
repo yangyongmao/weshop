@@ -72,6 +72,8 @@
                                         </a>
                                         <a title="属性值列表" onclick="xadmin.open('属性值列表','/attr/optionList?attr_id={{$v->id}}',600,400)"  href="javascript:;">
                                             <i class="layui-icon">&#xe6ba;</i>
+                                        <a title="属性值列表" onclick="xadmin.open('属性值列表','',600,400)"  href="javascript:;">
+                                            <i class="icon iconfont">&#xe6ba;</i>
                                         </a>
                                       <a title="编辑" onclick="member_upd(this,'{{$v->id}}')"  href="javascript:;">
                                         <i class="layui-icon">&#xe642;</i>

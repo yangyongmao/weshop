@@ -129,15 +129,9 @@
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('订单列表','order-list.blade.php')">
                         <a onclick="xadmin.add_tab('订单列表','admin/orderList')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>订单列表</cite></a>
-                    </li>
-                    <li>
-                        <a onclick="xadmin.add_tab('用户意见反馈','admin/opinionList')">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>用户意见反馈</cite></a>
                     </li>
                 </ul>
             </li>
@@ -379,6 +373,7 @@
                     </li>
                 </ul>
             </li>
+
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="第三方组件">&#xe6b4;</i>
@@ -389,6 +384,10 @@
                         <a onclick="xadmin.add_tab('品牌展示','admin/brandmenus')" target="">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>品牌展示</cite></a>
+                    </li>
+                </ul>
+            </li>
+
             <li>
                 <a href="javascript:;">
                     <i class="iconfont left-nav-li" lay-tips="第三方组件">&#xe6b4;</i>
@@ -399,6 +398,11 @@
                         <a onclick="xadmin.add_tab('评论管理','admin/showcomments')" target="">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>评论管理</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('用户意见反馈','admin/opinionList')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>用户意见反馈</cite></a>
                     </li>
                 </ul>
             </li>

@@ -80,7 +80,6 @@
                                     <td>{{$v->comm_type}}</td>
                                     <td>{{date("Y-m-d H:i:s",$v->addtime)}}</td>
                                     <td class="td-manage">
-                                      {{--<a title="编辑"  onclick="xadmin.open('编辑','updatemenus',600,400)" href="javascript:;">--}}
                                         <a title="编辑"  onclick="xadmin.open('回复此评论','replycomm?comm_id={{$v->id}}&good_id={{$v->goods_id}}&u_id={{$v->u_id}}',600,400)" href="javascript:;">
                                         <i class="layui-icon">&#xe642;</i>
                                       </a>
