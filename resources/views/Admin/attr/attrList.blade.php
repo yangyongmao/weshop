@@ -70,7 +70,7 @@
                                         <a title="添加属性值" onclick="xadmin.open('添加属性值','/attr/addOption?attr_id={{$v->id}}',600,400)"  href="javascript:;">
                                             <i class="layui-icon">&#xe630;</i>
                                         </a>
-                                        <a title="属性值列表" onclick="xadmin.open('属性值列表','',600,400)"  href="javascript:;">
+                                        <a title="属性值列表" onclick="xadmin.open('属性值列表','/attr/optionList?attr_id={{$v->id}}',600,400)"  href="javascript:;">
                                             <i class="layui-icon">&#xe6ba;</i>
                                         </a>
                                       <a title="编辑" onclick="member_upd(this,'{{$v->id}}')"  href="javascript:;">
@@ -218,6 +218,7 @@
           var name = $(obj).parent().prev().prev().html();
           var a = '<input type="text" id="'+id+'" value="'+name+'" onblur="member_doUpd(this,\'\'+id+\'\', \'\'+value+\'\')" autocomplete="off" class="layui-input">';
           $(obj).parent().prev().prev().html(a);
+
       }
 
       function member_doUpd(obj, id, name){

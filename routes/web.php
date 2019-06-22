@@ -190,6 +190,8 @@ Route::any('/attr/addAttr', 'Admin\AttrController@addAttr');
 Route::get('/attr/addOption', 'Admin\AttrController@addOption');
 //执行添加属性值
 Route::post('/attr/doAddOption', 'Admin\AttrController@doAddOption');
+//属性值列表
+Route::get('/attr/optionList', 'Admin\AttrController@optionList');
 
 
 

@@ -21,7 +21,6 @@
 <div class="layui-fluid">
     <div class="layui-row">
         <form class="layui-form" method="post">
-            @csrf
             <input type="hidden" name="attr_id" value="{{$attr_id}}">
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">

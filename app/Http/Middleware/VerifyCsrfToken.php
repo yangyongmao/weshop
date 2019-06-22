@@ -22,7 +22,7 @@ class VerifyCsrfToken extends Middleware
         //
         "goods/goodsInsert",
         "goods/goodsUpdGoods",
-        "attribute/attrInsert"
-
+        "attribute/attrInsert",
+        "attr/doAddOption"
     ];
 }
