@@ -16,6 +16,7 @@ class Token
      */
     public function handle( $request, Closure $next)
     {
+//        echo 1;die;
         $token = $request->input('token');
         $data = DB::table('user')->where('token',$token)->first();
         if (!isset($request->token) || empty($data->token)) {
@@ -24,8 +25,7 @@ class Token
                 ['code'=>'101','message'=>'令牌不存在']
             )->setEncodingOptions(JSON_UNESCAPED_UNICODE);
         }
-//        $token = $data->token;
-//        echo $token;die;
+
         if ((time()-($data->time)) > 7200) {
             return response()->json(
                 ['code'=>'102','message'=>'令牌已经过期']

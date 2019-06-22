@@ -23,18 +23,20 @@ class Code extends Model
     public function login($arr)
     {
 
+        if(empty($arr)){
+            return $this->message('500', '账号密码不能为空');
+        }
         $data = DB::table('user')->where(['uname' => $arr['uname'], 'upwd' => md5($arr['upwd'])])->first();
-
         if (!empty($data)) {
             $list = get_object_vars($data);
-            $token = md5($list['upwd'] . time());
+            $token = md5($list['uphone'] . $list['upwd']);
             DB::table('user')->where('uname', $arr['uname'])->update(['token' => $token, 'time' => time()]);
+            $data = DB::table('user')->where(['uname' => $arr['uname'], 'upwd' => md5($arr['upwd'])])->first();
 
-            if (!empty($data)) {
-                return $this->message('200', '登录成功');
-            } else {
-                return $this->message('500', '账号密码错误');
-            }
+            return $this->message('200', '登录成功',$data);
+
+        }else {
+            return $this->message('500', '账号密码错误');
         }
     }
     //重置
@@ -94,6 +96,19 @@ class Code extends Model
         }else{
             return $this->message('204','修改失败');
         }
-
     }
+    public function demorder($arr){
+        $token = $arr['token'];
+        $data = DB::table('user')
+            ->leftJoin("order",function($join){
+                $join->on('user.uid','=','order.u_id');
+            })
+            ->where('token',$token)->get();
+        if($data){
+            return $this->message('200','我的订单',$data);
+        }else{
+            return $this->message('204','您还没有加入订单哦');
+        }
+    }
+//    public function
 }

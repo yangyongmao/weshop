@@ -44,4 +44,9 @@ class PersonalController extends Controller
         $api = new Code;
         return $api->demoupdate($arr);
     }
+    public function order(Request $request){
+        $arr = $request->input();
+        $api = new Code;
+        return $api->demorder($arr);
+    }
 }
