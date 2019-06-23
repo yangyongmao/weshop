@@ -24,7 +24,7 @@ class DonodeController extends Controller
             ->rightJoin('node',function($join){
                 $join->on('node_modules.n_id','node.n_id');
             })
-            ->get();
+            ->paginate(5);
 
         return view('admin/do_node/list',['res'=>$res,'data'=>$data]);
     }
@@ -32,7 +32,6 @@ class DonodeController extends Controller
     public function add(Request $request){
         if($request->ajax()){
             $arr = $request->input();
-//            var_dump($data);
             $res = DB::table('modules')->where('m_content',$arr['m_content'])->first();
             $node = [
                 'n_name'=>$arr['n_name'],

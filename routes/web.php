@@ -32,15 +32,6 @@ Route::any("login","LoginController@login");
 Route::any('register','RegisterController@register');
 
 
-
-
-
-
-
-
-
-
-
 /**
  * ====================
  * =======后台路由========
@@ -202,6 +193,7 @@ Route::get('/attr/optionList', 'Admin\AttrController@optionList');
 /**
  * caoyuefeng
  */
+//订单
 Route::any('admin/orderList',"Admin\OrderController@orderList");
 Route::any('admin/orderDel',"Admin\OrderController@orderDel");
 Route::any('admin/orderDelall',"Admin\OrderController@orderDelall");

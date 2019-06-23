@@ -23,18 +23,28 @@ class Code extends Model
     public function login($arr)
     {
 
+        if(empty($arr)){
+            return $this->message('500', '账号密码不能为空');
+        }
         $data = DB::table('user')->where(['uname' => $arr['uname'], 'upwd' => md5($arr['upwd'])])->first();
-
         if (!empty($data)) {
             $list = get_object_vars($data);
-            $token = md5($list['upwd'] . time());
+            $token = md5($list['uphone'] . $list['upwd']);
             DB::table('user')->where('uname', $arr['uname'])->update(['token' => $token, 'time' => time()]);
+            $data = DB::table('user')->where(['uname' => $arr['uname'], 'upwd' => md5($arr['upwd'])])->first();
 
+            return $this->message('200', '登录成功',$data);
+
+<<<<<<< HEAD
             if (!empty($data)) {
                 return $this->message('200', '登录成功',['token' => $token]);
             } else {
                 return $this->message('500', '账号密码错误');
             }
+=======
+        }else {
+            return $this->message('500', '账号密码错误');
+>>>>>>> lixinyuan-master
         }
     }
     //重置
@@ -79,7 +89,7 @@ class Code extends Model
     //个人中心
     public function demoshow($arr){
 
-        $data = DB::table('user')->where('token',$arr['token'])->get();
+        $data = DB::table('user')->where('uid',$arr['uid'])->get();
         if($data){
             return $this->message('200','个人信息',$data);
         }else{
@@ -88,12 +98,23 @@ class Code extends Model
     }
     public function demoupdate($arr){
 //        var_dump($arr);die;
-        $data = DB::table('user')->where('token',$arr['token'])->update($arr);
+        $data = DB::table('user')->where('uid',$arr['uid'])->update($arr);
         if($data){
             return $this->message('200','修改成功');
         }else{
             return $this->message('204','修改失败');
         }
-
+    }
+    public function demorder($arr){
+        $uid = $arr['uid'];
+        $data = DB::table('order')->where('uid',$uid)->get();
+        if($data){
+            return $this->message('200','我的订单',$data);
+        }else{
+            return $this->message('204','您还没有加入订单哦');
+        }
+    }
+    public function shopcat($arr){
+        $uid = $arr['uid'];
     }
 }
