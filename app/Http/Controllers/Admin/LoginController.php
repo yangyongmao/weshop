@@ -31,6 +31,24 @@ class LoginController extends Controller
                 ])
                 ->first();
 
+//            $thisAdminAccess = DB::table('admin_role')
+//                ->where('u_id','=',$thisAdmin->u_id)
+//                ->leftJoin('role',function ($query){
+//                    $query->on('admin_role.r_id','=','role.r_id');
+//                })
+//                ->leftJoin('role_node',function ($query){
+//                    $query->on('role.r_id','=','role_node.r_id');
+//                })
+//                ->leftJoin('node',function ($query){
+//                    $query->on('role_node.n_id','=','node.n_id');
+//                })
+////                ->select(DB::raw('
+////                weshop_admin_role.r_id,
+////                '))
+//                ->get();
+
+//            var_dump($thisAdminAccess);die();
+
             if(!empty($thisAdmin)){
                 $request->session()->put("thisAdmin",$thisAdmin);
                 return json_encode(

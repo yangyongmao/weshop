@@ -48,17 +48,6 @@ Route::any('register','RegisterController@register');
  */
 
 /**
- * Jiaxinchen
- */
-//后台主页
-Route::get("admin","Admin\IndexController@index")->middleware("admin.login");
-
-/**
- * 主页
- */
-Route::get("admin/welcome","Admin\IndexController@welcome");
-
-/**
  * lixinyuan
  */
 //管理员列表
@@ -99,7 +88,14 @@ Route::get('do_node/update',"Admin\DonodeController@update");
 /**
  * Jiaxinchen
  */
-Route::get('admin','Admin\IndexController@index')->middleware('admin.login');
+
+Route::middleware(['admin.login'])->group(function (){
+    //后台主页
+    Route::get("admin","Admin\IndexController@index");
+    //后台主页欢迎
+    Route::get("admin/welcome","Admin\IndexController@welcome");
+});
+
 //登录界面
 Route::get("admin/login","Admin\LoginController@login");
 //后台登录功能
