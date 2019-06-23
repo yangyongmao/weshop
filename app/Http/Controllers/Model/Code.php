@@ -81,7 +81,7 @@ class Code extends Model
     //个人中心
     public function demoshow($arr){
 
-        $data = DB::table('user')->where('token',$arr['token'])->get();
+        $data = DB::table('user')->where('uid',$arr['uid'])->get();
         if($data){
             return $this->message('200','个人信息',$data);
         }else{
@@ -90,7 +90,7 @@ class Code extends Model
     }
     public function demoupdate($arr){
 //        var_dump($arr);die;
-        $data = DB::table('user')->where('token',$arr['token'])->update($arr);
+        $data = DB::table('user')->where('uid',$arr['uid'])->update($arr);
         if($data){
             return $this->message('200','修改成功');
         }else{
@@ -98,17 +98,15 @@ class Code extends Model
         }
     }
     public function demorder($arr){
-        $token = $arr['token'];
-        $data = DB::table('user')
-            ->leftJoin("order",function($join){
-                $join->on('user.uid','=','order.u_id');
-            })
-            ->where('token',$token)->get();
+        $uid = $arr['uid'];
+        $data = DB::table('order')->where('uid',$uid)->get();
         if($data){
             return $this->message('200','我的订单',$data);
         }else{
             return $this->message('204','您还没有加入订单哦');
         }
     }
-//    public function
+    public function shopcat($arr){
+        $uid = $arr['uid'];
+    }
 }

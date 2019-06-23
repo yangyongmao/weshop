@@ -24,7 +24,7 @@ class DonodeController extends Controller
             ->rightJoin('node',function($join){
                 $join->on('node_modules.n_id','node.n_id');
             })
-            ->get();
+            ->paginate(5);
 
         return view('admin/do_node/list',['res'=>$res,'data'=>$data]);
     }
