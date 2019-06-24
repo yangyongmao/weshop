@@ -29,7 +29,7 @@ class CheckModule
 //            //从session查出权限验证是否存在
 //            return $next($request);
 //        }
-        var_dump($request->path());
+//        var_dump($request->path());
         return $next($request);
 
     }

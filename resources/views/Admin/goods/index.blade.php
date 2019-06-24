@@ -44,7 +44,7 @@
                         </div>
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加商品','/goods/goodsInsert',800,600)"><i class="layui-icon"></i>添加</button>
+                            <button class="layui-btn" onclick="xadmin.open('添加商品','/goods/goodsInsert',800,500)"><i class="layui-icon"></i>添加</button>
                         </div>
                         <div class="layui-card-body layui-table-body layui-table-main">
                             <table class="layui-table layui-form">
@@ -74,7 +74,7 @@
                                     <td>{{$v->cat_name}}</td>
                                     <td>{{$v->brand_name}}</td>
                                     <td>{{$v->goods_name}}</td>
-                                    <td><img src="{{asset('storage'.$v->goods_img)}}" alt=""></td>
+                                    <td><img src="{{asset('/storage'.$v->goods_img)}}" alt=""></td>
                                     <td>{{$v->goods_number}}</td>
                                     <td class="td-status">
                                       <?php if( $v->is_on_sale == 1 ){ ?>
@@ -86,6 +86,9 @@
                                     <td>
                                         <a title="编辑"  onclick="xadmin.open('编辑','/goods/goodsInfo?goods_id={{$v->goods_id}}}',600,400)" href="javascript:;">
                                             <i class="layui-icon">&#xe642;</i>
+                                        </a>
+                                        <a title="生成SKU"  onclick='xadmin.open("生成{{$v->goods_name}}SKU","/admin/sku?cat_id={{$v->cat_id}}&goods_id={{$v->goods_id}}",600,400)' href="javascript:;">
+                                            <i class="icon iconfont">&#xe83a;</i>
                                         </a>
                                         <a title="删除" onclick="member_del(this,'{{$v->goods_id}}')" href="javascript:;">
                                             <i class="layui-icon">&#xe640;</i>
