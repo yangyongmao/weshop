@@ -183,8 +183,8 @@
             function(index) {
                 //发异步删除数据
                 $.ajax({
-                    url:'orderDel',
-                    data:{id:id},
+                    url:'orderDelall',
+                    data:{ids:id},
                     dataType:'json',
                     type:'GET',
                     success:function(e){

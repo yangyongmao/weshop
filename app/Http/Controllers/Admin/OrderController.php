@@ -29,19 +29,9 @@ class OrderController extends Controller
         $statusList = Db::table('status')->select()->get();
         return view('admin/order/order',['orderList' => $orderList ,'statusList' => $statusList]);
     }
-    public function orderDel()
-    {
-        $o_id = $_GET['id'];
-        $res = Db::table('order')->where('o_id', '=', "$o_id")->delete();
-        if($res){
-            echo json_encode(['msg' => 1]);
-        }else{
-            echo json_encode(['msg' => 0]);
-        }
-    }
     public function orderDelall()
     {
-        $ids = $_GET['ids'];
+        $ids = is_array($_GET['ids']) ? $_GET['ids'] : [$_GET['ids']] ;
         $res = Db::table('order')->whereIn('o_id',$ids)->delete();
         if($res){
             echo json_encode(['msg' => 1]);
@@ -56,9 +46,8 @@ class OrderController extends Controller
                         ->leftJoin('status','order.o_status','=','status.s_id')
                         ->leftJoin('address','order.o_id','=','address.a_id')
                         ->where('o_id','=',"$id")
-                        ->orderBy('order.o_addtime','desc')
                         ->select()
-                        ->get();
+                        ->first();
 //        echo "<pre>";
 //        var_dump($orderDesc);die;
         return view('admin/order/desc');
