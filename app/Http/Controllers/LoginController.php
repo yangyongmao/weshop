@@ -6,8 +6,6 @@
  * Time: 14:30
  */
 namespace App\Http\Controllers;
-
-
 use Mews\Captcha\Facades\Captcha;
 
 class LoginController extends Controller
@@ -35,6 +33,10 @@ class LoginController extends Controller
                  * 调用公共函数CURL
                  */
                 $apiMsg = curl('http://weshop.io/api/login','POST',$data);
+                $apiMsg_array = json_decode($apiMsg,true);
+                if(!empty($apiMsg_array['data'])){
+                    request()->session()->put("thisUser",$apiMsg_array['data']);
+                }
                 return $apiMsg;
             }
         }else{

@@ -43,7 +43,7 @@
                         </div>
                         <div class="layui-card-header">
                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加属性','/attr/addAttr',600,400)"><i class="layui-icon"></i>添加</button>
+                            <button class="layui-btn" onclick="xadmin.open('添加属性','/attr/addAttr',800,500)"><i class="layui-icon"></i>添加</button>
                         </div>
                         <div class="layui-card-body layui-table-body layui-table-main">
                             <table class="layui-table layui-form">
@@ -67,10 +67,10 @@
                                     <td>{{$v->name}}</td>
                                     <td>{{$v->cat_name}}</td>
                                     <td class="td-manage">
-                                        <a title="添加属性值" onclick="xadmin.open('添加属性值','',600,400)"  href="javascript:;">
+                                        <a title="添加属性值" onclick="xadmin.open('添加属性值','/attr/addOption?attr_id={{$v->id}}',600,400)"  href="javascript:;">
                                             <i class="layui-icon">&#xe630;</i>
                                         </a>
-                                        <a title="属性值列表" onclick="xadmin.open('属性值列表','',600,400)"  href="javascript:;">
+                                        <a title="属性值列表" onclick="xadmin.open('属性值列表','/attr/optionList?attr_id={{$v->id}}',600,400)"  href="javascript:;">
                                             <i class="icon iconfont">&#xe6ba;</i>
                                         </a>
                                       <a title="编辑" onclick="member_upd(this,'{{$v->id}}')"  href="javascript:;">
@@ -218,6 +218,7 @@
           var name = $(obj).parent().prev().prev().html();
           var a = '<input type="text" id="'+id+'" value="'+name+'" onblur="member_doUpd(this,\'\'+id+\'\', \'\'+value+\'\')" autocomplete="off" class="layui-input">';
           $(obj).parent().prev().prev().html(a);
+
       }
 
       function member_doUpd(obj, id, name){

@@ -28,16 +28,8 @@ Route::get('/', function () {
 Route::get("","IndexController@index");
 //前台登录页面跳转
 Route::any("login","LoginController@login");
-
-
-
-
-
-
-
-
-
-
+//注册功能
+Route::any('register','RegisterController@register');
 
 
 /**
@@ -45,17 +37,6 @@ Route::any("login","LoginController@login");
  * =======后台路由========
  * ====================
  */
-
-/**
- * Jiaxinchen
- */
-//后台主页
-Route::get("admin","Admin\IndexController@index")->middleware("admin.login");
-
-/**
- * 主页
- */
-Route::get("admin/welcome","Admin\IndexController@welcome");
 
 /**
  * lixinyuan
@@ -102,7 +83,14 @@ Route::get('do_node/update',"Admin\DonodeController@update");
 /**
  * Jiaxinchen
  */
-Route::get('admin','Admin\IndexController@index')->middleware('admin.login');
+
+Route::middleware(['admin.login'])->group(function (){
+    //后台主页
+    Route::get("admin","Admin\IndexController@index");
+    //后台主页欢迎
+    Route::get("admin/welcome","Admin\IndexController@welcome");
+});
+
 //登录界面
 Route::get("admin/login","Admin\LoginController@login");
 //后台登录功能
@@ -225,6 +213,12 @@ Route::get('/attribute/attrUpd', 'Admin\AttributeController@attrUpd');
 Route::any('/attr/attrList', 'Admin\AttrController@attrList');
 //添加属性页面
 Route::any('/attr/addAttr', 'Admin\AttrController@addAttr');
+//添加属性值页面
+Route::get('/attr/addOption', 'Admin\AttrController@addOption');
+//执行添加属性值
+Route::post('/attr/doAddOption', 'Admin\AttrController@doAddOption');
+//属性值列表
+Route::get('/attr/optionList', 'Admin\AttrController@optionList');
 
 
 
@@ -235,6 +229,7 @@ Route::any('/attr/addAttr', 'Admin\AttrController@addAttr');
 /**
  * caoyuefeng
  */
+
 Route::any('admin/orderList',"Admin\OrderController@orderList")->middleware('check.module');
 Route::any('admin/orderDelall',"Admin\OrderController@orderDelall")->middleware('check.module');
 Route::any('admin/orderDesc',"Admin\OrderController@orderDesc")->middleware('check.module');
@@ -243,6 +238,13 @@ Route::any('admin/opinionDelall',"Admin\OpinionController@opinionDelall")->middl
 Route::any('admin/opinionDesc','Admin\OpinionController@opinionDesc')->middleware('check.module');
 
 Route::any('admin/isokAll','Admin\OpinionController@isokAll')->middleware('check.module');
+
+//订单
+Route::any('admin/orderList',"Admin\OrderController@orderList");
+Route::any('admin/orderDel',"Admin\OrderController@orderDel");
+Route::any('admin/orderDelall',"Admin\OrderController@orderDelall");
+Route::any('admin/orderDesc',"Admin\OrderController@orderDesc");
+
 //用户意见
 
 Route::any("admin/opinionList","Admin\OpinionController@opinionList")->middleware('check.module');
