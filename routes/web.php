@@ -73,7 +73,7 @@ Route::get('do_node/list',"Admin\DonodeController@list");
 Route::get('do_node/add',"Admin\DonodeController@add");
 //子权限删除
 Route::get('do_node/del',"Admin\DonodeController@del");
-//子权限删除
+//子权限修改
 Route::get('do_node/update',"Admin\DonodeController@update");
 
 /**
@@ -94,7 +94,6 @@ Route::post("admin/login","Admin\LoginController@login");
 //后台退出（注销）
 Route::get("admin/loginout","Admin\LoginController@loginOut");
 //后台添加菜单
-Route::get("admin/addmenus","Admin\MenusController@add");
 Route::get("admin/addmenus","Admin\MenusController@add")->middleware('admin.login');
 //后台添加菜单执行
 Route::post("admin/addmenus","Admin\MenusController@add");
@@ -102,9 +101,9 @@ Route::post("admin/addmenus","Admin\MenusController@add");
 Route::get("admin/showmenus","Admin\MenusController@show");
 //删除菜单
 Route::get("admin/deletemenus","Admin\MenusController@delete");
-//品牌菜单展示
+//品牌展示
 Route::any("admin/brandmenus","Admin\BrandController@show");
-//后台添加品牌执行
+//添加品牌
 Route::any("admin/brandadd","Admin\BrandController@add");
 //品牌删除
 Route::any("admin/brandelete","Admin\BrandController@delete");
@@ -112,8 +111,6 @@ Route::any("admin/brandelete","Admin\BrandController@delete");
 Route::any("admin/brandallow","Admin\BrandController@allow");
 //菜单展示 条件查询提交
 Route::post("admin/showmenus","Admin\MenusController@show");
-//删除菜单
-Route::get("admin/deletemenus","Admin\MenusController@delete");
 //商品评论审核 展示
 Route::get("admin/showcomments","Admin\CommentsController@show")->middleware('admin.login');
 Route::post("admin/showcomments","Admin\CommentsController@show")->middleware('admin.login');
@@ -122,6 +119,7 @@ Route::get('admin/deletecomments',"Admin\CommentsController@delete")->middleware
 //回复商品的评论
 Route::get("admin/replycomm","Admin\CommentsController@reply")->middleware('admin.login');
 Route::post("admin/replycomm","Admin\CommentsController@reply")->middleware('admin.login');
+
 //查询商品分类
 Route::get("admin/showcate","Admin\CateController@show")->middleware("admin.login");
 //添加商品分类
@@ -129,6 +127,7 @@ Route::get("admin/addcate","Admin\CateController@add")->middleware("admin.login"
 Route::post("admin/addcate","Admin\CateController@add")->middleware("admin.login");
 //删除商品分类
 Route::get("admin/deletecate","Admin\CateController@delete")->middleware("admin.login");
+
 //给分类添加规格
 Route::get("admin/addstandard","Admin\StandardController@addStandard")->middleware('admin.login');
 //执行添加规格
@@ -164,6 +163,7 @@ Route::get('goods/goodsDelAll','Admin\GoodsController@goodsDelAll');
 Route::get('goods/goodsDelOne','Admin\GoodsController@goodsDelOne');
 //商品修改上下架状态
 Route::get('goods/goodsUpdSale','Admin\GoodsController@goodsUpdSale');
+
 //分类添加属性
 Route::any('/attribute/attrInsert', 'Admin\AttributeController@attrInsert');
 //分类 属性 列表
