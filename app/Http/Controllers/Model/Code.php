@@ -20,9 +20,9 @@ class Code extends Model
     }
     public function login($arr){
 
-        $data = DB::table('user')->where(['uname'=>$arr['uname'],'upwd'=>md5($arr['upwd'])])->get();
-//        var_dump($data);die;
-        if($data){
+        $data = DB::table('user')->where(['uname'=>$arr['uname'],'upwd'=>md5($arr['upwd'])])->first();
+
+        if(!empty($data)){
             return $this->message('200','登录成功');
         }else{
             return $this->message('500','账号密码错误');
