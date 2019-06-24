@@ -22,7 +22,15 @@ class CheckModule
         $controllerName = strtolower(substr($controllerName,$strat + 1,$length - 11));
         $actionName = strtolower(request()->route()->getActionMethod());
         $module = $controllerName.'/'.$actionName;
-        //从session查出权限验证是否存在
+
+//        if(!(in_array($request->path(),$request->session()->get('adminAccess')))){
+//            //没权限
+//        }else{
+//            //从session查出权限验证是否存在
+//            return $next($request);
+//        }
+        var_dump($request->path());
         return $next($request);
+
     }
 }
