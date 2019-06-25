@@ -24,6 +24,11 @@ Route::get('/', function () {
 /**
  * jiaxinchen
  */
+Route::middleware([
+
+])->group(function (){
+
+});
 //前台主页
 Route::get("","IndexController@index");
 //前台登录页面跳转

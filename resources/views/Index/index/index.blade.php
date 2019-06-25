@@ -13,9 +13,25 @@
 			<div class="top center" id="top">
 				<div class="left fl">
 					<ul>
-						<li v-for="site in lis">
-							<a href="" target="">{{site.name}}</a>
-						</li>
+						<li><a href="http://www.mi.com/" target="_blank">小米商城</a></li>
+						<li>|</li>
+						<li><a href="">MIUI</a></li>
+						<li>|</li>
+						<li><a href="">米聊</a></li>
+						<li>|</li>
+						<li><a href="">游戏</a></li>
+						<li>|</li>
+						<li><a href="">多看阅读</a></li>
+						<li>|</li>
+						<li><a href="">云服务</a></li>
+						<li>|</li>
+						<li><a href="">金融</a></li>
+						<li>|</li>
+						<li><a href="">小米商城移动版</a></li>
+						<li>|</li>
+						<li><a href="">问题反馈</a></li>
+						<li>|</li>
+						<li><a href="">Select Region</a></li>
 						<div class="clear"></div>
 					</ul>
 				</div>
@@ -23,8 +39,18 @@
 					<div class="gouwuche fr"><a href="">购物车</a></div>
 					<div class="fr">
 						<ul>
-							<li v-for="(v,k) in fun">
-								<a v-bind:href="v.href" target="" :data-num="k">{{v.name}}</a>
+							<li>
+								@if((!empty($thisUser)))
+									<a href="" target="" >{{$thisUser['uname']}}</a>
+								@else
+								<a href="login" target="" >登录</a>
+								@endif
+							</li>
+							<li>
+								<a href="register" target="" >注册</a>
+							</li>
+							<li>
+									<a href="" target="" >消息通知</a>
 							</li>
 						</ul>
 					</div>
