@@ -38,3 +38,8 @@ Route::post('add_address',"Api\PersonalController@add_address")->Middleware('tok
 Route::post('update_address',"Api\PersonalController@update_address")->Middleware('token');
 //删除地址
 Route::post('delete_address',"Api\PersonalController@delete_address")->Middleware('token');
+//分类
+Route::post('cat',"Api\HomeController@cat");
+//商品
+Route::post('goods',"Api\HomeController@goods");
+
