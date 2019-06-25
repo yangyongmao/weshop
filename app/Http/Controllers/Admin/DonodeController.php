@@ -68,10 +68,7 @@ class DonodeController extends Controller
         if($request->ajax()){
             $data = $request->input();
 //            var_dump($data);die;
-            $arr = [
 
-                'm_content' => $data['m_content'],
-            ];
             $arrs = [
                 'n_name'=>$data['n_name'],
                 'n_remarks'=>$data['n_remarks'],
@@ -81,7 +78,6 @@ class DonodeController extends Controller
               'p_id'=>$data['m_id'],
               'n_id'=>$data['n_id'],
             ];
-            DB::table('modules')->where('m_id',$data['m_id'])->update($arr);
             DB::table('node')->where('n_id',$data['n_id'])->update($arrs);
             DB::table('node_modules')->insert($arres);
             return 1;
