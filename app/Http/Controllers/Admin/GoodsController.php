@@ -44,6 +44,7 @@ class GoodsController extends Controller
                 'goodsList' => $goodsList,
                 'wheres'=> $wheres
             ]);
+        
     }
 
     public function goodsInfo(Request $request)
