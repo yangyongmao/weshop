@@ -167,4 +167,20 @@ class Code extends Model
             return $this->message('204','服务器错误');
         }
     }
+    public function cat(){
+        $data = DB::table('cat')->get();
+        if($data){
+            return $this->message('200','分类查询',$data);
+        }else{
+            return $this->message('204','服务器错误');
+        }
+    }
+    public function goods(){
+        $data = DB::table('goods')->get();
+        if($data){
+            return $this->message('200','商品查询',$data);
+        }else{
+            return $this->message('204','服务器错误');
+        }
+    }
 }
