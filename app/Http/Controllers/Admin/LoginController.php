@@ -54,9 +54,7 @@ class LoginController extends Controller
                 ->get();
 
             //存储用户权限Session
-//            $request->session()->put('adminAccess',$thisAdminAccess);
-
-//            var_dump($thisAdminAccess);die();
+            $request->session()->put('adminAccess',$thisAdminAccess);
 
             if(!empty($thisAdmin)){
                 $request->session()->put("thisAdmin",$thisAdmin);

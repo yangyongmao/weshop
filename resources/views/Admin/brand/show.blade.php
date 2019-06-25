@@ -84,7 +84,6 @@
                                     </button>
                                 </td>
                                 <td class="td-manage">
-                                    {{--<a title="编辑"  onclick="xadmin.open('编辑','updatemenus',600,400)" href="javascript:;">--}}
                                     <a title="编辑"  onclick="pleaseDel()" href="javascript:;">
                                         <i class="layui-icon">&#xe642;</i>
                                     </a>
