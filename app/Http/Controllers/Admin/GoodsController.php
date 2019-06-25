@@ -36,7 +36,7 @@ class GoodsController extends Controller
             ->leftJoin("brand",function ($query){
                 return $query->on("goods.brand_id","=","brand.brand_id");
             })
-            ->select('goods.goods_id','goods_img', 'goods.goods_sn', 'goods.goods_name', 'goods.goods_number', 'goods.is_on_sale', 'cat.cat_name', 'brand.brand_name')
+            ->select('goods.goods_id','goods_img', 'goods.goods_sn', 'goods.goods_name', 'goods.goods_number', 'goods.is_on_sale', 'cat.cat_name', 'brand.brand_name','goods.cat_id')
             ->paginate(5);
 
         return view('admin\goods.index')
@@ -167,7 +167,7 @@ class GoodsController extends Controller
         $goods_sn = 'wsp'.time().rand(111,999);
 
         $postData['goods_sn'] = $goods_sn;
-//        var_dump($postData);die;
+
         $res = Db::table('goods')->insert( $postData );
 
         if($res){
@@ -176,6 +176,47 @@ class GoodsController extends Controller
             return json_encode(['code'=>2, 'msg'=>'error']);
         }
 
+    }
+
+    public function sku(Request $request)
+    {
+        if($request->isMethod('POST')){
+
+        }else{
+            $goods_id = $request->get('goods_id');
+            $cat_id = $request->get('cat_id');
+
+            $attrData = DB::table('attribute')
+                ->where('cat_id','=',$cat_id)
+                ->leftJoin('attribute_option',function ($query){
+                    $query->on('attribute.id','=','attribute_option.attr_id');
+                })
+                ->select(DB::raw('
+                    weshop_attribute.id as attr_id,
+                    weshop_attribute.name as attr_name,
+                    weshop_attribute_option.id as value_id,
+                    weshop_attribute_option.value
+                '))
+                ->get();
+
+                $catData_struct = [];
+                foreach ($attrData as $k => $v){
+                    if(key_exists($v->attr_id,$catData_struct)){
+                        $catData_struct[$v->attr_id]['child'][$v->value_id] = $v->value;
+                    }else{
+                        $catData_struct[$v->attr_id]['name'] = $v->attr_name;
+                        $catData_struct[$v->attr_id]['child'][$v->value_id] = $v->value;
+                    }
+                }
+//                echo "<pre/>";
+//                var_dump($catData_struct);die();
+                return view('admin.goods.sku')->with([
+                    'catData_struct' => $catData_struct,
+                    'goods_id' => $goods_id,
+                ]);
+
+
+        }
     }
 
 

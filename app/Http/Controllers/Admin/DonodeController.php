@@ -32,7 +32,6 @@ class DonodeController extends Controller
     public function add(Request $request){
         if($request->ajax()){
             $arr = $request->input();
-//            var_dump($data);
             $res = DB::table('modules')->where('m_content',$arr['m_content'])->first();
             $node = [
                 'n_name'=>$arr['n_name'],

@@ -18,7 +18,7 @@
 			<div class="login_center">
 				<div class="login_top">
 					<div class="left fl">会员登录</div>
-					<div class="right fr">您还不是我们的会员？<a href="./register.html" target="_self">立即注册</a></div>
+					<div class="right fr">您还不是我们的会员？<a href="register" target="_self">立即注册</a></div>
 					<div class="clear"></div>
 					<div class="xian center"></div>
 				</div>
@@ -28,7 +28,7 @@
 					<div class="username">
 						<div class="left fl">验证码:&nbsp;<input class="yanzhengma" type="text" name="captcha" placeholder="请输入验证码"/></div>
 						<div class="right fl">
-							<img src="{{Captcha::src()}}" alt="">
+							<img src="{{Captcha::src()}}" alt="" class="captcha">
                         </div>
 						<div class="clear"></div>
 					</div>
@@ -55,12 +55,20 @@
 	$("input[type='button']").on('click',function () {
 		$.post("login",{uname:$("input[name='uname']").val(),upwd:$("input[name='upwd']").val(),captcha:$("input[name='captcha']").val()},function (jsonMsg) {
 			let objMsg = $.parseJSON(jsonMsg);
-			if(objMsg.code != 200){
+			console.log(objMsg);
+			if(objMsg.errorCode != 200){
 				alert(objMsg.errorMsg);return false;
 			}
 			location.href = "http://weshop.io/";
 		});
     })	;
+
+    /**
+	 * 点击验证码
+     */
+    $(".captcha").on('click',function () {
+		window.location.reload();
+    });
 
 
 </script>

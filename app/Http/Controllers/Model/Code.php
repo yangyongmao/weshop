@@ -35,6 +35,11 @@ class Code extends Model
 
             return $this->message('200', '登录成功',$data);
 
+            if (!empty($data)) {
+                return $this->message('200', '登录成功',['token' => $token]);
+            } else {
+                return $this->message('500', '账号密码错误');
+            }
         }else {
             return $this->message('500', '账号密码错误');
         }

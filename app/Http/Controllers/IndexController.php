@@ -12,7 +12,11 @@ class IndexController extends Controller
 
     public function index()
     {
-        return view('index.index.index');
+        $userinfo = request()->session()->get('thisUser');
+//        $userInfo = curl('http://weshop.io/api/demoshow','POST',['token']);
+        return view('index.index.index')->with([
+                'thisUser' => $userinfo,
+        ]);
     }
 
 

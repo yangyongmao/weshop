@@ -137,7 +137,7 @@ class AdminController extends Controller
             $u_email = $data['u_email'];
             $arr = [
                 'u_name'=>$u_name,
-                '  u_pwd'=>md5($u_pwd),
+                'u_pwd'=>md5($u_pwd),
                 'u_account'=>$u_account,
                 'u_phone'=>$u_phone,
                 'u_email'=>$u_email,
