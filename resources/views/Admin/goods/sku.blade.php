@@ -26,8 +26,7 @@
                       <table id="table-form">
                           <tr>
                               <input type="hidden" name="goods_id[]" value="{{$goods_id}}">
-                              @foreach($catData_struct as $k => $v)
-                                  <input type="hidden" name="attr_id[]" value="{{$k}}">
+                          @foreach($catData_struct as $k => $v)
                                   <td>{{$v['name']}}:
                                       <select name="attr_val[]" id="">
                                           @foreach($v['child'] as $key => $val)
@@ -38,7 +37,63 @@
                               @endforeach
                               <td>价格: <input type="text" name="price[]" required class="layui-input"></td>
                               <td>库存: <input type="text" name="num[]" required class="layui-input" ></td>
-                              <td><a href="javascript:;" class="add-tr del-tr">+</a></td>
+                              <td><a href="javascript:;" class="add-tr">+</a></td>
+                          </tr>
+                          <tr>
+                              @foreach($catData_struct as $k => $v)
+                                  <td>{{$v['name']}}:
+                                      <select name="attr_val[]" id="">
+                                          @foreach($v['child'] as $key => $val)
+                                              <option value="{{$key}}">{{$val}}</option>
+                                          @endforeach
+                                      </select>
+                                  </td>
+                              @endforeach
+                              <td>价格: <input type="text" name="price[]" required class="layui-input"></td>
+                              <td>库存: <input type="text" name="num[]" required class="layui-input" ></td>
+                              <td><a href="javascript:;" class="del-tr">-</a></td>
+                          </tr>
+                          <tr>
+                              @foreach($catData_struct as $k => $v)
+                                  <td>{{$v['name']}}:
+                                      <select name="attr_val[]" id="">
+                                          @foreach($v['child'] as $key => $val)
+                                              <option value="{{$key}}">{{$val}}</option>
+                                          @endforeach
+                                      </select>
+                                  </td>
+                              @endforeach
+                              <td>价格: <input type="text" name="price[]" required class="layui-input"></td>
+                              <td>库存: <input type="text" name="num[]" required class="layui-input" ></td>
+                              <td><a href="javascript:;" class="del-tr">-</a></td>
+                          </tr>
+                          <tr>
+                              @foreach($catData_struct as $k => $v)
+                                  <td>{{$v['name']}}:
+                                      <select name="attr_val[]" id="">
+                                          @foreach($v['child'] as $key => $val)
+                                              <option value="{{$key}}">{{$val}}</option>
+                                          @endforeach
+                                      </select>
+                                  </td>
+                              @endforeach
+                              <td>价格: <input type="text" name="price[]" required class="layui-input"></td>
+                              <td>库存: <input type="text" name="num[]" required class="layui-input" ></td>
+                              <td><a href="javascript:;" class="del-tr">-</a></td>
+                          </tr>
+                          <tr>
+                              @foreach($catData_struct as $k => $v)
+                                  <td>{{$v['name']}}:
+                                      <select name="attr_val[]" id="">
+                                          @foreach($v['child'] as $key => $val)
+                                              <option value="{{$key}}">{{$val}}</option>
+                                          @endforeach
+                                      </select>
+                                  </td>
+                              @endforeach
+                              <td>价格: <input type="text" name="price[]" required class="layui-input"></td>
+                              <td>库存: <input type="text" name="num[]" required class="layui-input" ></td>
+                              <td><a href="javascript:;" class="del-tr">-</a></td>
                           </tr>
                       </table>
                       <div class="layui-form-item" style="margin-top: 20px;">
@@ -73,28 +128,25 @@
                 //监听提交
                 form.on('submit(add)',
                 function(data) {
-                    console.log(data);
+                    console.log(data.field);
                     //发异步，把数据提交给php
-                    layer.alert("增加成功", {
-                        icon: 6
-                    },
-                    function() {
-                        //关闭当前frame
-                        xadmin.close();
-
-                        // 可以对父窗口进行刷新 
-                        xadmin.father_reload();
-                    });
-                    return false;
+                    // layer.alert("增加成功", {
+                    //     icon: 6
+                    // },
+                    // function() {
+                    //     //关闭当前frame
+                    //     xadmin.close();
+                    //
+                    //     // 可以对父窗口进行刷新
+                    //     xadmin.father_reload();
+                    // });
+                    // return false;
                 });
 
             });
 
-            $('.add-tr').click(function(){
-                var str = $(this).parents('tr').html();
-                str = '<tr>'+str+'<tr/>'
-                str = str.replace('+', '-');
-                $(this).parents('table').append(str);
+            $('.del-tr').click(function(){
+                $(this).parents('tr').remove();
             })
 
         </script>
