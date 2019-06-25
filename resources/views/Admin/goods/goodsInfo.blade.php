@@ -113,7 +113,7 @@
                             商品图片:
                         </label>
                         <div class="layui-form-mid layui-word-aux">
-                            <img src="{{asset('storage'.$goodsList->goods_img)}}" alt="" :width="300px" height="150px">
+                            <img src="{{asset('storage/goodsImg/'.$goodsList->goods_img)}}" alt="" :width="300px" height="150px">
                             <input type="file" name="goods_img" value="{{$goodsList->goods_img}}" required="" lay-verify="required" autocomplete="off">
                         </div>
                     </div>

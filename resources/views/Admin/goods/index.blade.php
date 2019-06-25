@@ -74,7 +74,7 @@
                                     <td>{{$v->cat_name}}</td>
                                     <td>{{$v->brand_name}}</td>
                                     <td>{{$v->goods_name}}</td>
-                                    <td><img src="{{asset('/storage'.$v->goods_img)}}" alt=""></td>
+                                    <td><img src="{{asset('/storage/goodsImg/'.$v->goods_img)}}" alt=""></td>
                                     <td>{{$v->goods_number}}</td>
                                     <td class="td-status">
                                       <?php if( $v->is_on_sale == 1 ){ ?>
