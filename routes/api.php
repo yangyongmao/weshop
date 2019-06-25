@@ -30,3 +30,11 @@ Route::post('demoshow',"Api\PersonalController@show")->Middleware('token');
 Route::post('demoupdate',"Api\PersonalController@update")->Middleware('token');
 //我的订单
 Route::post('demorder',"Api\PersonalController@order")->Middleware('token');
+//我的地址管理
+Route::post('address',"Api\PersonalController@address")->Middleware('token');
+//添加地址
+Route::post('add_address',"Api\PersonalController@add_address")->Middleware('token');
+//修改地址
+Route::post('update_address',"Api\PersonalController@update_address")->Middleware('token');
+//删除地址
+Route::post('delete_address',"Api\PersonalController@delete_address")->Middleware('token');

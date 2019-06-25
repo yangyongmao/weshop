@@ -49,4 +49,27 @@ class PersonalController extends Controller
         $api = new Code;
         return $api->demorder($arr);
     }
+    public function shopcat(){
+
+    }
+    public function address(Request $request){
+        $arr = $request->input();
+        $api = new Code();
+        return $api->address($arr);
+    }
+    public function add_address(Request $request){
+        $arr = $request->input();
+        $api = new Code();
+        return $api->add_address($arr);
+    }
+    public function update_address(Request $request){
+        $arr = $request->input();
+        $api = new Code();
+        return $api->update_address($arr);
+    }
+    public function delete_address(Request $request){
+        $arr = $request->input();
+        $api = new Code();
+        return $api->delete_address($arr);
+    }
 }
