@@ -23,6 +23,7 @@ class GoodslistController extends Controller
         $cat_id = request()->get('cat_id');
         $brand_id = request()->get('brand_id');
         $sear_title = request()->get('sear_title');
+        $sear_name = request()->get('sear_name');
 
         $goodsData1 = DB::table('goods')
             ->where([
@@ -30,6 +31,7 @@ class GoodslistController extends Controller
                 ['brand_id','=',$brand_id],
                 ['is_delete','=',2]
             ])
+            ->where('goods_name','like',"%$sear_name%")
             ->select(DB::raw('goods_id,goods_name,goods_price,goods_img,LEFT(goods_desc,50) as goods_desc_short'))
             ->offset(0)
             ->limit(5)
@@ -41,19 +43,32 @@ class GoodslistController extends Controller
                 ['brand_id','=',$brand_id],
                 ['is_delete','=',2]
             ])
+            ->where('goods_name','like',"%$sear_name%")
             ->select(DB::raw('goods_id,goods_name,goods_price,goods_img,LEFT(goods_desc,50) as goods_desc_short'))
             ->offset(5)
             ->limit(5)
             ->get();
 
-//        var_dump($goodsData);die();
-
         return view('index.goodslist.goodslist')->with([
             'sear_title' => $sear_title,
+            'cat_id' => $cat_id,
+            'brand_id' => $brand_id,
+            'sear_name' => $sear_name,
             'goodsData1' => $goodsData1,
             'goodsData2' => $goodsData2,
         ]);
+    }
 
+    public function detail()
+    {
+        $goods_id = request()->get('goods_id');
+        $goodsDetail = DB::table('goods')
+            ->where('goods_id','=',$goods_id)
+            ->first();
+
+        return view('index.goodslist.detail')->with([
+            'goodsDetail' => $goodsDetail,
+        ]);
     }
 
 

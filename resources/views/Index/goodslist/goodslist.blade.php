@@ -26,7 +26,7 @@
 
 				@foreach($goodsData1 as $k => $v)
 					<div class="mingxing fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;" onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
-						<div class="sub_mingxing"><a href="./xiangqing.html" target="_blank"><img src="{{asset('/storage/goodsImg/'.$v->goods_img)}}" alt=""></a></div>
+						<div class="sub_mingxing"><a href="goodsdetail?goods_id={{$v->goods_id}}" target="_blank"><img src="{{asset('/storage/goodsImg/'.$v->goods_img)}}" alt=""></a></div>
 						<div class="pinpai"><a href="./xiangqing.html" target="_blank">{{$v->goods_name}}</a></div>
 						<div class="youhui">{{$v->goods_desc_short}}</div>
 						<div class="jiage">{{$v->goods_price}}元</div>
@@ -41,7 +41,7 @@
 
 				@foreach($goodsData2 as $k => $v)
 					<div class="mingxing fl mb20" style="border:2px solid #fff;width:230px;cursor:pointer;" onmouseout="this.style.border='2px solid #fff'" onmousemove="this.style.border='2px solid red'">
-						<div class="sub_mingxing"><a href="./xiangqing.html" target="_blank"><img src="{{asset('/storage/goodsImg/'.$v->goods_img)}}" alt=""></a></div>
+						<div class="sub_mingxing"><a href="goodsdetail?goods_id={{$v->goods_id}}" target="_blank"><img src="{{asset('/storage/goodsImg/'.$v->goods_img)}}" alt=""></a></div>
 						<div class="pinpai"><a href="./xiangqing.html" target="_blank">{{$v->goods_name}}</a></div>
 						<div class="youhui">{{$v->goods_desc_short}}</div>
 						<div class="jiage">{{$v->goods_price}}元</div>
