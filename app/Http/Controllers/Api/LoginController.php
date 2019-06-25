@@ -29,21 +29,21 @@ class LoginController extends Controller
     }
     public function register(Request $request){
         $arr = $request->input();
-        $file = $request->file('uheader');
+//        $file = $request->file('uheader');
 
-        if($file->isValid()){
-            $path = $request->uheader->path();
-            $path = $request->uheader->store('');
-            $path = "/image/".$path;
-        }
+//        if($file->isValid()){
+//            $path = $request->uheader->path();
+//            $path = $request->uheader->store('');
+//            $path = "/image/".$path;
+//        }
 
         $arr = [
             'uname'=>$arr['uname'],
             'upwd'=>md5($arr['upwd']),
             'uemail'=>$arr['uemail'],
             'uphone'=>$arr['uphone'],
-            'usex'=>$arr['usex'],
-            'uheader' =>$path,
+//            'usex'=>$arr['usex'],
+            'uheader' =>'',
         ];
 
         $api = new Code();

@@ -24,12 +24,19 @@ Route::get('/', function () {
 /**
  * jiaxinchen
  */
+Route::middleware([
+
+])->group(function (){
+
+});
 //前台主页
 Route::get("","IndexController@index");
 //前台登录页面跳转
 Route::any("login","LoginController@login");
 //注册功能
 Route::any('register','RegisterController@register');
+//前台商品列表
+Route::get('goodslist','GoodslistController@show');
 
 
 /**

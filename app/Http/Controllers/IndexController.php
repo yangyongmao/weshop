@@ -13,13 +13,12 @@ class IndexController extends Controller
     public function index()
     {
         $userinfo = request()->session()->get('thisUser');
-        var_dump($userinfo);
-
-//        $userInfo = curl('http://weshop.io/api/demoshow','POST',['token']);
-
+        //轮播图信息
+        $carousel = curl('http://weshop.io/api/Carousel','GET');
 
         return view('index.index.index')->with([
-                'thisUser' => request()->session()->get('thisUser'),
+                'carousel' => $carousel,
+                'thisUser' => $userinfo,
         ]);
     }
 

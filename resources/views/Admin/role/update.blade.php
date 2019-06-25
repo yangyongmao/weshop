@@ -103,7 +103,7 @@
             console.log(data);
             var action = data.form.action;
             $.get(action,data.field,function(res){
-                // console.log(res);return false;
+                console.log(res);return false;
                 if(res==1){
                     layer.alert("修改成功", {
                             icon: 6

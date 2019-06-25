@@ -24,13 +24,11 @@ class RegisterController extends Controller
                     JSON_UNESCAPED_UNICODE
                 );
             }else{
-                return json_encode(
-                    [
-                        'errorCode' => 200,
-                        'errorMsg' => '验证码正确!'
-                    ],
-                    JSON_UNESCAPED_UNICODE
-                );
+                $registerData = request()->post();
+                unset($registerData['_token']);unset($registerData['captcha']);
+
+                $msg = curl('http://weshop.io/api/register','POST',$registerData);
+                return $msg;
             }
         }else{
             return view('index.register.register');

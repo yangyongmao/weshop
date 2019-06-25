@@ -108,10 +108,79 @@ class Code extends Model
         if($data){
             return $this->message('200','我的订单',$data);
         }else{
-            return $this->message('204','您还没有加入订单哦');
+            return $this->message('204','服务器错误');
         }
     }
     public function shopcat($arr){
         $uid = $arr['uid'];
+//        $data = DB::table('')
+    }
+    public function address($arr){
+        $uid = $arr['uid'];
+        $data = DB::table('address')->where('u_id',$uid)->get();
+        if($data){
+            return $this->message('200','我的地址',$data);
+        }else{
+            return $this->message('204','服务器错误');
+        }
+    }
+    public function add_address($arr){
+        $arr = [
+            'a_info'=>$arr['a_info'],
+            'a_city'=>$arr['a_city'],
+            'a_province'=>$arr['a_province'],
+            'a_country'=>$arr['a_country'],
+            'a_call'=>$arr['a_call'],
+            'a_name' =>$arr['a_name'],
+            'u_id' =>$arr['u_id'],
+        ];
+        $data = DB::table('address')->insert($arr);
+        if($data){
+            return $this->message('200','添加地址');
+        }else{
+            return $this->message('204','服务器错误');
+        }
+    }
+    public function update_address($arr){
+        $a_id = $arr['a_id'];
+        $arr = [
+            'a_info'=>$arr['a_info'],
+            'a_city'=>$arr['a_city'],
+            'a_province'=>$arr['a_province'],
+            'a_country'=>$arr['a_country'],
+            'a_call'=>$arr['a_call'],
+            'a_name' =>$arr['a_name'],
+        ];
+        $data = DB::table('address')->where('a_id',$a_id)->update($arr);
+        if($data){
+            return $this->message('200','修改地址');
+        }else{
+            return $this->message('204','服务器错误');
+        }
+    }
+    public function delete_address($arr){
+        $a_id = $arr['a_id'];
+        $data = DB::table('address')->where('a_id',$a_id)->delete();
+        if($data){
+            return $this->message('200','地址已删除');
+        }else{
+            return $this->message('204','服务器错误');
+        }
+    }
+    public function cat(){
+        $data = DB::table('cat')->get();
+        if($data){
+            return $this->message('200','分类查询',$data);
+        }else{
+            return $this->message('204','服务器错误');
+        }
+    }
+    public function goods(){
+        $data = DB::table('goods')->get();
+        if($data){
+            return $this->message('200','商品查询',$data);
+        }else{
+            return $this->message('204','服务器错误');
+        }
     }
 }
