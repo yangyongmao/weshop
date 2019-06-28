@@ -20,10 +20,10 @@ class GoodslistController extends Controller
          *  分类id
          *  品牌id
          */
-        $cat_id = request()->get('cat_id');
-        $brand_id = request()->get('brand_id');
-        $sear_title = request()->get('sear_title');
-        $sear_name = request()->get('sear_name');
+        $cat_id = request()->get('cat_id',1);
+        $brand_id = request()->get('brand_id',1);
+        $sear_title = request()->get('sear_title','小米手机');
+        $sear_name = request()->get('sear_name','');
 
         $goodsData1 = DB::table('goods')
             ->where([
