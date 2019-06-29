@@ -27,8 +27,8 @@ class RegisterController extends Controller
                 $registerData = request()->post();
                 unset($registerData['_token']);unset($registerData['captcha']);
 
-
-                return json_encode($registerData,JSON_UNESCAPED_UNICODE);
+                $msg = curl('http://weshop.io/api/register','POST',$registerData);
+                return $msg;
             }
         }else{
             return view('index.register.register');

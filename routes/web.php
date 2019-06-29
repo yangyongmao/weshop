@@ -35,6 +35,18 @@ Route::get("","IndexController@index");
 Route::any("login","LoginController@login");
 //注册功能
 Route::any('register','RegisterController@register');
+//前台商品列表
+Route::get('goodslist','GoodslistController@show');
+//商品详情页
+Route::get('goodsdetail','GoodslistController@detail');
+
+
+
+
+
+
+
+
 
 
 /**

@@ -15,7 +15,6 @@ class CheckModule
      */
     public function handle($request, Closure $next)
     {
-
         $json = json_encode($request->session()->get('adminAccess'));
         $array = json_decode($json,true);
 

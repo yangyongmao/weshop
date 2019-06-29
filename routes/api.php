@@ -23,7 +23,7 @@ Route::post('reset',"Api\LoginController@reset");
 //注册
 Route::post('register',"Api\LoginController@register");
 //轮播图
-Route::get('Carousel',"Api\HomeController@Carousel");
+Route::any('Carousel',"Api\HomeController@Carousel");
 //个人展示
 Route::post('demoshow',"Api\PersonalController@show")->Middleware('token');
 //个人信息修改

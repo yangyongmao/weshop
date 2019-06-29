@@ -33,8 +33,6 @@ class Code extends Model
             DB::table('user')->where('uname', $arr['uname'])->update(['token' => $token, 'time' => time()]);
             $data = DB::table('user')->where(['uname' => $arr['uname'], 'upwd' => md5($arr['upwd'])])->first();
 
-            return $this->message('200', '登录成功',$data);
-
             if (!empty($data)) {
                 return $this->message('200', '登录成功',['token' => $token]);
             } else {

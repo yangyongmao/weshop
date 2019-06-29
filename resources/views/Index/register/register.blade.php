@@ -81,10 +81,17 @@
 		    alert('请输入每一条信息');return false;
 		}
 
-		let form = {uname:uname,upwd:upwd,uemail:uemail,uphone:uphone,usex:usex,captcha:captcha,_token:_token};
+		let form = {uname:uname,upwd:upwd,uemail:uemail,uphone:uphone,captcha:captcha,_token:_token};
 
 		$.post('',form,function (jsonMsg) {
-			console.log(jsonMsg);
+			let objMsg = $.parseJSON(jsonMsg);
+			if(objMsg.errorCode == 500){
+				alert('验证码有误');return false;
+			}else if(objMsg.errorCode == 200){
+				location.href = 'login';
+			}else{
+			    alert('注册失败');return false;
+			}
         });
 
 
