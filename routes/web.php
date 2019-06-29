@@ -41,6 +41,14 @@ Route::get('goodslist','GoodslistController@show');
 Route::get('goodsdetail','GoodslistController@detail');
 
 
+
+
+
+
+
+
+
+
 /**
  * ====================
  * =======后台路由========
