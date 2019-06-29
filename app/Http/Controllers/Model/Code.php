@@ -34,7 +34,7 @@ class Code extends Model
             $data = DB::table('user')->where(['uname' => $arr['uname'], 'upwd' => md5($arr['upwd'])])->first();
 
             if (!empty($data)) {
-                return $this->message('200', '登录成功',['token' => $token]);
+                return $this->message('200', '登录成功',['data' => $data]);
             } else {
                 return $this->message('500', '账号密码错误');
             }

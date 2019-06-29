@@ -49,6 +49,8 @@ Route::get('goodsdetail','GoodslistController@detail');
 
 
 
+
+
 /**
  * ====================
  * =======后台路由========
