@@ -17,8 +17,12 @@ class IndexController extends Controller
         $carousel = curl('http://weshop.io/api/Carousel','GET');
 
         return view('index.index.index')->with([
-                'carousel' => $carousel,
-                'thisUser' => $userinfo,
+            'carousel' => $carousel,
+            'thisUser' => $userinfo,
+            'sear_name' => '',
+            'cat_id' => 1,
+            'brand_id' => 1,
+            'sear_title' => '小米手机',
         ]);
     }
 
