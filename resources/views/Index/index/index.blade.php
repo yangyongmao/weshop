@@ -25,11 +25,14 @@
 						<a href="/goodslist?cat_id={{$v['cat_id']}}">{{$v['cat_name']}}</a>
 						<div class="pop">
 							<div class="left fl">
+
 								@foreach( $v['goods'] as $key=>$val )
-								<div>
+								<div style="margin-bottom: 4px;">
 									<div class="xuangou_left fl">
 										<a href="/goodsdetail?goods_id={{$val['goods_id']}}">
-											<div class="img fl"><img src="{{asset('/storage/goodsImg/'.$val['goods_img'])}}" width="50px" height="80px" alt=""></div>
+											<div class="img fl">
+												<img src="{{asset('/storage/goodsImg/'.$val['goods_img'])}}" width="50px" height="80px" alt="">
+											</div>
 											<span class="fl">{{$val['goods_name']}}</span>
 											<div class="clear"></div>
 										</a>
@@ -38,6 +41,7 @@
 									<div class="clear"></div>
 								</div>
 								@endforeach
+
 							</div>
 
 							{{--<div class="ctn fl">--}}
@@ -144,17 +148,27 @@
 
 		<div class="sub_banner center">
 			<div class="sidebar fl">
-				@foreach($recommend as $v)
-				<div class="fl"><a href=""><img src="{{asset("/storage/goodsImg/".$v->goods_img)}}"></a></div>
-				@endforeach
+				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_01.gif"></a></div>
+				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_02.gif"></a></div>
+				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_03.gif"></a></div>
+				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_04.gif"></a></div>
+				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_05.gif"></a></div>
+				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_06.gif"></a></div>
 				<div class="clear"></div>
 			</div>
+<<<<<<< HEAD
 			<div class="datu fl"><a href=""><img src="./image/hongmi4x.png" alt=""></a></div>
 			<div class="datu fl"><a href=""><img src="./image/xiaomi5.jpg" alt=""></a></div>
 			<div class="datu fr"><a href=""><img src="./image/pinghengche.jpg" alt=""></a></div>
 			<div class="clear"></div>
 
 
+=======
+			<div class="datu fl"><a href=""><img src="/indexStatic/image/hongmi4x.png" alt=""></a></div>
+			<div class="datu fl"><a href=""><img src="/indexStatic/image/xiaomi5.jpg" alt=""></a></div>
+			<div class="datu fr"><a href=""><img src="/indexStatic/image/pinghengche.jpg" alt=""></a></div>
+			<div class="clear"></div>
+>>>>>>> jiaxinchen-master
 		</div>
 	<!-- end banner -->
 	<div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
