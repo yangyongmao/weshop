@@ -102,7 +102,8 @@ Route::middleware([
 });
 Route::get('discount/list',"Admin\DiscountController@list");
 Route::get('discount/add',"Admin\DiscountController@add");
-
+Route::get('discount/del',"Admin\DiscountController@delete");
+Route::get('discount/update',"Admin\DiscountController@update");
 /**
  * Jiaxinchen的路由组
  */
