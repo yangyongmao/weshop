@@ -17,7 +17,7 @@ class IndexController extends Controller
         $userinfo = request()->session()->get('thisUser');
         //轮播图信息
         $carousel = curl('http://weshop.io/api/Carousel','GET');
-        $recommend = DB::table('goods')->orderBy('goods_price','desc')->limit(5)->select('goods_img')->get();
+        $recommend = DB::table('goods')->orderBy('goods_price','desc')->limit(5 )->select('goods_img')->get();
         return view('index.index.index')->with([
             'carousel' => $carousel,
             'thisUser' => $userinfo,
