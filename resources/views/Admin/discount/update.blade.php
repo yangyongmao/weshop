@@ -23,85 +23,49 @@
                 <form class="layui-form">
                   <div class="layui-form-item">
                       <div class="layui-form-item">
-                          <input type="hidden" id="id" name="u_id" required="" lay-verify="required"
-                                 autocomplete="off" class="layui-input" value='<?php echo $res->u_id?>'>
+                          <input type="hidden" id="id" name="id" required="" lay-verify="required"
+                                 autocomplete="off" class="layui-input" value='<?php echo $res->id?>'>
                           <label for="username" class="layui-form-label">
-                              <span class="x-red">*</span>用户名
+                              <span class="x-red">*</span>优惠卷面值
                           </label>
                           <div class="layui-input-inline">
-                              <input type="text" id="username" name="u_name" required="" lay-verify="required"
-                                     autocomplete="off" class="layui-input" value="<?php echo $res->u_name?>">
+                              <input type="text" id="username" name="money" required="" lay-verify="required"
+                                     autocomplete="off" class="layui-input" value="<?php echo $res->money?>">
                           </div>
                           <div class="layui-form-mid layui-word-aux">
                               <span class="x-red">*</span>
                           </div>
                       </div>
                       <label for="username" class="layui-form-label">
-                          <span class="x-red">*</span>登录名
+                          <span class="x-red">*</span>开始时间
                       </label>
                       <div class="layui-input-inline">
-                          <input type="text" id="username" name="u_account" required="" lay-verify="required"
-                          autocomplete="off" class="layui-input" value="<?php echo $res->u_account?>">
-                      </div>
-                      <div class="layui-form-mid layui-word-aux">
-                          <span class="x-red">*</span>将会成为您唯一的登入名
+                          <input type="date" id="username" name="start" required="" lay-verify="required"
+                          autocomplete="off" class="layui-input" value="<?php echo date('Y-m-d',$res->start)?>">
                       </div>
                   </div>
                   <div class="layui-form-item">
                       <label for="phone" class="layui-form-label">
-                          <span class="x-red">*</span>手机
+                          <span class="x-red">*</span>结束时间
                       </label>
                       <div class="layui-input-inline">
-                          <input type="text" id="phone" name="u_phone" required="" lay-verify="phone"
-                          autocomplete="off" class="layui-input" value="<?php echo $res->u_phone?>">
+                          <input type="date"  name="end" required="" lay-verify="required"
+                          autocomplete="off" class="layui-input" value="<?php echo date('Y-m-d',$res->end)?>">
                       </div>
-                      <div class="layui-form-mid layui-word-aux">
-                          <span class="x-red">*</span>将会成为您唯一的登入名
-                      </div>
+
                   </div>
                   <div class="layui-form-item">
                       <label for="L_email" class="layui-form-label">
-                          <span class="x-red">*</span>邮箱
+                          <span class="x-red">*</span>优惠卷名称
                       </label>
                       <div class="layui-input-inline">
-                          <input type="text" id="L_email" name="u_email" required="" lay-verify="email"
-                          autocomplete="off" class="layui-input" value="<?php echo $res->u_email?>">
+                          <input type="text"  name="name" required="" lay-verify="required"
+                          autocomplete="off" class="layui-input" value="<?php echo $res->name?>">
                       </div>
-                      <div class="layui-form-mid layui-word-aux">
-                          <span class="x-red">*</span>
-                      </div>
-                  </div>
-                  <div class="layui-form-item">
-                      <label class="layui-form-label"><span class="x-red">*</span>角色</label>
-                      <div class="layui-input-block">
-{{--<<<<<<< HEAD--}}
-                        {{--<input type="checkbox" name="like1[write]" lay-skin="primary" title="超级管理员" checked="">--}}
-                        {{--<input type="checkbox" name="like1[read]" lay-skin="primary" title="编辑人员">--}}
-                        {{--<input type="checkbox" name="like1[write]" lay-skin="primary" title="宣传人员" checked="">--}}
-{{--=======--}}
-                        @foreach($data as $v)
 
-                            @if($v->flag == 1)
-                                <input type="checkbox" name="role[]" lay-skin="primary" title="{{$v->r_name}}" value="{{$v->r_id}}" checked>
-                              @else
-                                  <input type="checkbox" name="role[]" lay-skin="primary" title="{{$v->r_name}}" value="{{$v->r_id}}" >
-                              @endif
-                       @endforeach
-{{-->>>>>>> 8b2138b2f08383c42be4f4b78a27fd70d57f57ae--}}
-                      </div>
                   </div>
-                  <div class="layui-form-item">
-                      <label for="L_pass" class="layui-form-label">
-                          <span class="x-red">*</span>密码
-                      </label>
-                      <div class="layui-input-inline">
-                          <input type="password" id="L_pass" name="u_pwd" required="" lay-verify="pass"
-                          autocomplete="off" class="layui-input" value="<?php echo $res->u_pwd?>">
-                      </div>
-                      <div class="layui-form-mid layui-word-aux">
-                          6到16个字符
-                      </div>
-                  </div>
+
+
                   <div class="layui-form-item">
                       <label for="L_repass" class="layui-form-label">
                       </label>
@@ -138,6 +102,7 @@
                     function(data) {
                         var action = data.form.action;
                         $.get(action,data.field,function(res){
+                            // console.log(res);return false;
                             if(res==1){
                                 layer.alert("修改成功", {
                                         icon: 6
