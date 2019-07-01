@@ -145,7 +145,7 @@
 		<div class="sub_banner center">
 			<div class="sidebar fl">
 				@foreach($recommend as $v)
-				<div class="fl"><a href=""><img src="{{$v->goods_img}}"></a></div>
+				<div class="fl"><a href=""><img src="{{asset("/storage/goodsImg/".$v->goods_img)}}"></a></div>
 				@endforeach
 				<div class="clear"></div>
 			</div>
