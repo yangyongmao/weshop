@@ -8,25 +8,27 @@
 	</head>
 	<body>
 	<!-- start header -->
-		@include('index.layouts.header');
+		@include('index.layouts.header')
 	<!--end header -->
 	<!-- start banner_x -->
 		{{--@include('index.layouts.navx');--}}
 <!-- end banner_x -->
 <!-- self_info -->
-		@include('index.layouts.personleft')
+	@include('index.layouts.personleft')
 
 
 		<div class="rtcont fr">
-			<div class="grzlbt ml40">我的资料  &nbsp;&nbsp;<a href="updatemyself" style="font-size: 13px;color: #1d643b;">编辑</a></div>
-			<div class="subgrzl ml40"><span>昵称</span><span>{{$thisUser['uname']}}</span></div>
-			<div class="subgrzl ml40"><span>手机号</span><span>{{$thisUser['uphone']}}</span></div>
-			<div class="subgrzl ml40"><span>密码</span><span>************</span></div>
-			<div class="subgrzl ml40">
-				<span>收货地址</span>
-				<span  style="width: 450px;">{{$address->a_country}} {{$address->a_province}} {{$address->a_city}} {{$address->a_sec_city}} {{$address->a_town}} {{$address->a_info}}
-				</span>
-			</div>
+
+			<div class="grzlbt ml40">我的优惠券</div>
+			@foreach($data as $k => $v)
+				<div class="subgrzl ml40" style="{{$v->status==2?'background-color: #c8c8c8':'background-color: greenyellow'}}">
+					<span style="width: 110px;">{{$v->name}}</span>
+					<span style="">{{date("Y-m-d",$v->start)}} - {{date("Y-m-d",$v->end)}}</span>
+					<span>{{$v->statusinfo}}</span>
+					<span style="">￥{{$v->money}}</span>
+				</div>
+			@endforeach
+
 		</div>
 		<div class="clear"></div>
 		</div>

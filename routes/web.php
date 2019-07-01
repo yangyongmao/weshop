@@ -25,20 +25,31 @@ Route::get('/', function () {
  * jiaxinchen
  */
 Route::middleware([
-
+    'index.login'
 ])->group(function (){
-
+    //个人中心
+    Route::get('me','PersonController@InfoShow');
+    //优惠券信息
+    Route::get('discount','PersonController@discount');
+    //编辑我的资料
+    Route::any('updatemyself','PersonController@updatemyself');
 });
 //前台主页
 Route::get("","IndexController@index");
 //前台登录页面跳转
 Route::any("login","LoginController@login");
+//前台注销
+Route::get('loginout','LoginController@loginout');
 //注册功能
 Route::any('register','RegisterController@register');
 //前台商品列表
 Route::get('goodslist','GoodslistController@show');
 //商品详情页
 Route::get('goodsdetail','GoodslistController@detail');
+//请求地址数据
+Route::get('getaddr','AddrController@getdata');
+
+
 
 
 

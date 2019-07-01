@@ -10,7 +10,7 @@
 		<!-- login -->
 		<div class="top center">
 			<div class="logo center">
-				<a href="./index.html" target="_blank"><img src="/indexStatic/image/mistore_logo.png" alt=""></a>
+				<a href="http://weshop.io" target=""><img src="/indexStatic/image/mistore_logo.png" alt=""></a>
 			</div>
 		</div>
 		<form  method="post" action="" class="form center">
@@ -57,7 +57,9 @@
 			let objMsg = $.parseJSON(jsonMsg);
 			console.log(objMsg);
 			if(objMsg.errorCode != 200){
-				alert(objMsg.errorMsg);return false;
+				alert(objMsg.errorMsg);
+				location.href = '';
+				return false;
 			}
 			location.href = "http://weshop.io/";
 		});
