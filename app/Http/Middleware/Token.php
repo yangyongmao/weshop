@@ -16,7 +16,6 @@ class Token
      */
     public function handle( $request, Closure $next)
     {
-//        echo 1;die;
         $token = $request->input('token');
         $data = DB::table('user')->where('token',$token)->first();
         if (!isset($request->token) || empty($data->token)) {

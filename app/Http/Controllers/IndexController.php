@@ -27,7 +27,7 @@ class IndexController extends Controller
 
         return view('index.index.index')->with([
             'carousel' => $carousel,
-            'thisUser' => $userinfo,
+            'thisUser' => $userinfo['data'],
             'sear_name' => '',
             'cat_id' => 1,
             'brand_id' => 1,
