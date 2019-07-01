@@ -72,17 +72,26 @@ class PersonController extends Controller
     public function updatemyself()
     {
         if(request()->isMethod('POST')){
+            $data = request()->post();
 
+            var_dump($data);
         }else{
             //查询用户信息
             $myinfo = request()->session()->get('thisUser');
+
             $address = DB::table('address')
                 ->where('u_id','=',$myinfo['data']['uid'])
                 ->first();
 
+            //查询全国一级地址数据
+            $addr = DB::table('areas')
+                ->where('parent_id','=',0)
+                ->get();
+
             return view('index.person.update')->with([
                 'thisUser' => $myinfo['data'],
                 'address' => $address,
+                'addr' => $addr,
             ]);
 
         }
