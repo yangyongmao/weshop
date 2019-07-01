@@ -22,19 +22,19 @@
 				<ul>
 					@foreach($catGoods as $k=>$v)
 					<li>
-						<a href="">{{$v['cat_name']}}</a>
+						<a href="/goodslist?cat_id={{$v['cat_id']}}">{{$v['cat_name']}}</a>
 						<div class="pop">
 							<div class="left fl">
 								@foreach( $v['goods'] as $key=>$val )
 								<div>
 									<div class="xuangou_left fl">
-										<a href="">
-											<div class="img fl"><img src="{{asset('/storage/goodsImg/'.$val['goods_img'])}}" alt=""></div>
+										<a href="/goodsdetail?goods_id={{$val['goods_id']}}">
+											<div class="img fl"><img src="{{asset('/storage/goodsImg/'.$val['goods_img'])}}" width="50px" height="80px" alt=""></div>
 											<span class="fl">{{$val['goods_name']}}</span>
 											<div class="clear"></div>
 										</a>
 									</div>
-									<div class="xuangou_right fr"><a href="./xiangqing.html" target="_blank">选购</a></div>
+									<div class="xuangou_right fr"><a href="/goodsdetail?goods_id={{$val['goods_id']}}" target="_blank">选购</a></div>
 									<div class="clear"></div>
 								</div>
 								@endforeach

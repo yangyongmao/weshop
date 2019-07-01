@@ -20,7 +20,7 @@ function getTree($catLiat, $pid = 0, $level=1)
     return $arr;
 }
 
-function getData($data, $cat_id=1)
+function getData($data)
 {
     static $array = array();
 
