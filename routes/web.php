@@ -31,6 +31,8 @@ Route::middleware([
     Route::get('me','PersonController@InfoShow');
     //优惠券信息
     Route::get('discount','PersonController@discount');
+    //编辑我的资料
+    Route::get('updatemyself','PersonController@updatemyself');
 });
 //前台主页
 Route::get("","IndexController@index");

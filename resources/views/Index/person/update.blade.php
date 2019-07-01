@@ -35,11 +35,22 @@
 			</div>
 		</div>
 		<div class="rtcont fr">
-			<div class="grzlbt ml40">我的资料  &nbsp;&nbsp;<a href="updatemyself" style="font-size: 13px;color: #1d643b;">编辑</a></div>
-			<div class="subgrzl ml40"><span>昵称</span><span>{{$thisUser['uname']}}</span></div>
-			<div class="subgrzl ml40"><span>手机号</span><span>{{$thisUser['uphone']}}</span></div>
-			<div class="subgrzl ml40"><span>密码</span><span>************</span></div>
-			<div class="subgrzl ml40"><span>收货地址</span><span>{{$address->a_country}} {{$address->a_province}} {{$address->a_city}} {{$address->a_info}}</span></div>
+			<div class="grzlbt ml40">编辑我的资料</div>
+			<div class="subgrzl ml40">
+				<span>昵称</span>
+				<input type="text" class="" name="uname" value="{{$thisUser['uname']}}" style="width: auto;height: 20px;border-left-width:0px;border-top-width:0px;border-right-width:0px;border-bottom-color:green;">
+			</div>
+			<div class="subgrzl ml40"><span>手机号</span>
+				<input type="text" class="" name="uname" value="{{$thisUser['uphone']}}" style="width: auto;height: 20px;border-left-width:0px;border-top-width:0px;border-right-width:0px;border-bottom-color:green;">
+			</div>
+			<div class="subgrzl ml40">
+				<span>密码</span>
+				<input type="text" class="" name="uname" value="{{$thisUser['upwd']}}" style="width: 300px;height: 20px;border-left-width:0px;border-top-width:0px;border-right-width:0px;border-bottom-color:green;"">
+			</div>
+			<div class="subgrzl ml40">
+				<span>收货地址</span>
+				<span>{{$address->a_country}} {{$address->a_province}} {{$address->a_city}} {{$address->a_info}}</span>
+			</div>
 			
 		</div>
 		<div class="clear"></div>
