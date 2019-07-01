@@ -30,15 +30,20 @@
                 <ul>
                     <li>
                         @if((!empty($thisUser)))
-                            <a href="" target="_blank">{{$thisUser['uname']}}</a>
+                            <a href="me" target="_blank">{{$thisUser['uname']}}</a>
                         @else
                             <a href="login" target="_blank">登录</a>
                         @endif
                     </li>
+                    @if(!empty($thisUser))
+                        <li>|</li>
+                        <li><a href="loginout">退出</a></li>
+                    @endif
                     <li>|</li>
                     <li><a href="register" target="_blank" >注册</a></li>
                     <li>|</li>
                     <li><a href="">消息通知</a></li>
+
                 </ul>
             </div>
             <div class="clear"></div>

@@ -29,18 +29,25 @@
 			<div class="ddzx">个人中心</div>
 			<div class="subddzx">
 				<ul>
-					<li><a href="me" style="color:#ff6700;font-weight:bold;">我的个人中心</a></li>
-					<li><a href="discount">优惠券</a></li>
+					<li><a href="me">我的个人中心</a></li>
+					<li><a href="">消息通知</a></li>
+					<li><a href="discount"  style="color:#ff6700;font-weight:bold;">优惠券</a></li>
+					<li><a href="">收货地址</a></li>
 				</ul>
 			</div>
 		</div>
 		<div class="rtcont fr">
-			<div class="grzlbt ml40">我的资料  &nbsp;&nbsp;<a href="" style="font-size: 13px;color: #1d643b;">编辑</a></div>
-			<div class="subgrzl ml40"><span>昵称</span><span>{{$thisUser['uname']}}</span></div>
-			<div class="subgrzl ml40"><span>手机号</span><span>{{$thisUser['uphone']}}</span></div>
-			<div class="subgrzl ml40"><span>密码</span><span>************</span></div>
-			<div class="subgrzl ml40"><span>收货地址</span><span>{{$address->a_country}} {{$address->a_province}} {{$address->a_city}} {{$address->a_info}}</span></div>
-			
+
+			<div class="grzlbt ml40">我的优惠券</div>
+			@foreach($data as $k => $v)
+				<div class="subgrzl ml40" style="{{$v->status==2?'background-color: #c8c8c8':'background-color: greenyellow'}}">
+					<span style="width: 110px;">{{$v->name}}</span>
+					<span style="">{{date("Y-m-d",$v->start)}} - {{date("Y-m-d",$v->end)}}</span>
+					<span>{{$v->statusinfo}}</span>
+					<span style="">￥{{$v->money}}</span>
+				</div>
+			@endforeach
+
 		</div>
 		<div class="clear"></div>
 		</div>
