@@ -298,3 +298,4 @@ Route::middleware([
     Route::any("admin/brandallow","Admin\BrandController@allow");
 });
 
+Route::any('shopping','Auth\ShoppingCartController@shopping');
