@@ -14,33 +14,19 @@
 		{{--@include('index.layouts.navx');--}}
 <!-- end banner_x -->
 <!-- self_info -->
-	<div class="grzxbj">
-		<div class="selfinfo center">
-		<div class="lfnav fl">
-			<div class="ddzx">订单中心</div>
-			<div class="subddzx">
-				<ul>
-					<li><a href="./dingdanzhongxin.html" >我的订单</a></li>
-					<li><a href="">意外保</a></li>
-					<li><a href="">团购订单</a></li>
-					<li><a href="">评价晒单</a></li>
-				</ul>
-			</div>
-			<div class="ddzx">个人中心</div>
-			<div class="subddzx">
-				<ul>
-					<li><a href="me" style="color:#ff6700;font-weight:bold;">我的个人中心</a></li>
-					<li><a href="discount">优惠券</a></li>
-				</ul>
-			</div>
-		</div>
+		@include('index.layouts.personleft')
+
+
 		<div class="rtcont fr">
 			<div class="grzlbt ml40">我的资料  &nbsp;&nbsp;<a href="updatemyself" style="font-size: 13px;color: #1d643b;">编辑</a></div>
 			<div class="subgrzl ml40"><span>昵称</span><span>{{$thisUser['uname']}}</span></div>
 			<div class="subgrzl ml40"><span>手机号</span><span>{{$thisUser['uphone']}}</span></div>
 			<div class="subgrzl ml40"><span>密码</span><span>************</span></div>
-			<div class="subgrzl ml40"><span>收货地址</span><span>{{$address->a_country}} {{$address->a_province}} {{$address->a_city}} {{$address->a_info}}</span></div>
-			
+			<div class="subgrzl ml40">
+				<span>收货地址</span>
+				<span  style="width: 450px;">{{$address->a_country}} {{$address->a_province}} {{$address->a_city}} {{$address->a_sec_city}} {{$address->a_town}} {{$address->a_info}}
+				</span>
+			</div>
 		</div>
 		<div class="clear"></div>
 		</div>

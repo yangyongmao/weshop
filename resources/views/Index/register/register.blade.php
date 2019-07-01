@@ -14,7 +14,7 @@
 
 				<div class="regist_top">
 					<div class="left fl">会员注册</div>
-					<div class="right fr"><a href="" target="_self">小米商城</a></div>
+					<div class="right fr"><a href="http://weshop.io" target="_self">小米商城</a></div>
 					<div class="clear"></div>
 					<div class="xian center"></div>
 				</div>

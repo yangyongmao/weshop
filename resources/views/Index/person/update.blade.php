@@ -8,39 +8,21 @@
 	</head>
 	<body>
 	<!-- start header -->
-		@include('index.layouts.header');
+		@include('index.layouts.header')
 	<!--end header -->
 	<!-- start banner_x -->
 		{{--@include('index.layouts.navx');--}}
 <!-- end banner_x -->
 <!-- self_info -->
-	<div class="grzxbj">
-		<div class="selfinfo center">
-		<div class="lfnav fl">
-			<div class="ddzx">订单中心</div>
-			<div class="subddzx">
-				<ul>
-					<li><a href="./dingdanzhongxin.html" >我的订单</a></li>
-					<li><a href="">意外保</a></li>
-					<li><a href="">团购订单</a></li>
-					<li><a href="">评价晒单</a></li>
-				</ul>
-			</div>
-			<div class="ddzx">个人中心</div>
-			<div class="subddzx">
-				<ul>
-					<li><a href="me" style="color:#ff6700;font-weight:bold;">我的个人中心</a></li>
-					<li><a href="discount">优惠券</a></li>
-				</ul>
-			</div>
-		</div>
+		@include('index.layouts.personleft')
+
 
 		<form action="updatemyself" method="post" enctype="multipart/form-data">
 		<div class="rtcont fr">
 			<div class="grzlbt ml40">编辑我的资料</div>
 			<div class="subgrzl ml40">
 				<span>昵称</span>
-				<input type="text" class="" name="uname" value="{{$thisUser['uname']}}" style="width: auto;height: 20px;border-left-width:0px;border-top-width:0px;border-right-width:0px;border-bottom-color:green;">
+				<input type="text" class="" name="uname" value="{{$thisUser['uname']}}" style="width: auto;height: 20px;border-left-width:0px;border-top-width:0px;border-right-width:0px;border-bottom-color:green;" disabled>
 			</div>
 			<div class="subgrzl ml40"><span>手机号</span>
 				<input type="text" class="" name="uphone" value="{{$thisUser['uphone']}}" style="width: auto;height: 20px;border-left-width:0px;border-top-width:0px;border-right-width:0px;border-bottom-color:green;">
@@ -61,7 +43,7 @@
 			<div class="subgrzl ml40">
 				<span>头像</span>
 				<input type="file" class="" name="uheader" style="width: 300px;height: 20px;border-left-width:0px;border-top-width:0px;border-right-width:0px;border-bottom-color:green;">
-				<img src="{{asset('/storage/userhead/'.$thisUser['uheader'])}}" alt="">
+				<img src="{{asset('/storage/userhead'.$thisUser['uheader'])}}" style="width: 50px;height: 50px;border-radius: 50%;float: left;position: absolute;">
 			</div>
 			<div class="subgrzl ml40">
 				<span>收货地址</span>
@@ -95,6 +77,7 @@
 				<button id="sure_update">保存编辑</button>
 			</div>
 		</div>
+			<input type="hidden" name="uid" value="{{$thisUser['uid']}}">
 			@csrf
 			</form>
 
