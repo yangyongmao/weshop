@@ -104,9 +104,11 @@ Route::middleware([
     Route::get('do_node/del',"Admin\DonodeController@del");
     //子权限修改
     Route::get('do_node/update',"Admin\DonodeController@update");
+    //活动管理
 
 });
-
+Route::get('discount/list',"Admin\DiscountController@list");
+Route::get('discount/add',"Admin\DiscountController@add");
 
 /**
  * Jiaxinchen的路由组

@@ -23,6 +23,7 @@ class RoleController extends Controller
             ->paginate(3);
         return view('admin/role/list')->with([
             'res' => $res,
+            'data'=>$data
         ]);;
     }
 
