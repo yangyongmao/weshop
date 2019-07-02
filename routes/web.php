@@ -32,7 +32,9 @@ Route::middleware([
     //优惠券信息
     Route::get('discount','PersonController@discount');
     //编辑我的资料
-    Route::get('updatemyself','PersonController@updatemyself');
+    Route::any('updatemyself','PersonController@updatemyself');
+    //收藏商品
+    Route::get('collection','PersonController@collection');
 });
 //前台主页
 Route::get("","IndexController@index");
@@ -46,6 +48,8 @@ Route::any('register','RegisterController@register');
 Route::get('goodslist','GoodslistController@show');
 //商品详情页
 Route::get('goodsdetail','GoodslistController@detail');
+//请求地址数据
+Route::get('getaddr','AddrController@getdata');
 
 
 
