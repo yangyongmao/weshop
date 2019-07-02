@@ -19,11 +19,21 @@
 		<!--模块1-->
 		<div class="rtcont fr">
 			<div class="grzlbt ml40">我的优惠券</div>
-			@foreach($data as $k => $v)
-				<div class="subgrzl ml40" style="{{$v->status==2?'background-color: #c8c8c8':'background-color: greenyellow'}}">
+			@foreach($unusedDiscount as $k => $v)
+				<div class="subgrzl ml40" style="background-color: limegreen;">
 					<span style="width: 110px;">{{$v->name}}</span>
 					<span style="">开始{{date("Y-m-d",$v->start)}} - 截止{{date("Y-m-d",$v->end)}}</span>
-					<span>{{$v->statusinfo}}</span>
+					<span>未使用</span>
+					<span style="">￥{{$v->money}}</span>
+				</div>
+			@endforeach
+
+			<div class="grzlbt ml40">已失效的优惠券</div>
+			@foreach($overdue as $k => $v)
+				<div class="subgrzl ml40" style="background-color: #b0b0b0;">
+					<span style="width: 110px;">{{$v->name}}</span>
+					<span style="">开始{{date("Y-m-d",$v->start)}} - 截止{{date("Y-m-d",$v->end)}}</span>
+					<span>已失效</span>
 					<span style="">￥{{$v->money}}</span>
 				</div>
 			@endforeach
