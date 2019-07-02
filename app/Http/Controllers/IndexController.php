@@ -19,7 +19,7 @@ class IndexController extends Controller
         //轮播图信息
         $carousel = curl('http://weshop.io/api/Carousel','GET');
 
-        $recommend = DB::table('goods')->orderBy('goods_price','desc')->limit(5 )->select('goods_img','goods_name','goods_desc','goods_price')->get();
+        $recommend = DB::table('goods')->orderBy('goods_price','desc')->limit(5 )->select('goods_img','goods_name','goods_desc','goods_price','goods_id')->get();
 
 
         $catGoods = Db::table('cat')

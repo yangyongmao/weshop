@@ -62,11 +62,11 @@ class GoodslistController extends Controller
 
     public function detail()
     {
+
         $goods_id = request()->get('goods_id');
         $goodsDetail = DB::table('goods')
             ->where('goods_id','=',$goods_id)
             ->first();
-
         return view('index.goodslist.detail')->with([
             'thisUser' => request()->session()->get('thisUser')['data'],
             'goodsDetail' => $goodsDetail,
