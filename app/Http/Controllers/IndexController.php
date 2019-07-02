@@ -18,11 +18,12 @@ class IndexController extends Controller
         $carousel = curl('http://weshop.io/api/Car0ousel','GET');
 
         $catGoods = Db::table('cat')
-                    ->leftJoin('goods', 'goods.cat_id', '=', 'cat.cat_id')
+                    ->leftJoin('goods', 'cat.cat_id', '=', 'goods.cat_id')
                     ->where('cat.is_show', 1)
                     ->where('goods.is_delete', 2)
                     ->select('cat.cat_id', 'cat.cat_name', 'goods.goods_id', 'goods.goods_name', 'goods.goods_img')->get();
-
+//        echo "<pre>";
+//        var_dump($catGoods);die;
         $catGoods = getData($catGoods);
 
         return view('index.index.index')->with([
