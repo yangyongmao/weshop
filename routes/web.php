@@ -35,6 +35,7 @@ Route::middleware([
     Route::any('updatemyself','PersonController@updatemyself');
     //收藏商品
     Route::get('collection','PersonController@collection');
+
 });
 //前台主页
 Route::get("","IndexController@index");
@@ -54,6 +55,8 @@ Route::get('getaddr','AddrController@getdata');
 Route::get('seargoodslist','GoodslistController@searlist');
 //收藏
 Route::get('addcollect','GoodslistController@collect');
+//取消收藏
+Route::get('delcollect','GoodslistController@delcollect');
 
 
 

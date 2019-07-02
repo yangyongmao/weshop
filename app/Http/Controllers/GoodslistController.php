@@ -137,6 +137,19 @@ class GoodslistController extends Controller
 
     }
 
+    public function delcollect(Request $request)
+    {
 
+        $collecid = $request->get('collecid');
+
+        $res = Db::table('collection')
+            ->where('id', '=', $collecid)->delete();
+
+        if($res){
+            return json_encode(['code'=>1, 'msg'=>'取消成功']);
+        }else{
+            return json_encode(['code'=>2, 'msg'=>'错误']);
+        }
+    }
 
 }

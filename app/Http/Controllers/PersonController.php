@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
@@ -189,11 +190,20 @@ class PersonController extends Controller
         }
     }
 
-    public function collection()
+    public function collection(Request $request)
     {
-        $data = request()->get();
-        return json_encode($data);
+        $userinfo = $request->session()->get('thisUser');
+
+        $uid = $userinfo['data']['uid'];
+
+        $collectionList = Db::table('collection')
+            ->join('goods', 'goods.goods_id', '=', 'collection.goods_id')
+            ->where('collection.user_id', '=', $uid)
+            ->select( 'goods.goods_id', 'goods.goods_name', 'goods.goods_price', 'collection.id', 'collection.goods_img')->get();
+
+        return view('index.person.collection',['collectionList'=>$collectionList,'thisUser'=>$userinfo['data']]);
     }
+
 
 
 }

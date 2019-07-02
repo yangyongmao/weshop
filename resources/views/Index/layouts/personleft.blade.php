@@ -16,6 +16,7 @@
                     {{--style="color:#ff6700;font-weight:bold;"--}}
                     <li><a href="me">我的个人中心</a></li>
                     <li><a href="discount">优惠券</a></li>
+                    <li><a href="collection">收藏夹</a></li>
                 </ul>
             </div>
         </div>
