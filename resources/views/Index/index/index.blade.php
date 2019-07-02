@@ -107,21 +107,21 @@
 				</div>
 				</a>
 
-				<a href="javascript:;" class="getDiscount" data-discount_id="{{$discount[2]->id}}">
-				<div class="stamp stamp03">
-					<div class="par"><p>{{$discount[2]->name}}</p><sub class="sign">￥</sub><span>{{$discount[2]->money}}</span><sub>优惠券</sub><p>满100.00元且不低于优惠券面值</p></div>
-					<div class="copy">副券<p>{{date('Y-m-d',$discount[2]->start)}}<br>{{date('Y-m-d',$discount[2]->end)}}</p></div>
-					<i></i>
-				</div>
-				</a>
+				{{--<a href="javascript:;" class="getDiscount" data-discount_id="{{$discount[2]->id}}">--}}
+				{{--<div class="stamp stamp03">--}}
+					{{--<div class="par"><p>{{$discount[2]->name}}</p><sub class="sign">￥</sub><span>{{$discount[2]->money}}</span><sub>优惠券</sub><p>满100.00元且不低于优惠券面值</p></div>--}}
+					{{--<div class="copy">副券<p>{{date('Y-m-d',$discount[2]->start)}}<br>{{date('Y-m-d',$discount[2]->end)}}</p></div>--}}
+					{{--<i></i>--}}
+				{{--</div>--}}
+				{{--</a>--}}
 
-				<a href="javascript:;" class="getDiscount" data-discount_id="{{$discount[3]->id}}">
-				<div class="stamp stamp01">
-					<div class="par"><p>{{$discount[3]->name}}</p><sub class="sign">￥</sub><span>{{$discount[3]->money}}</span><sub>优惠券</sub><p>满100.00元且不低于优惠券面值</p></div>
-					<div class="copy">副券<p>{{date('Y-m-d',$discount[3]->start)}}<br>{{date('Y-m-d',$discount[3]->start)}}</p></div>
-					<i></i>
-				</div>
-				</a>
+				{{--<a href="javascript:;" class="getDiscount" data-discount_id="{{$discount[3]->id}}">--}}
+				{{--<div class="stamp stamp01">--}}
+					{{--<div class="par"><p>{{$discount[3]->name}}</p><sub class="sign">￥</sub><span>{{$discount[3]->money}}</span><sub>优惠券</sub><p>满100.00元且不低于优惠券面值</p></div>--}}
+					{{--<div class="copy">副券<p>{{date('Y-m-d',$discount[3]->start)}}<br>{{date('Y-m-d',$discount[3]->start)}}</p></div>--}}
+					{{--<i></i>--}}
+				{{--</div>--}}
+				{{--</a>--}}
 
 				<div class="clear"></div>
 			</div>
