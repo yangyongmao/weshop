@@ -15,10 +15,10 @@ class IndexController extends Controller
     {
         $userinfo = request()->session()->get('thisUser');
         //轮播图信息
-        $carousel = curl('http://weshop.io/api/Carousel','GET');
+        $carousel = curl('http://weshop.io/api/Car0ousel','GET');
 
         $catGoods = Db::table('cat')
-                    ->join('goods', 'goods.cat_id', '=', 'cat.cat_id')
+                    ->leftJoin('goods', 'goods.cat_id', '=', 'cat.cat_id')
                     ->where('cat.is_show', 1)
                     ->where('goods.is_delete', 2)
                     ->select('cat.cat_id', 'cat.cat_name', 'goods.goods_id', 'goods.goods_name', 'goods.goods_img')->get();
