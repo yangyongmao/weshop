@@ -273,7 +273,7 @@ Route::middleware([
     Route::any('admin/orderList',"Admin\OrderController@orderList");
     Route::any('admin/orderDelall',"Admin\OrderController@orderDelall");
     Route::any('admin/orderDesc',"Admin\OrderController@orderDesc");
-//用户意见
+    //用户意见
     Route::any('admin/opinionDelall',"Admin\OpinionController@opinionDelall");
     Route::any('admin/opinionDesc','Admin\OpinionController@opinionDesc');
     Route::any('admin/isokAll','Admin\OpinionController@isokAll');
@@ -297,3 +297,6 @@ Route::middleware([
 //品牌展示
     Route::any("admin/brandallow","Admin\BrandController@allow");
 });
+Route::any('shopping','Auth\ShoppingCartController@shopping');
+Route::any('shopcar/cardel','Auth\ShoppingCartController@cardel');
+Route::any('shocar/carchange','Auth\ShoppingCartController@carchange');
