@@ -31,6 +31,13 @@ class IndexController extends Controller
 //        var_dump($catGoods);die;
         $catGoods = getData($catGoods);
 
+        //优惠券信息
+        $discount = DB::table('discount')
+            ->where('status','=',1)
+//            ->where('end','>',time())
+            ->limit(4)
+            ->get();
+
 
         return view('index.index.index')->with([
             'carousel' => $carousel,
@@ -40,7 +47,8 @@ class IndexController extends Controller
             'brand_id' => 1,
             'sear_title' => '小米手机',
             'recommend' => $recommend,
-            'catGoods' => $catGoods
+            'catGoods' => $catGoods,
+            'discount' => $discount,
 
         ]);
     }
