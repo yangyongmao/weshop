@@ -6,6 +6,7 @@
 		<title>小米商城</title>
 		<link rel="stylesheet" type="text/css" href="/indexStatic/css/style.css">
 		<script src="/indexStatic/js/index/index.js"></script>
+<<<<<<< HEAD
 		<script type="text/javascript" src="/adminStatic/lib/layui/layui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="/adminStatic/js/xadmin.js"></script>
 
@@ -15,10 +16,16 @@
     <body>
     <!-- start header -->
 	@include('index.layouts.header');
+=======
+	</head>
+	<body>
+	<!-- start header -->
+	@include('index.layouts.header')
+>>>>>>> jiaxinchen-master
 	<!--end header -->
 
 	<!-- start banner_x -->
-	@include('index.layouts.navx');
+	@include('index.layouts.navx')
 	<!-- end banner_x -->
 
 	<!-- start banner_y -->
@@ -93,7 +100,25 @@
 				@endforeach
 				<div class="clear"></div>
 			</div>
+
+			<div class="biaoti center">优惠券专区</div>
+			<div class="main center">
+
+				@foreach($discount as $k => $v)
+					<a href="javascript:;" class="getDiscount" data-discount_id="{{$v->id}}">
+						<div class="stamp stamp0{{($k+1)%4}}">
+							<div class="par"><p>{{$v->name}}</p><sub class="sign">￥</sub><span>{{$v->money}}</span><sub>优惠券</sub><p>满100.00元且不低于优惠券面值</p></div>
+							<div class="copy">副券<p>{{date('Y-m-d',$v->start)}}<br>{{date('Y-m-d',$v->end)}}</p></div>
+							<i></i>
+						</div>
+					</a>
+				@endforeach
+
+				<div class="clear"></div>
+			</div>
+
 		</div>
+<<<<<<< HEAD
 	<div class="danpin center">
 
 		<div class="biaoti center">秒杀单品</div>
@@ -212,14 +237,19 @@
 				{{--</div>				--}}
 			{{--</div>--}}
 		{{--</div>--}}
+=======
+
+>>>>>>> jiaxinchen-master
 		<footer class="mt20 center">			
 			<div class="mt20">小米商城|MIUI|米聊|多看书城|小米路由器|视频电话|小米天猫店|小米淘宝直营店|小米网盟|小米移动|隐私政策|Select Region</div>
 			<div>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</div> 
 			<div>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</div>
 		</footer>
+
 	</body>
 </html>
-<script src="/indexStatic/js/jquery-1.4.3.js"></script>
+
+<script src="/indexStatic/js/jquery-3.4.1.js"></script>
 <script>
     layui.use(['laydate','form'], function(){
         var laydate = layui.laydate;
@@ -230,6 +260,7 @@
             elem: '#start' //指定元素
         });
 
+<<<<<<< HEAD
         //执行一个laydate实例
         laydate.render({
             elem: '#end' //指定元素
@@ -251,4 +282,21 @@
     $("button").click(function(){
         $(this).attr("disabled","disabled");
     });
+=======
+	//领取优惠券
+	$(".getDiscount").on('click',function () {
+		let discount_id = $(this).attr('data-discount_id');
+
+		$.get('/getdiscount',{discount_id:discount_id},function (jsonMsg) {
+			if(jsonMsg.errorCode == 501){
+				alert('请先登录');
+				location.href = '/login';
+			}else {
+			    alert(jsonMsg.errorMsg);
+			}
+        });
+    });
+
+
+>>>>>>> jiaxinchen-master
 </script>

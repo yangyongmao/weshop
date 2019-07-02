@@ -109,8 +109,17 @@
 	$("input[name='shoucang']").on('click',function () {
 		let goods_id = $(this).attr('data-goods_id');
 		let goods_img = $(this).attr('data-goods_img');
+		// $.get("collection",)
+		$.ajax({
+			url:'addcollect',
+			data:{goods_id:goods_id, goods_img:goods_img},
+			type:'get',
+			dataType:'json',
+			success:function(e){
+			    alert(e.msg);
+			}
+		})
 
-		$.get("collection",)
 
     });
 

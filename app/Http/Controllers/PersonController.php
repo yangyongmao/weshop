@@ -7,8 +7,10 @@
  */
 namespace App\Http\Controllers;
 
+use function foo\func;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class PersonController extends Controller
 {
@@ -38,29 +40,69 @@ class PersonController extends Controller
     {
         //用户信息
         $thisUser = request()->session()->get('thisUser');
-        //优惠券信息
-        $data = DB::table('user_discount')
-            ->where('u_id','=',$thisUser['data']['uid'])
+        $now = time();
+
+//        //优惠券信息
+//        $data = DB::table('user_discount')
+//            ->where('u_id','=',$thisUser['data']['uid'])
+//            ->leftJoin('discount',function ($query){
+//                $query->on('user_discount.discount_id','=','discount.id');
+//            })
+//            ->where('discount.status','=',1)
+//            ->select(DB::raw("
+//                weshop_user_discount.status,
+//                weshop_discount.money,
+//                weshop_discount.start,
+//                weshop_discount.end,
+//                weshop_discount.name,
+//                case
+//                when weshop_discount.end<$now then '已作废'
+//                when weshop_user_discount.status=1 then '未使用'
+//                when weshop_user_discount.status=2 then '已作废'
+//                end 'statusinfo'
+//            "))
+//            ->orderBy("discount.end",'DESC')
+//            ->get();
+
+
+        //未使用的优惠券
+        $unusedDiscount = DB::table('user_discount')
             ->leftJoin('discount',function ($query){
                 $query->on('user_discount.discount_id','=','discount.id');
             })
-            ->where('discount.status','=',1)
-            ->select(DB::raw("
+            ->where([
+                'u_id' => $thisUser['data']['uid'],
+                'user_discount.status' => 1,
+            ])
+            ->select(DB::raw('
                 weshop_user_discount.status,
                 weshop_discount.money,
                 weshop_discount.start,
                 weshop_discount.end,
-                weshop_discount.name,
-                case
-                when weshop_user_discount.status=1 then '未使用'
-                when weshop_user_discount.status=2 then '已使用'
-                end 'statusinfo'
-            "))
-            ->orderBy("user_discount.status",'ASC')
+                weshop_discount.name
+            '))
+            ->where('end','>',time())
+            ->get();
+
+        //作废的优惠券 ;过期和使用过的
+        $overdue = DB::table('user_discount')
+            ->leftJoin('discount',function ($query){
+                $query->on('user_discount.discount_id','=','discount.id');
+            })
+            ->where('user_discount.status','=',2)
+            ->orWhere('discount.end','<',time())
+            ->select(DB::raw('
+                weshop_user_discount.status,
+                weshop_discount.money,
+                weshop_discount.start,
+                weshop_discount.end,
+                weshop_discount.name
+            '))
             ->get();
 
         return view('index.person.discount')->with([
-            'data' => $data,
+            'unusedDiscount' => $unusedDiscount,
+            'overdue' => $overdue,
             'thisUser' => $thisUser['data'],
             'sear_name' => '',
             'cat_id' => 1,
@@ -189,11 +231,67 @@ class PersonController extends Controller
         }
     }
 
-    public function collection()
+    public function collection(Request $request)
     {
-        $data = request()->get();
-        return json_encode($data);
+        $userinfo = $request->session()->get('thisUser');
+
+        $uid = $userinfo['data']['uid'];
+
+        $collectionList = Db::table('collection')
+            ->join('goods', 'goods.goods_id', '=', 'collection.goods_id')
+            ->where('collection.user_id', '=', $uid)
+            ->select( 'goods.goods_id', 'goods.goods_name', 'goods.goods_price', 'collection.id', 'goods.goods_img')->get();
+
+        return view('index.person.collection',['collectionList'=>$collectionList,'thisUser'=>$userinfo['data']]);
     }
+
+    public function getdiscount()
+    {
+        if(request()->ajax()){
+            $discount_id = request()->get('discount_id');
+            $user_id = request()->session()->get('thisUser')['data']['uid'];
+
+            //检查此用户是否领取过此购物券
+            $thisDiscount = DB::table('user_discount')
+                ->where([
+                    'u_id' => $user_id,
+                    'discount_id' => $discount_id,
+                ])
+                ->first('status');
+
+            if(!empty($thisDiscount)){
+                return response()->json([
+                    'errorCode' => 201,
+                    'errorMsg' => '您已领取过',
+                    'data' => [],
+                ])->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            }
+
+            //没有领取过
+            $res = DB::table('user_discount')->insert([
+                'u_id' => $user_id,
+                'discount_id' => $discount_id,
+            ]);
+
+            if($res){
+                return response()->json([
+                    'errorCode' => 200,
+                    'errorMsg' => '领取成功',
+                    'data' => [],
+                ])->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            }else{
+                return response()->json([
+                    'errorCode' => 202,
+                    'errorMsg' => '领取失败',
+                    'data' => [],
+                ])->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            }
+
+
+
+        }
+    }
+
 
 
 }
