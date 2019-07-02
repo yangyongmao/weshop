@@ -15,7 +15,7 @@ class indexLogin
      */
     public function handle($request, Closure $next)
     {
-        if (empty($request->session()->get('thisUser'))){
+        if ( empty( $request->session()->get('thisUser') ) ){
             return redirect("login");
         }
         return $next($request);

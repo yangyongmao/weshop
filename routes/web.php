@@ -52,6 +52,9 @@ Route::get('goodsdetail','GoodslistController@detail');
 Route::get('getaddr','AddrController@getdata');
 //搜索商品
 Route::get('seargoodslist','GoodslistController@searlist');
+//收藏
+Route::get('addcollect','GoodslistController@collect');
+
 
 
 
