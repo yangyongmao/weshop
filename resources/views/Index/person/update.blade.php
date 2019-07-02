@@ -11,9 +11,9 @@
 		@include('index.layouts.header')
 	<!--end header -->
 	<!-- start banner_x -->
-		{{--@include('index.layouts.navx');--}}
-<!-- end banner_x -->
-<!-- self_info -->
+
+	<!-- end banner_x -->
+	<!-- self_info -->
 		@include('index.layouts.personleft')
 
 
@@ -78,8 +78,7 @@
 				<button id="no_update" type="button">取消编辑</button>
 			</div>
 		</div>
-			<input type="hidden" name="uid" value="{{$thisUser['uid']}}">
-			@csrf
+			<input type="hidden" name="uid" value="{{$thisUser['uid']}}">@csrf
 			</form>
 
 			<div class="clear"></div>
@@ -123,7 +122,6 @@
 		    let option = '';
 		    $.get('/getaddr',{area_id:area_id},function (jsonMsg) {
 				let objMsg = $.parseJSON(jsonMsg);
-				// console.log(objMsg);return false;
 				$.each(objMsg,function (k,v) {
 					option += 	"<option value=\""+v.area_id+"\">"+v.area_name+"</option>";
                 });
@@ -145,7 +143,6 @@
             let option = '';
             $.get('/getaddr',{area_id:area_id},function (jsonMsg) {
                 let objMsg = $.parseJSON(jsonMsg);
-                // console.log(objMsg);return false;
                 $.each(objMsg,function (k,v) {
                     option += 	"<option value=\""+v.area_id+"\">"+v.area_name+"</option>";
                 });
@@ -166,7 +163,6 @@
             let option = '';
             $.get('/getaddr',{area_id:area_id},function (jsonMsg) {
                 let objMsg = $.parseJSON(jsonMsg);
-                // console.log(objMsg);return false;
                 $.each(objMsg,function (k,v) {
                     option += 	"<option value=\""+v.area_id+"\">"+v.area_name+"</option>";
                 });
