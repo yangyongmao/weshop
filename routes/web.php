@@ -50,6 +50,8 @@ Route::get('goodslist','GoodslistController@show');
 Route::get('goodsdetail','GoodslistController@detail');
 //请求地址数据
 Route::get('getaddr','AddrController@getdata');
+//搜索商品
+Route::get('seargoodslist','GoodslistController@searlist');
 
 
 

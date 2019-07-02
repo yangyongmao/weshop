@@ -15,12 +15,9 @@
         </ul>
     </div>
     <div class="search fr">
-        <form action="goodslist" method="get">
+        <form action="seargoodslist" method="get">
             <div class="text fl">
-                <input type="text" class="shuru"  name="sear_name" placeholder="小米9&nbsp;红米Note现货" value="{{$sear_name}}">
-                <input type="hidden" name="cat_id" value="{{$cat_id}}">
-                <input type="hidden" name="brand_id" value="{{$brand_id}}">
-                <input type="hidden" name="sear_title" value="{{$sear_title}}">
+                <input type="text" class="shuru"  name="sear_name" placeholder="小米9&nbsp;红米Note现货" value="{{isset($searValue)?$searValue:''}}">
             </div>
             <div class="submit fl">
                 <input type="submit" class="sousuo" value="搜索"/>
