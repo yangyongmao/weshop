@@ -240,7 +240,7 @@ class PersonController extends Controller
         $collectionList = Db::table('collection')
             ->join('goods', 'goods.goods_id', '=', 'collection.goods_id')
             ->where('collection.user_id', '=', $uid)
-            ->select( 'goods.goods_id', 'goods.goods_name', 'goods.goods_price', 'collection.id', 'collection.goods_img')->get();
+            ->select( 'goods.goods_id', 'goods.goods_name', 'goods.goods_price', 'collection.id', 'goods.goods_img')->get();
 
         return view('index.person.collection',['collectionList'=>$collectionList,'thisUser'=>$userinfo['data']]);
     }
