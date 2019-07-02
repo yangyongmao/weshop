@@ -43,16 +43,16 @@
 				@foreach($carList as $k => $v)
 				<div class="content2 center">
 					<div class="sub_content fl ">
-						<input type="checkbox" value="quanxuan" class="quanxuan" />
+						<input type="checkbox" value="{{$v->carid}}" class="quanxuan" />
 					</div>
-					<div class="sub_content fl"><img src="./image/gwc_xiaomi6.jpg"></div>
+					<div class="sub_content fl"><img src="{{asset('/storage/goodsImg/'.$v->goods_img)}}" width="100px" height="100px"></div>
 					<div class="sub_content fl ft20">{{$v->goods_name}}</div>
-					<div class="sub_content fl ">{{$v->goods_price}}元</div>
+					<div class="sub_content fl ">{{$v->goods_price}}</div>
 					<div class="sub_content fl">
-						<input class="shuliang" type="number" value="{{$v->num}}" step="1" min="1" >
+						<input class="shuliang" type="number" value="{{$v->num}}" step="1" min="1"  id="{{$v->carid}}">
 					</div>
 					<div class="sub_content fl">{{$v->goods_price * $v->num}}</div>
-					<div class="sub_content fl"><a href="">×</a></div>
+					<div class="sub_content fl"><a href="javascript:;" class="del" id="{{$v->carid}}">×</a></div>
 					<div class="clear"></div>
 				</div>
 					@endforeach
@@ -62,12 +62,12 @@
 					<ul>
 						<li><a href="./liebiao.html">继续购物</a></li>
 						<li>|</li>
-						<li>共<span>2</span>件商品，已选择<span>1</span>件</li>
+						<li>共<span>{{$count}}</span>件商品，已选择<span id="num">0</span>件</li>
 						<div class="clear"></div>
 					</ul>
 				</div>
 				<div class="jiesuan fr">
-					<div class="jiesuanjiage fl">合计（不含运费）：<span>2499.00元</span></div>
+					<div class="jiesuanjiage fl">合计（不含运费）：<span id="money">0元</span></div>
 					<div class="jsanniu fr"><input class="jsan" type="submit" name="jiesuan"  value="去结算"/></div>
 					<div class="clear"></div>
 				</div>
@@ -89,3 +89,71 @@
 
 	</body>
 </html>
+<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+	$('.quanxuan').change(function () {
+		if($(this).val() == 'quanxuan'){
+			if($(this).prop('checked')){
+				var checked = true;
+			}else{
+				var checked = false;
+			}
+			$('.quanxuan').each(function () {
+				$(this).prop('checked',checked);
+			})
+		}
+		changeprice();
+	})
+	$('.del').click(function () {
+		var id = $(this).attr('id');
+		var _this = $(this);
+		$.ajax({
+			url:'shopcar/cardel',
+			type:'GET',
+			dataType:'json',
+			data:{id:id},
+			success:function(msg){
+				if(msg.msg == 1){
+					_this.parent().parent().remove();
+				}else{
+					history.go(0);
+				}
+			}
+		})
+
+	})
+	$('.shuliang').change(function () {
+		var num = $(this).val();
+		var id = $(this).attr('id');
+		var _this = $(this);
+		$.ajax({
+			url:'shocar/carchange',
+			type:'GET',
+			dataType:'json',
+			data:{id:id,num:num},
+			success:function(msg){
+				if(msg.msg == 1){
+					_this.parent().next().text(_this.parent().prev().text() * num);
+					changeprice();
+				}else{
+					history.go(0);
+				}
+			}
+		})
+
+	})
+	function changeprice(){
+		var money = 0;
+		var num = 0;
+		$('.quanxuan').each(function () {
+			if($(this).val() != 'quanxuan'){
+				if($(this).prop('checked')){
+					money += parseFloat($(this).parent().next().next().next().next().next().text());
+					num += parseInt($(this).parent().next().next().next().next().children().val());
+				}
+			}
+		})
+		$('#money').text(money+'元');
+		$('#num').text(num)
+	}
+</script>

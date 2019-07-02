@@ -69,11 +69,14 @@ class GoodsController extends Controller
 
     public function goodsUpdGoods(Request $request)
     {
-        $img = $request->file('goods_img')->store('public/goodsImg');
+        $file = $request->file('goods_img'); //文件对象
+        $realPath = $file->getRealPath(); //临时路径
+        $ext = $file->getClientOriginalExtension();     // 扩展名
+        $fileName = date('Y-m-d-H-i-s') . '-' . uniqid() . '.' . $ext; //文件名
 
-        $img = str_replace('public', '', $img);
+        Storage::disk('goods')->put($fileName,file_get_contents($realPath));
 
-        $postData['goods_img'] = $img;
+        $postData['goods_img'] = $fileName;
 
         $updData = $request->input();
 
@@ -153,15 +156,17 @@ class GoodsController extends Controller
 
     public function doInsert(Request $request)
     {
-        $img = $request->file('goods_img')->store('public/goodsImg');
-
-        $img = str_replace('public', '', $img);
+        $file = $request->file('goods_img'); //文件对象
+        $realPath = $file->getRealPath(); //临时路径
+        $ext = $file->getClientOriginalExtension();     // 扩展名
+        $fileName = date('Y-m-d-H-i-s') . '-' . uniqid() . '.' . $ext; //文件名
+        Storage::disk('goods')->put($fileName,file_get_contents($realPath));
 
         $postData = $request->input();
 
         unset($postData['_token']);
 
-        $postData['goods_img'] = $img;
+        $postData['goods_img'] = $fileName;
 
         $postData['add_time'] = date('Y-m-d H:i:s', time()) ;
 

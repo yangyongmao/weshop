@@ -23,7 +23,7 @@ Route::post('reset',"Api\LoginController@reset");
 //注册
 Route::post('register',"Api\LoginController@register");
 //轮播图
-Route::get('Carousel',"Api\HomeController@Carousel");
+Route::any('Carousel',"Api\HomeController@Carousel");
 //个人展示
 Route::post('demoshow',"Api\PersonalController@show")->Middleware('token');
 //个人信息修改
@@ -38,3 +38,8 @@ Route::post('add_address',"Api\PersonalController@add_address")->Middleware('tok
 Route::post('update_address',"Api\PersonalController@update_address")->Middleware('token');
 //删除地址
 Route::post('delete_address',"Api\PersonalController@delete_address")->Middleware('token');
+//分类
+Route::post('cat',"Api\HomeController@cat");
+//商品
+Route::post('goods',"Api\HomeController@goods");
+

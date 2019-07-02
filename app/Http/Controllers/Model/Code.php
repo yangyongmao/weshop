@@ -33,10 +33,8 @@ class Code extends Model
             DB::table('user')->where('uname', $arr['uname'])->update(['token' => $token, 'time' => time()]);
             $data = DB::table('user')->where(['uname' => $arr['uname'], 'upwd' => md5($arr['upwd'])])->first();
 
-            return $this->message('200', '登录成功',$data);
-
             if (!empty($data)) {
-                return $this->message('200', '登录成功',['token' => $token]);
+                return $this->message('200', '登录成功',['data' => $data]);
             } else {
                 return $this->message('500', '账号密码错误');
             }
@@ -163,6 +161,22 @@ class Code extends Model
         $data = DB::table('address')->where('a_id',$a_id)->delete();
         if($data){
             return $this->message('200','地址已删除');
+        }else{
+            return $this->message('204','服务器错误');
+        }
+    }
+    public function cat(){
+        $data = DB::table('cat')->get();
+        if($data){
+            return $this->message('200','分类查询',$data);
+        }else{
+            return $this->message('204','服务器错误');
+        }
+    }
+    public function goods(){
+        $data = DB::table('goods')->get();
+        if($data){
+            return $this->message('200','商品查询',$data);
         }else{
             return $this->message('204','服务器错误');
         }

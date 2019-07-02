@@ -21,5 +21,13 @@ class HomeController extends Controller
         $api = new Code();
         return $api->Carousel($arr);
     }
+    public function cat(){
+        $api = new Code();
+        return $api->cat();
+    }
+    public function goods(){
+        $api = new Code();
+        return $api->goods();
+    }
 
 }

@@ -15,8 +15,31 @@ class ShoppingCartController extends Controller
                     ->leftJoin('goods','shoppingcar.goods_id','=','goods.goods_id')
                     ->where('uid','=',"$uid")
                     ->get();
-//        echo "<pre>";
-//        var_dump($carList);die;
-        return view('index/shoppindcart/shopping',['carList' => $carList]);
+        $count = 0;
+        foreach ($carList as $v){
+            $count += $v->num;
+        }
+        return view('index/shoppindcart/shopping',['carList' => $carList , 'count' => $count]);
+    }
+    public function cardel()
+    {
+        $id = [$_GET['id']];
+        $res = Db::table('shoppingcar')->whereIn('carid',$id)->delete();
+        if($res){
+            echo json_encode(['msg' => 1]);
+        }else{
+            echo json_encode(['msg' => 0]);
+        }
+    }
+    public function carchange()
+    {
+        $id = $_GET['id'];
+        $num = $_GET['num'];
+        $res = Db::table('shoppingcar')->where('carid','=',"$id")->update(['num' => $num]);
+        if($res){
+            echo json_encode(['msg' => 1]);
+        }else{
+            echo json_encode(['msg' => 0]);
+        }
     }
 }

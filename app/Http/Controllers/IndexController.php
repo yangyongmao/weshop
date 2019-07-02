@@ -13,9 +13,16 @@ class IndexController extends Controller
     public function index()
     {
         $userinfo = request()->session()->get('thisUser');
-//        $userInfo = curl('http://weshop.io/api/demoshow','POST',['token']);
+        //轮播图信息
+        $carousel = curl('http://weshop.io/api/Carousel','GET');
+
         return view('index.index.index')->with([
-                'thisUser' => $userinfo,
+            'carousel' => $carousel,
+            'thisUser' => $userinfo['data'],
+            'sear_name' => '',
+            'cat_id' => 1,
+            'brand_id' => 1,
+            'sear_title' => '小米手机',
         ]);
     }
 
