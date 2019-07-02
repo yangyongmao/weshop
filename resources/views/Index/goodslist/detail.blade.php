@@ -8,7 +8,7 @@
 	</head>
 	<body>
 	<!-- start header -->
-		@include('index.layouts.header');
+		@include('index.layouts.header')
 	<!--end header -->
 
 	<!-- start banner_x -->

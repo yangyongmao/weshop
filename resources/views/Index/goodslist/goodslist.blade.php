@@ -8,11 +8,11 @@
 	</head>
 	<body>
 	<!-- start header -->
-		@include('index.layouts.header');
+		@include('index.layouts.header')
 	<!--end header -->
 
 	<!-- start banner_x -->
-		@include('index.layouts.navx');
+		{{--@include('index.layouts.navx')--}}
 	<!-- end banner_x -->
 
 	<!-- start banner_y -->
