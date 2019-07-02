@@ -87,107 +87,72 @@
 				@endforeach
 				<div class="clear"></div>
 			</div>
+
+			<div class="biaoti center">优惠券专区</div>
+			<div class="main center">
+
+				<a href="javascript:;" class="getDiscount" data-discount_id="{{$discount[0]->id}}">
+				<div class="stamp stamp01">
+					<div class="par"><p>{{$discount[0]->name}}</p><sub class="sign">￥</sub><span>{{$discount[0]->money}}</span><sub>优惠券</sub><p>满100.00元且不低于优惠券面值</p></div>
+					<div class="copy">副券<p>{{date('Y-m-d',$discount[0]->start)}}<br>{{date('Y-m-d',$discount[0]->end)}}</p></div>
+					<i></i>
+				</div>
+				</a>
+
+				<a href="javascript:;" class="getDiscount" data-discount_id="{{$discount[1]->id}}">
+				<div class="stamp stamp02">
+					<div class="par"><p>{{$discount[1]->name}}</p><sub class="sign">￥</sub><span>{{$discount[1]->money}}</span><sub>优惠券</sub><p>满100.00元且不低于优惠券面值</p></div>
+					<div class="copy">副券<p>{{date('Y-m-d',$discount[1]->start)}}<br>{{date('Y-m-d',$discount[1]->end)}}</p></div>
+					<i></i>
+				</div>
+				</a>
+
+				<a href="javascript:;" class="getDiscount" data-discount_id="{{$discount[2]->id}}">
+				<div class="stamp stamp03">
+					<div class="par"><p>{{$discount[2]->name}}</p><sub class="sign">￥</sub><span>{{$discount[2]->money}}</span><sub>优惠券</sub><p>满100.00元且不低于优惠券面值</p></div>
+					<div class="copy">副券<p>{{date('Y-m-d',$discount[2]->start)}}<br>{{date('Y-m-d',$discount[2]->end)}}</p></div>
+					<i></i>
+				</div>
+				</a>
+
+				<a href="javascript:;" class="getDiscount" data-discount_id="{{$discount[3]->id}}">
+				<div class="stamp stamp01">
+					<div class="par"><p>{{$discount[3]->name}}</p><sub class="sign">￥</sub><span>{{$discount[3]->money}}</span><sub>优惠券</sub><p>满100.00元且不低于优惠券面值</p></div>
+					<div class="copy">副券<p>{{date('Y-m-d',$discount[3]->start)}}<br>{{date('Y-m-d',$discount[3]->start)}}</p></div>
+					<i></i>
+				</div>
+				</a>
+
+				<div class="clear"></div>
+			</div>
+
 		</div>
-		{{--<div class="peijian w">--}}
-			{{--<div class="biaoti center">配件</div>--}}
-			{{--<div class="main center">--}}
-				{{--<div class="content">--}}
-					{{--<div class="remen fl"><a href=""><img src="./image/peijian1.jpg"></a>--}}
-					{{--</div>--}}
-					{{--<div class="remen fl">--}}
-						{{--<div class="xinpin"><span>新品</span></div>--}}
-						{{--<div class="tu"><a href=""><img src="./image/peijian2.jpg"></a></div>--}}
-						{{--<div class="miaoshu"><a href="">小米6 硅胶保护套</a></div>--}}
-						{{--<div class="jiage">49元</div>--}}
-						{{--<div class="pingjia">372人评价</div>--}}
-						{{--<div class="piao">--}}
-							{{--<a href="">--}}
-								{{--<span>发货速度很快！很配小米6！</span>--}}
-								{{--<span>来至于mi狼牙的评价</span>--}}
-							{{--</a>--}}
-						{{--</div>--}}
-					{{--</div>--}}
-					{{--<div class="remen fl">--}}
-						{{--<div class="xinpin"><span style="background:#fff"></span></div>--}}
-						{{--<div class="tu"><a href=""><img src="./image/peijian3.jpg"></a></div>--}}
-						{{--<div class="miaoshu"><a href="">小米手机4c 小米4c 智能</a></div>--}}
-						{{--<div class="jiage">29元</div>--}}
-						{{--<div class="pingjia">372人评价</div>--}}
-					{{--</div>--}}
-					{{--<div class="remen fl">--}}
-						{{--<div class="xinpin"><span style="background:red">享6折</span></div>--}}
-						{{--<div class="tu"><a href=""><img src="./image/peijian4.jpg"></a></div>--}}
-						{{--<div class="miaoshu"><a href="">红米NOTE 4X 红米note4X</a></div>--}}
-						{{--<div class="jiage">19元</div>--}}
-						{{--<div class="pingjia">372人评价</div>--}}
-						{{--<div class="piao">--}}
-							{{--<a href="">--}}
-								{{--<span>发货速度很快！很配小米6！</span>--}}
-								{{--<span>来至于mi狼牙的评价</span>--}}
-							{{--</a>--}}
-						{{--</div>--}}
-					{{--</div>--}}
-					{{--<div class="remen fl">--}}
-						{{--<div class="xinpin"><span style="background:#fff"></span></div>--}}
-						{{--<div class="tu"><a href=""><img src="./image/peijian5.jpg"></a></div>--}}
-						{{--<div class="miaoshu"><a href="">小米支架式自拍杆</a></div>--}}
-						{{--<div class="jiage">89元</div>--}}
-						{{--<div class="pingjia">372人评价</div>--}}
-						{{--<div class="piao">--}}
-							{{--<a href="">--}}
-								{{--<span>发货速度很快！很配小米6！</span>--}}
-								{{--<span>来至于mi狼牙的评价</span>--}}
-							{{--</a>--}}
-						{{--</div>--}}
-					{{--</div>--}}
-					{{--<div class="clear"></div>--}}
-				{{--</div>--}}
-				{{--<div class="content">--}}
-					{{--<div class="remen fl"><a href=""><img src="./image/peijian6.png"></a>--}}
-					{{--</div>--}}
-					{{--<div class="remen fl">--}}
-						{{--<div class="xinpin"><span style="background:#fff"></span></div>--}}
-						{{--<div class="tu"><a href=""><img src="./image/peijian7.jpg"></a></div>--}}
-						{{--<div class="miaoshu"><a href="">小米指环支架</a></div>--}}
-						{{--<div class="jiage">19元</div>--}}
-						{{--<div class="pingjia">372人评价</div>--}}
-						{{--<div class="piao">--}}
-							{{--<a href="">--}}
-								{{--<span>发货速度很快！很配小米6！</span>--}}
-								{{--<span>来至于mi狼牙的评价</span>--}}
-							{{--</a>--}}
-						{{--</div>--}}
-					{{--</div>--}}
-					{{--<div class="remen fl">--}}
-						{{--<div class="xinpin"><span style="background:#fff"></span></div>--}}
-						{{--<div class="tu"><a href=""><img src="./image/peijian8.jpg"></a></div>--}}
-						{{--<div class="miaoshu"><a href="">米家随身风扇</a></div>--}}
-						{{--<div class="jiage">19.9元</div>--}}
-						{{--<div class="pingjia">372人评价</div>--}}
-					{{--</div>--}}
-					{{--<div class="remen fl">--}}
-						{{--<div class="xinpin"><span style="background:#fff"></span></div>--}}
-						{{--<div class="tu"><a href=""><img src="./image/peijian9.jpg"></a></div>--}}
-						{{--<div class="miaoshu"><a href="">红米4X 高透软胶保护套</a></div>--}}
-						{{--<div class="jiage">59元</div>--}}
-						{{--<div class="pingjia">775人评价</div>--}}
-					{{--</div>--}}
-					{{--<div class="remenlast fr">--}}
-						{{--<div class="hongmi"><a href=""><img src="./image/hongmin4.png" alt=""></a></div>--}}
-						{{--<div class="liulangengduo"><a href=""><img src="./image/liulangengduo.png" alt=""></a></div>					--}}
-					{{--</div>--}}
-					{{--<div class="clear"></div>--}}
-				{{--</div>				--}}
-			{{--</div>--}}
-		{{--</div>--}}
+
 		<footer class="mt20 center">			
 			<div class="mt20">小米商城|MIUI|米聊|多看书城|小米路由器|视频电话|小米天猫店|小米淘宝直营店|小米网盟|小米移动|隐私政策|Select Region</div>
 			<div>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</div> 
 			<div>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</div>
 		</footer>
+
 	</body>
 </html>
-<script src="/indexStatic/js/jquery-1.4.3.js"></script>
+
+<script src="/indexStatic/js/jquery-3.4.1.js"></script>
 <script>
+
+	//领取优惠券
+	$(".getDiscount").on('click',function () {
+		let discount_id = $(this).attr('data-discount_id');
+
+		$.get('/getdiscount',{discount_id:discount_id},function (jsonMsg) {
+			if(jsonMsg.errorCode == 501){
+				alert('请先登录');
+				location.href = '/login';
+			}else {
+			    alert(jsonMsg.errorMsg);
+			}
+        });
+    });
+
 
 </script>
