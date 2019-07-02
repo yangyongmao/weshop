@@ -27,14 +27,12 @@ class IndexController extends Controller
                     ->where('cat.is_show', 1)
                     ->where('goods.is_delete', 2)
                     ->select('cat.cat_id', 'cat.cat_name', 'goods.goods_id', 'goods.goods_name', 'goods.goods_img')->get();
-//        echo "<pre>";
-//        var_dump($catGoods);die;
         $catGoods = getData($catGoods);
 
         //优惠券信息
         $discount = DB::table('discount')
             ->where('status','=',1)
-//            ->where('end','>',time())
+            ->where('end','>',time())
             ->limit(4)
             ->get();
 

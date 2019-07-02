@@ -9,11 +9,11 @@
 	</head>
 	<body>
 	<!-- start header -->
-	@include('index.layouts.header');
+	@include('index.layouts.header')
 	<!--end header -->
 
 	<!-- start banner_x -->
-	@include('index.layouts.navx');
+	@include('index.layouts.navx')
 	<!-- end banner_x -->
 
 	<!-- start banner_y -->
@@ -91,37 +91,15 @@
 			<div class="biaoti center">优惠券专区</div>
 			<div class="main center">
 
-				<a href="javascript:;" class="getDiscount" data-discount_id="{{$discount[0]->id}}">
-				<div class="stamp stamp01">
-					<div class="par"><p>{{$discount[0]->name}}</p><sub class="sign">￥</sub><span>{{$discount[0]->money}}</span><sub>优惠券</sub><p>满100.00元且不低于优惠券面值</p></div>
-					<div class="copy">副券<p>{{date('Y-m-d',$discount[0]->start)}}<br>{{date('Y-m-d',$discount[0]->end)}}</p></div>
-					<i></i>
-				</div>
-				</a>
-
-				<a href="javascript:;" class="getDiscount" data-discount_id="{{$discount[1]->id}}">
-				<div class="stamp stamp02">
-					<div class="par"><p>{{$discount[1]->name}}</p><sub class="sign">￥</sub><span>{{$discount[1]->money}}</span><sub>优惠券</sub><p>满100.00元且不低于优惠券面值</p></div>
-					<div class="copy">副券<p>{{date('Y-m-d',$discount[1]->start)}}<br>{{date('Y-m-d',$discount[1]->end)}}</p></div>
-					<i></i>
-				</div>
-				</a>
-
-				{{--<a href="javascript:;" class="getDiscount" data-discount_id="{{$discount[2]->id}}">--}}
-				{{--<div class="stamp stamp03">--}}
-					{{--<div class="par"><p>{{$discount[2]->name}}</p><sub class="sign">￥</sub><span>{{$discount[2]->money}}</span><sub>优惠券</sub><p>满100.00元且不低于优惠券面值</p></div>--}}
-					{{--<div class="copy">副券<p>{{date('Y-m-d',$discount[2]->start)}}<br>{{date('Y-m-d',$discount[2]->end)}}</p></div>--}}
-					{{--<i></i>--}}
-				{{--</div>--}}
-				{{--</a>--}}
-
-				{{--<a href="javascript:;" class="getDiscount" data-discount_id="{{$discount[3]->id}}">--}}
-				{{--<div class="stamp stamp01">--}}
-					{{--<div class="par"><p>{{$discount[3]->name}}</p><sub class="sign">￥</sub><span>{{$discount[3]->money}}</span><sub>优惠券</sub><p>满100.00元且不低于优惠券面值</p></div>--}}
-					{{--<div class="copy">副券<p>{{date('Y-m-d',$discount[3]->start)}}<br>{{date('Y-m-d',$discount[3]->start)}}</p></div>--}}
-					{{--<i></i>--}}
-				{{--</div>--}}
-				{{--</a>--}}
+				@foreach($discount as $k => $v)
+					<a href="javascript:;" class="getDiscount" data-discount_id="{{$v->id}}">
+						<div class="stamp stamp0{{($k+1)%4}}">
+							<div class="par"><p>{{$v->name}}</p><sub class="sign">￥</sub><span>{{$v->money}}</span><sub>优惠券</sub><p>满100.00元且不低于优惠券面值</p></div>
+							<div class="copy">副券<p>{{date('Y-m-d',$v->start)}}<br>{{date('Y-m-d',$v->end)}}</p></div>
+							<i></i>
+						</div>
+					</a>
+				@endforeach
 
 				<div class="clear"></div>
 			</div>
