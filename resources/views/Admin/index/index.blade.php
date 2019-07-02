@@ -413,9 +413,14 @@
                     <i class="iconfont nav_right">&#xe697;</i></a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('活动列表','discount/list')">
+                        <a onclick="xadmin.add_tab('优惠卷列表','discount/list')">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>活动列表</cite></a>
+                    </li>
+                    <li>
+                        <a onclick="xadmin.add_tab('限时活动列表','purchase/list')">
+                            <i class="iconfont">&#xe6a7;</i>
+                            <cite>限时活动列表</cite></a>
                     </li>
                 </ul>
             </li>

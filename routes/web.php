@@ -52,8 +52,9 @@ Route::get('goodsdetail','GoodslistController@detail');
 Route::get('getaddr','AddrController@getdata');
 //搜索商品
 Route::get('seargoodslist','GoodslistController@searlist');
+//抢购
 
-
+Route::get('index/add',"IndexController@add");
 
 
 
@@ -115,10 +116,14 @@ Route::middleware([
     //活动管理
 
 });
+//优惠卷
 Route::get('discount/list',"Admin\DiscountController@list");
 Route::get('discount/add',"Admin\DiscountController@add");
 Route::get('discount/del',"Admin\DiscountController@delete");
 Route::get('discount/update',"Admin\DiscountController@update");
+//限时活动
+Route::get('purchase/list',"Admin\PurchaseController@list");
+Route::get('purchase/add',"Admin\PurchaseController@add");
 /**
  * Jiaxinchen的路由组
  */

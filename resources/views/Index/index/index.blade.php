@@ -6,9 +6,14 @@
 		<title>小米商城</title>
 		<link rel="stylesheet" type="text/css" href="/indexStatic/css/style.css">
 		<script src="/indexStatic/js/index/index.js"></script>
-	</head>
-	<body>
-	<!-- start header -->
+		<script type="text/javascript" src="/adminStatic/lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="/adminStatic/js/xadmin.js"></script>
+
+            <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+            <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    </head>
+    <body>
+    <!-- start header -->
 	@include('index.layouts.header');
 	<!--end header -->
 
@@ -56,26 +61,19 @@
 			<div class="sidebar fl">
 				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_01.gif"></a></div>
 				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_02.gif"></a></div>
-				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_03.gif"></a></div>
+				<div class="fl"><a href="https://miaosha.jd.com/"><img src="/indexStatic/image/hjh_03.gif"></a></div>
 				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_04.gif"></a></div>
 				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_05.gif"></a></div>
 				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_06.gif"></a></div>
 				<div class="clear"></div>
 			</div>
-<<<<<<< HEAD
 
-=======
->>>>>>> jiaxinchen-master
 
 			<div class="datu fl"><a href=""><img src="/indexStatic/image/hongmi4x.png" alt=""></a></div>
 			<div class="datu fl"><a href=""><img src="/indexStatic/image/xiaomi5.jpg" alt=""></a></div>
 			<div class="datu fr"><a href=""><img src="/indexStatic/image/pinghengche.jpg" alt=""></a></div>
 			<div class="clear"></div>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> jiaxinchen-master
 		</div>
 	<!-- end banner -->
 	<div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
@@ -96,6 +94,32 @@
 				<div class="clear"></div>
 			</div>
 		</div>
+	<div class="danpin center">
+
+		<div class="biaoti center">秒杀单品</div>
+		<div class="main center">
+			@foreach($purchase as $v)
+				<div class="mingxing fl">
+					<div class="sub_mingxing"><a href="goodsdetail?goods_id={{$v->goods_id}}"><img src="{{asset("/storage/goodsImg/".$v->goods_img)}}" alt=""></a></div>
+					<div class="pinpai"><a href="goodsdetail?goods_id={{$v->goods_id}}" >{{$v->goods_name}}</a></div>
+					{{--<div class="youhui">{{$v->goods_desc}}</div>--}}
+					<div class="jiage">￥{{$v->new_money}}</div>
+					<div class="jiage">{{date("Y-m-d H:i:s",$v->start)}}</div>
+					<div class="jiage">|</div>
+					<div class="jiage">{{date("Y-m-d H:i:s",$v->end)}}</div>
+					@if($v->goods_number>0)
+
+					<div style="width: 50px;margin-left: 93px; text-align: center"  ><a title="抢购" onclick="member_del(this,'{{$v->goods_id}}')" href="javascript:;">
+							<button  class="layui-icon">抢购</button>
+						</a></div>
+					@else
+						<div  style="color: #000000;background-color: #ccc;width: 50px;margin-left: 93px; text-align: center;cursor:not-allowed" >已售空</div>
+					@endif
+				</div>
+			@endforeach
+			<div class="clear"></div>
+		</div>
+	</div>
 		{{--<div class="peijian w">--}}
 			{{--<div class="biaoti center">配件</div>--}}
 			{{--<div class="main center">--}}
@@ -197,5 +221,34 @@
 </html>
 <script src="/indexStatic/js/jquery-1.4.3.js"></script>
 <script>
+    layui.use(['laydate','form'], function(){
+        var laydate = layui.laydate;
+        var form = layui.form;
 
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+    });
+    function member_del(obj,goods_id){
+            //发异步删除数据
+            $.get('index/add',{goods_id:goods_id},function(res){
+                // console.log(res);return false;
+                if(res==2){
+                    alert('抢购成功');
+                }else if(res==3){
+                   alert('抢购失败');
+                }else{
+                    alert('您还没有登录，请先去登录');
+				}
+            });
+    }
+    $("button").click(function(){
+        $(this).attr("disabled","disabled");
+    });
 </script>
