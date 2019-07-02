@@ -74,14 +74,15 @@ class PersonController extends Controller
     {
         if(request()->isMethod('POST')){
             $data = request()->post();
+
             //处理头像
+            $filename = request()->session()->get('thisUser')['data']['uheader'];
             if(!empty(request()->file('uheader'))){
                 $file   = request()->file('uheader');
                 $ext    = $file->getClientOriginalExtension();     // 扩展名
                 $realPath = $file->getRealPath();                     //临时文件的绝对路径
-                // 上传文件
-                $filename = date('Y-m-d-H-i-s') . '-' . uniqid() . '.' . $ext;
-                Storage::disk('userhead')->put($filename, file_get_contents($realPath));
+                $filename = date('Y-m-d-H-i-s') . '-' . uniqid() . '.' . $ext; //设置文件路径
+                Storage::disk('userhead')->put($filename, file_get_contents($realPath)); //上传
             }
 
             //处理密码
@@ -163,6 +164,7 @@ class PersonController extends Controller
 //                echo 5;die();
                 DB::rollBack();
             }
+            request()->session()->forget('thisUser');
             return redirect('loginout');
 
         }else{
@@ -185,6 +187,12 @@ class PersonController extends Controller
             ]);
 
         }
+    }
+
+    public function collection()
+    {
+        $data = request()->get();
+        return json_encode($data);
     }
 
 

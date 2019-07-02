@@ -32,7 +32,7 @@
                         @if((!empty($thisUser)))
                             <a href="me" target="_blank">{{$thisUser['uname']}}</a>
                         @else
-                            <a href="login" target="_blank">登录</a>
+                            <a href="login" target="_self">登录</a>
                         @endif
                     </li>
                     @if(!empty($thisUser))

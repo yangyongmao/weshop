@@ -23,7 +23,7 @@
 			@foreach($data as $k => $v)
 				<div class="subgrzl ml40" style="{{$v->status==2?'background-color: #c8c8c8':'background-color: greenyellow'}}">
 					<span style="width: 110px;">{{$v->name}}</span>
-					<span style="">{{date("Y-m-d",$v->start)}} - {{date("Y-m-d",$v->end)}}</span>
+					<span style="">开始{{date("Y-m-d",$v->start)}} - 截止{{date("Y-m-d",$v->end)}}</span>
 					<span>{{$v->statusinfo}}</span>
 					<span style="">￥{{$v->money}}</span>
 				</div>

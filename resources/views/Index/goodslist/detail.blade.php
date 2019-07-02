@@ -73,18 +73,19 @@
 				</div>
 				
 			</div>
-			<div class="xqxq mt20 ml20">
-				<div class="top1 mt10">
-					<div class="left1 fl">小米6 全网通版 6GB内存 64GB 亮黑色</div>
-					<div class="right1 fr">2499.00元</div>
-					<div class="clear"></div>
-				</div>
-				<div class="bot mt20 ft20 ftbc">总计：2499元</div>
-			</div>
+			{{--<div class="xqxq mt20 ml20">--}}
+				{{--<div class="top1 mt10">--}}
+					{{--<div class="left1 fl">小米6 全网通版 6GB内存 64GB 亮黑色</div>--}}
+					{{--<div class="right1 fr">2499.00元</div>--}}
+					{{--<div class="clear"></div>--}}
+				{{--</div>--}}
+				{{--<div class="bot mt20 ft20 ftbc">总计：2499元</div>--}}
+			{{--</div>--}}
 			<div class="xiadan ml20 mt20">
 					<input class="jrgwc"  type="button" name="jrgwc" value="立即选购" />
 					<input class="jrgwc" type="button" name="jrgwc" value="加入购物车" />
-				
+					<input class="jrgwc" type="button" name="shoucang" data-goods_id="{{$goodsDetail->goods_id}}" data-goods_img="{{$goodsDetail->goods_img}}" value="收藏此商品" />
+
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -101,3 +102,16 @@
 
 	</body>
 </html>
+<script src="/indexStatic/js/jquery-3.4.1.js"></script>
+<script>
+
+	//收藏
+	$("input[name='shoucang']").on('click',function () {
+		let goods_id = $(this).attr('data-goods_id');
+		let goods_img = $(this).attr('data-goods_img');
+
+		$.get("collection",)
+
+    });
+
+</script>
