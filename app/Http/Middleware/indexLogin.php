@@ -15,9 +15,8 @@ class indexLogin
      */
     public function handle($request, Closure $next)
     {
-        if (empty($request->session()->get('thisUser'))) {
-
             if (empty($request->session()->get('thisUser'))) {
+                //响应给Ajax
                 if ($request->expectsJson()) {
                     return response()->json([
                         'errorCode' => '501',
@@ -29,6 +28,5 @@ class indexLogin
                 return redirect("login");
             }
             return $next($request);
-        }
     }
 }
