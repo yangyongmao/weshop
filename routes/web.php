@@ -37,6 +37,7 @@ Route::middleware([
     Route::get('collection','PersonController@collection');
     //领取优惠券
     Route::get('getdiscount','PersonController@getdiscount');
+
 });
 //前台主页
 Route::get("","IndexController@index");
@@ -54,6 +55,11 @@ Route::get('goodsdetail','GoodslistController@detail');
 Route::get('getaddr','AddrController@getdata');
 //搜索商品
 Route::get('seargoodslist','GoodslistController@searlist');
+//收藏
+Route::get('addcollect','GoodslistController@collect');
+//取消收藏
+Route::get('delcollect','GoodslistController@delcollect');
+
 
 
 

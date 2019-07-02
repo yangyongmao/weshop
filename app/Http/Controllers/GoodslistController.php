@@ -8,7 +8,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
-
+//use think\Request;
+use Illuminate\Http\Request;
 class GoodslistController extends Controller
 {
 
@@ -103,8 +104,52 @@ class GoodslistController extends Controller
         ]);
     }
 
+    public function collect(Request $request)
+    {
+        $goods_id = $request->get('goods_id');
 
+        $userinfo = $request->session()->get('thisUser');
 
+        $uid = $userinfo['data']['uid'];
 
+        $ishave = Db::table('collection')->where('user_id', '=', $uid)->where('goods_id', '=', $goods_id)->first();
+
+        if($ishave){
+            return json_encode(['code'=>'2', 'msg'=>'已经收藏了!'], true);
+        }else{
+            $goods_img= $request->get('goods_img');
+
+            $addtime = date('Y-m-d h:i:s',time());
+
+            $res = Db::table('collection')->insert([
+                'user_id' => $uid,
+                'goods_id'=> $goods_id,
+                'goods_img' => $goods_img,
+                'addtime' => $addtime
+            ]);
+
+            if($res){
+                return json_encode(['code'=>'1','msg'=>'收藏成功'], true);
+            }else{
+                return json_encode(['code'=>'3','msg'=>'错误'], true);
+            }
+        }
+
+    }
+
+    public function delcollect(Request $request)
+    {
+
+        $collecid = $request->get('collecid');
+
+        $res = Db::table('collection')
+            ->where('id', '=', $collecid)->delete();
+
+        if($res){
+            return json_encode(['code'=>1, 'msg'=>'取消成功']);
+        }else{
+            return json_encode(['code'=>2, 'msg'=>'错误']);
+        }
+    }
 
 }

@@ -17,23 +17,24 @@ class IndexController extends Controller
     {
         $userinfo = request()->session()->get('thisUser');
         //轮播图信息
-        $carousel = curl('http://weshop.io/api/Carousel','GET');
+        $carousel = curl('http://weshop.io/api/Car0ousel','GET');
 
         $recommend = DB::table('goods')->orderBy('goods_price','desc')->limit(5 )->select('goods_img','goods_name','goods_desc','goods_price','goods_id')->get();
 
 
         $catGoods = Db::table('cat')
-                    ->join('goods', 'goods.cat_id', '=', 'cat.cat_id')
+                    ->leftJoin('goods', 'cat.cat_id', '=', 'goods.cat_id')
                     ->where('cat.is_show', 1)
                     ->where('goods.is_delete', 2)
                     ->select('cat.cat_id', 'cat.cat_name', 'goods.goods_id', 'goods.goods_name', 'goods.goods_img')->get();
-
+//        echo "<pre>";
+//        var_dump($catGoods);die;
         $catGoods = getData($catGoods);
 
         //优惠券信息
         $discount = DB::table('discount')
             ->where('status','=',1)
-            ->where('end','>',time())
+//            ->where('end','>',time())
             ->limit(4)
             ->get();
 
