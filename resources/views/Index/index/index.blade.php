@@ -43,101 +43,7 @@
 								@endforeach
 
 							</div>
-
-							{{--<div class="ctn fl">--}}
-								{{--<div>--}}
-									{{--<div class="xuangou_left fl">--}}
-										{{--<a href="">--}}
-											{{--<div class="img fl"><img src="./image/xm5-80.jpg" alt=""></div>--}}
-											{{--<span class="fl">小米手机5</span>--}}
-											{{--<div class="clear"></div>--}}
-										{{--</a>--}}
-									{{--</div>--}}
-									{{--<div class="xuangou_right fr"><a href="">选购</a></div>--}}
-									{{--<div class="clear"></div>--}}
-								{{--</div>--}}
-								{{--<div>--}}
-									{{--<div class="xuangou_left fl">--}}
-										{{--<a href="">--}}
-											{{--<div class="img fl"><img src="./image/hmn4x80.png" alt=""></div>--}}
-											{{--<span class="fl">红米Note 4X</span>--}}
-											{{--<div class="clear"></div>--}}
-										{{--</a>--}}
-									{{--</div>--}}
-									{{--<div class="xuangou_right fr"><a href="">选购</a></div>--}}
-									{{--<div class="clear"></div>--}}
-								{{--</div>--}}
-								{{--<div>--}}
-									{{--<div class="xuangou_left fl">--}}
-										{{--<a href="">--}}
-											{{--<div class="img fl"><img src="./image/hmnote4-80.jpg" alt=""></div>--}}
-											{{--<span class="fl">红米Note-4</span>--}}
-											{{--<div class="clear"></div>--}}
-										{{--</a>--}}
-									{{--</div>--}}
-									{{--<div class="xuangou_right fr"><a href="">选购</a></div>--}}
-									{{--<div class="clear"></div>--}}
-								{{--</div>--}}
-								{{--<div>--}}
-									{{--<div class="xuangou_left fl">--}}
-										{{--<a href="">--}}
-											{{--<div class="img fl"><img src="./image/hm4x_80.png" alt=""></div>--}}
-											{{--<span class="fl">红米4x</span>--}}
-											{{--<div class="clear"></div>--}}
-										{{--</a>--}}
-									{{--</div>--}}
-									{{--<div class="xuangou_right fr"><a href="">选购</a></div>--}}
-									{{--<div class="clear"></div>--}}
-								{{--</div>--}}
-								{{--<div>--}}
-									{{--<div class="xuangou_left fl">--}}
-										{{--<a href="">--}}
-											{{--<div class="img fl"><img src="./image/hm4-80.jpg" alt=""></div>--}}
-											{{--<span class="fl">红米4</span>--}}
-											{{--<div class="clear"></div>--}}
-										{{--</a>--}}
-									{{--</div>--}}
-									{{--<div class="xuangou_right fr"><a href="">选购</a></div>--}}
-									{{--<div class="clear"></div>--}}
-								{{--</div>--}}
-								{{--<div>--}}
-									{{--<div class="xuangou_left fl">--}}
-										{{--<a href="">--}}
-											{{--<div class="img fl"><img src="./image/hm4A-80.jpg" alt=""></div>--}}
-											{{--<span class="fl">红米4A</span>--}}
-											{{--<div class="clear"></div>--}}
-										{{--</a>--}}
-									{{--</div>--}}
-									{{--<div class="xuangou_right fr"><a href="">选购</a></div>--}}
-									{{--<div class="clear"></div>--}}
-								{{--</div>--}}
-							{{--</div>--}}
-							{{--<div class="right fl">--}}
-								{{--<div>--}}
-									{{--<div class="xuangou_left fl">--}}
-										{{--<a href="">--}}
-											{{--<div class="img fl"><img src="./image/compare.jpg" alt=""></div>--}}
-											{{--<span class="fl">对比手机</span>--}}
-											{{--<div class="clear"></div>--}}
-										{{--</a>--}}
-									{{--</div>--}}
-									{{--<!-- <div class="xuangou_right fr"><a href="">选购</a></div> -->--}}
-									{{--<div class="clear"></div>--}}
-								{{--</div>--}}
-								{{--<div>--}}
-									{{--<div class="xuangou_left fl">--}}
-										{{--<a href="">--}}
-											{{--<div class="img fl"><img src="./image/mimobile.jpg" alt=""></div>--}}
-											{{--<span class="fl">小米移动&nbsp;电话卡</span>--}}
-											{{--<div class="clear"></div>--}}
-										{{--</a>--}}
-									{{--</div>--}}
-									{{--<!-- <div class="xuangou_right fr"><a href="">选购</a></div> -->--}}
-									{{--<div class="clear"></div>--}}
-								{{--</div>--}}
-							{{--</div>--}}
-							{{--<div class="clear"></div>--}}
-
+							
 						</div>
 					</li>
 					@endforeach
@@ -173,8 +79,8 @@
 			<div class="main center">
 				@foreach($recommend as $v)
 				<div class="mingxing fl">
-					<div class="sub_mingxing"><a href=""><img src="{{asset("/storage/goodsImg/".$v->goods_img)}}" alt=""></a></div>
-					<div class="pinpai"><a href="">{{$v->goods_name}}</a></div>
+					<div class="sub_mingxing"><a href="goodsdetail?goods_id={{$v->goods_id}}"><img src="{{asset("/storage/goodsImg/".$v->goods_img)}}" alt=""></a></div>
+					<div class="pinpai"><a href="goodsdetail?goods_id={{$v->goods_id}}">{{$v->goods_name}}</a></div>
 					<div class="youhui">{{$v->goods_desc}}</div>
 					<div class="jiage">{{$v->goods_price}}</div>
 				</div>
@@ -283,23 +189,5 @@
 </html>
 <script src="/indexStatic/js/jquery-1.4.3.js"></script>
 <script>
-	// var vue = new Vue({
-	// 	el:'#top',
-	// 	data:{
-	// 	    test:'测试',
-	// 		lis:[
-	// 			{name:'首页'},
-	// 			{name:'云服务'},
-	// 			{name:'金融'},
-	// 			{name:'问题反馈'},
-	// 			{name:'活动预告'},
-	// 			{name:'关于我们'},
-	// 		],
-    //         fun:[
-	// 			{name:'登录',href:'login'},
-	// 			{name:'注册'},
-	// 			{name:'消息通知'},
-	// 		]
-	// 	},
-	// });
+
 </script>
