@@ -57,7 +57,9 @@
 			let objMsg = $.parseJSON(jsonMsg);
 			console.log(objMsg);
 			if(objMsg.errorCode != 200){
-				alert(objMsg.errorMsg);return false;
+				alert(objMsg.errorMsg);
+				location.href = '';
+				return false;
 			}
 			location.href = "http://weshop.io/";
 		});

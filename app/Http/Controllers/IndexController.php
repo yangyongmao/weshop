@@ -6,7 +6,9 @@
  * Time: 15:08
  */
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Facades\DB;
+
 
 class IndexController extends Controller
 {
@@ -17,6 +19,9 @@ class IndexController extends Controller
         //轮播图信息
         $carousel = curl('http://weshop.io/api/Car0ousel','GET');
 
+        $recommend = DB::table('goods')->orderBy('goods_price','desc')->limit(5 )->select('goods_img','goods_name','goods_desc','goods_price')->get();
+
+
         $catGoods = Db::table('cat')
                     ->leftJoin('goods', 'cat.cat_id', '=', 'goods.cat_id')
                     ->where('cat.is_show', 1)
@@ -26,6 +31,7 @@ class IndexController extends Controller
 //        var_dump($catGoods);die;
         $catGoods = getData($catGoods);
 
+
         return view('index.index.index')->with([
             'carousel' => $carousel,
             'thisUser' => $userinfo['data'],
@@ -33,7 +39,9 @@ class IndexController extends Controller
             'cat_id' => 1,
             'brand_id' => 1,
             'sear_title' => '小米手机',
+            'recommend' => $recommend,
             'catGoods' => $catGoods
+
         ]);
     }
 
