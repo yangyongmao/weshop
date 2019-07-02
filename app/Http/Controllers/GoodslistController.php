@@ -73,6 +73,36 @@ class GoodslistController extends Controller
         ]);
     }
 
+    public function searlist()
+    {
+        $searValue = request()->get('sear_name');
+        $goodsData1 = DB::table('goods')
+            ->where([
+                ['is_delete','=',2]
+            ])
+            ->where('goods_name','like',"%$searValue%")
+            ->select(DB::raw('goods_id,goods_name,goods_price,goods_img,LEFT(goods_desc,50) as goods_desc_short'))
+            ->offset(0)
+            ->limit(5)
+            ->get();
+
+        $goodsData2 = DB::table('goods')
+            ->where([
+                ['is_delete','=',2]
+            ])
+            ->where('goods_name','like',"%$searValue%")
+            ->select(DB::raw('goods_id,goods_name,goods_price,goods_img,LEFT(goods_desc,50) as goods_desc_short'))
+            ->offset(5)
+            ->limit(5)
+            ->get();
+
+        return view('index.goodslist.seargoodslist')->with([
+            'goodsData1' => $goodsData1,
+            'goodsData2' => $goodsData2,
+            'searValue' => $searValue,
+        ]);
+    }
+
 
 
 
