@@ -195,5 +195,52 @@ class PersonController extends Controller
         return json_encode($data);
     }
 
+    public function getdiscount()
+    {
+        if(request()->ajax()){
+            $discount_id = request()->get('discount_id');
+            $user_id = request()->session()->get('thisUser')['data']['uid'];
+
+            //检查此用户是否领取过此购物券
+            $thisDiscount = DB::table('user_discount')
+                ->where([
+                    'u_id' => $user_id,
+                    'discount_id' => $discount_id,
+                ])
+                ->first('status');
+
+            if(!empty($thisDiscount)){
+                return response()->json([
+                    'errorCode' => 201,
+                    'errorMsg' => '您已领取过',
+                    'data' => [],
+                ])->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            }
+
+            //没有领取过
+            $res = DB::table('user_discount')->insert([
+                'u_id' => $user_id,
+                'discount_id' => $discount_id,
+            ]);
+
+            if($res){
+                return response()->json([
+                    'errorCode' => 200,
+                    'errorMsg' => '领取成功',
+                    'data' => [],
+                ])->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            }else{
+                return response()->json([
+                    'errorCode' => 202,
+                    'errorMsg' => '领取失败',
+                    'data' => [],
+                ])->setEncodingOptions(JSON_UNESCAPED_UNICODE);
+            }
+
+
+
+        }
+    }
+
 
 }

@@ -35,6 +35,8 @@ Route::middleware([
     Route::any('updatemyself','PersonController@updatemyself');
     //收藏商品
     Route::get('collection','PersonController@collection');
+    //领取优惠券
+    Route::get('getdiscount','PersonController@getdiscount');
 });
 //前台主页
 Route::get("","IndexController@index");
