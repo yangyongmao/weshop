@@ -33,6 +33,8 @@ Route::middleware([
     Route::get('discount','PersonController@discount');
     //编辑我的资料
     Route::any('updatemyself','PersonController@updatemyself');
+    //收藏商品
+    Route::get('collection','PersonController@collection');
 });
 //前台主页
 Route::get("","IndexController@index");

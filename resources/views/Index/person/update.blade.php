@@ -69,12 +69,13 @@
 						<option value="0">请选择...</option>
 					</select>
 
-					<input type="text" name="addr_5" placeholder="请输入村庄、街道等信息..." style="width: 200px;height:20px;margin-bottom: 1px;">
+					<input type="text" name="addr_5" id="addr_5" placeholder="请输入村庄、街道等信息..." style="width: 200px;height:20px;margin-bottom: 1px;">
 
 				</span>
 			</div>
 			<div style="margin-left: 100px;">
 				<button id="sure_update">保存编辑</button>
+				<button id="no_update" type="button">取消编辑</button>
 			</div>
 		</div>
 			<input type="hidden" name="uid" value="{{$thisUser['uid']}}">
@@ -94,6 +95,24 @@
 </html>
 <script src="/indexStatic/js/jquery-3.4.1.js"></script>
 <script>
+
+	//提交更新
+	$("#sure_update").click(function () {
+	    let addr_1 = $("#addr_1").val();
+	    let addr_2 = $("#addr_2").val();
+	    let addr_3 = $("#addr_3").val();
+	    let addr_4 = $("#addr_4").val();
+	    let addr_5 = $("#addr_5").val();
+
+	    if(addr_1==0 || addr_2==0 || addr_3==0 || addr_4==0 || addr_5==0){
+	        alert("请选择默认收货地址");return false;
+		}
+    });
+
+	//取消编辑
+	$("#no_update").click(function () {
+		history.back(-1);
+    });
 
 	//一级地址被选中
 	$("#addr_1").on('change',function () {

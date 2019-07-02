@@ -50,6 +50,7 @@ class GoodslistController extends Controller
             ->get();
 
         return view('index.goodslist.goodslist')->with([
+            'thisUser' => request()->session()->get('thisUser')['data'],
             'sear_title' => $sear_title,
             'cat_id' => $cat_id,
             'brand_id' => $brand_id,
@@ -67,6 +68,7 @@ class GoodslistController extends Controller
             ->first();
 
         return view('index.goodslist.detail')->with([
+            'thisUser' => request()->session()->get('thisUser')['data'],
             'goodsDetail' => $goodsDetail,
         ]);
     }
