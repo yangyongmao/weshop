@@ -127,8 +127,11 @@
 			if(jsonMsg.errorCode == 200){
 			    alert('提交成功');
 				console.log(jsonMsg.data);
+			}else if(jsonMsg.errorCode == 501){
+			    alert('请先登录');
+			    location.href = '/login';
 			}else{
-				alert('提交订单失败,请重试');
+                alert('提交订单失败,请重试');
 			}
         })
 

@@ -16,6 +16,7 @@ class ShoppingCartController extends Controller
             $carList = Db::table('shoppingcar')
                 ->leftJoin('goods','shoppingcar.goods_id','=','goods.goods_id')
                 ->where('uid','=',"$uid")
+                ->where('shoppingcar.status','=',1)
                 ->get();
 
             $count = 0;
