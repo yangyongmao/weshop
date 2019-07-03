@@ -27,14 +27,12 @@ class OrderController extends Controller
 
 
     }
-<<<<<<< HEAD
+
     public function list(){
         $data = DB::table('order')
             ->get();
         return view('index.order.list');
     }
-=======
-
 
     public function inputorder()
     {
@@ -127,6 +125,4 @@ class OrderController extends Controller
         }
     }
 
-
->>>>>>> jiaxinchen-master
 }
