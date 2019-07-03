@@ -6,29 +6,21 @@
 		<title>小米商城</title>
 		<link rel="stylesheet" type="text/css" href="/indexStatic/css/style.css">
 		<script src="/indexStatic/js/index/index.js"></script>
-<<<<<<< HEAD
 		<script type="text/javascript" src="/adminStatic/lib/layui/layui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="/adminStatic/js/xadmin.js"></script>
-
-            <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-            <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+		<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+		<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     </head>
     <body>
-    <!-- start header -->
-	@include('index.layouts.header');
-=======
-	</head>
-	<body>
 	<!-- start header -->
 	@include('index.layouts.header')
->>>>>>> jiaxinchen-master
 	<!--end header -->
-
 	<!-- start banner_x -->
 	@include('index.layouts.navx')
 	<!-- end banner_x -->
-
 	<!-- start banner_y -->
+
+		{{--分类+商品--}}
 		<div class="banner_y center">
 			<div class="nav">				
 				<ul>
@@ -61,10 +53,11 @@
 					@endforeach
 				</ul>
 			</div>
-		
-		</div>	
+		</div>
+	{{--分类+商品end--}}
 
 		<div class="sub_banner center">
+			{{--中部横栏--}}
 			<div class="sidebar fl">
 				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_01.gif"></a></div>
 				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_02.gif"></a></div>
@@ -74,20 +67,19 @@
 				<div class="fl"><a href=""><img src="/indexStatic/image/hjh_06.gif"></a></div>
 				<div class="clear"></div>
 			</div>
-
-
 			<div class="datu fl"><a href=""><img src="/indexStatic/image/hongmi4x.png" alt=""></a></div>
 			<div class="datu fl"><a href=""><img src="/indexStatic/image/xiaomi5.jpg" alt=""></a></div>
 			<div class="datu fr"><a href=""><img src="/indexStatic/image/pinghengche.jpg" alt=""></a></div>
 			<div class="clear"></div>
-
+			{{--中部横栏end--}}
 		</div>
 	<!-- end banner -->
 	<div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
 
 	<!-- start danpin -->
 		<div class="danpin center">
-			
+
+			{{--推荐商品--}}
 			<div class="biaoti center">小米明星单品</div>
 			<div class="main center">
 				@foreach($recommend as $v)
@@ -100,10 +92,11 @@
 				@endforeach
 				<div class="clear"></div>
 			</div>
+			{{--推荐商品end--}}
 
+			{{--优惠券--}}
 			<div class="biaoti center">优惠券专区</div>
 			<div class="main center">
-
 				@foreach($discount as $k => $v)
 					<a href="javascript:;" class="getDiscount" data-discount_id="{{$v->id}}">
 						<div class="stamp stamp0{{($k+1)%4}}">
@@ -113,14 +106,15 @@
 						</div>
 					</a>
 				@endforeach
-
 				<div class="clear"></div>
 			</div>
+			{{--优惠券end--}}
 
 		</div>
-<<<<<<< HEAD
+
 	<div class="danpin center">
 
+		{{--秒杀--}}
 		<div class="biaoti center">秒杀单品</div>
 		<div class="main center">
 			@foreach($purchase as $v)
@@ -144,102 +138,9 @@
 			@endforeach
 			<div class="clear"></div>
 		</div>
+		{{--秒杀end--}}
 	</div>
-		{{--<div class="peijian w">--}}
-			{{--<div class="biaoti center">配件</div>--}}
-			{{--<div class="main center">--}}
-				{{--<div class="content">--}}
-					{{--<div class="remen fl"><a href=""><img src="./image/peijian1.jpg"></a>--}}
-					{{--</div>--}}
-					{{--<div class="remen fl">--}}
-						{{--<div class="xinpin"><span>新品</span></div>--}}
-						{{--<div class="tu"><a href=""><img src="./image/peijian2.jpg"></a></div>--}}
-						{{--<div class="miaoshu"><a href="">小米6 硅胶保护套</a></div>--}}
-						{{--<div class="jiage">49元</div>--}}
-						{{--<div class="pingjia">372人评价</div>--}}
-						{{--<div class="piao">--}}
-							{{--<a href="">--}}
-								{{--<span>发货速度很快！很配小米6！</span>--}}
-								{{--<span>来至于mi狼牙的评价</span>--}}
-							{{--</a>--}}
-						{{--</div>--}}
-					{{--</div>--}}
-					{{--<div class="remen fl">--}}
-						{{--<div class="xinpin"><span style="background:#fff"></span></div>--}}
-						{{--<div class="tu"><a href=""><img src="./image/peijian3.jpg"></a></div>--}}
-						{{--<div class="miaoshu"><a href="">小米手机4c 小米4c 智能</a></div>--}}
-						{{--<div class="jiage">29元</div>--}}
-						{{--<div class="pingjia">372人评价</div>--}}
-					{{--</div>--}}
-					{{--<div class="remen fl">--}}
-						{{--<div class="xinpin"><span style="background:red">享6折</span></div>--}}
-						{{--<div class="tu"><a href=""><img src="./image/peijian4.jpg"></a></div>--}}
-						{{--<div class="miaoshu"><a href="">红米NOTE 4X 红米note4X</a></div>--}}
-						{{--<div class="jiage">19元</div>--}}
-						{{--<div class="pingjia">372人评价</div>--}}
-						{{--<div class="piao">--}}
-							{{--<a href="">--}}
-								{{--<span>发货速度很快！很配小米6！</span>--}}
-								{{--<span>来至于mi狼牙的评价</span>--}}
-							{{--</a>--}}
-						{{--</div>--}}
-					{{--</div>--}}
-					{{--<div class="remen fl">--}}
-						{{--<div class="xinpin"><span style="background:#fff"></span></div>--}}
-						{{--<div class="tu"><a href=""><img src="./image/peijian5.jpg"></a></div>--}}
-						{{--<div class="miaoshu"><a href="">小米支架式自拍杆</a></div>--}}
-						{{--<div class="jiage">89元</div>--}}
-						{{--<div class="pingjia">372人评价</div>--}}
-						{{--<div class="piao">--}}
-							{{--<a href="">--}}
-								{{--<span>发货速度很快！很配小米6！</span>--}}
-								{{--<span>来至于mi狼牙的评价</span>--}}
-							{{--</a>--}}
-						{{--</div>--}}
-					{{--</div>--}}
-					{{--<div class="clear"></div>--}}
-				{{--</div>--}}
-				{{--<div class="content">--}}
-					{{--<div class="remen fl"><a href=""><img src="./image/peijian6.png"></a>--}}
-					{{--</div>--}}
-					{{--<div class="remen fl">--}}
-						{{--<div class="xinpin"><span style="background:#fff"></span></div>--}}
-						{{--<div class="tu"><a href=""><img src="./image/peijian7.jpg"></a></div>--}}
-						{{--<div class="miaoshu"><a href="">小米指环支架</a></div>--}}
-						{{--<div class="jiage">19元</div>--}}
-						{{--<div class="pingjia">372人评价</div>--}}
-						{{--<div class="piao">--}}
-							{{--<a href="">--}}
-								{{--<span>发货速度很快！很配小米6！</span>--}}
-								{{--<span>来至于mi狼牙的评价</span>--}}
-							{{--</a>--}}
-						{{--</div>--}}
-					{{--</div>--}}
-					{{--<div class="remen fl">--}}
-						{{--<div class="xinpin"><span style="background:#fff"></span></div>--}}
-						{{--<div class="tu"><a href=""><img src="./image/peijian8.jpg"></a></div>--}}
-						{{--<div class="miaoshu"><a href="">米家随身风扇</a></div>--}}
-						{{--<div class="jiage">19.9元</div>--}}
-						{{--<div class="pingjia">372人评价</div>--}}
-					{{--</div>--}}
-					{{--<div class="remen fl">--}}
-						{{--<div class="xinpin"><span style="background:#fff"></span></div>--}}
-						{{--<div class="tu"><a href=""><img src="./image/peijian9.jpg"></a></div>--}}
-						{{--<div class="miaoshu"><a href="">红米4X 高透软胶保护套</a></div>--}}
-						{{--<div class="jiage">59元</div>--}}
-						{{--<div class="pingjia">775人评价</div>--}}
-					{{--</div>--}}
-					{{--<div class="remenlast fr">--}}
-						{{--<div class="hongmi"><a href=""><img src="./image/hongmin4.png" alt=""></a></div>--}}
-						{{--<div class="liulangengduo"><a href=""><img src="./image/liulangengduo.png" alt=""></a></div>					--}}
-					{{--</div>--}}
-					{{--<div class="clear"></div>--}}
-				{{--</div>				--}}
-			{{--</div>--}}
-		{{--</div>--}}
-=======
 
->>>>>>> jiaxinchen-master
 		<footer class="mt20 center">			
 			<div class="mt20">小米商城|MIUI|米聊|多看书城|小米路由器|视频电话|小米天猫店|小米淘宝直营店|小米网盟|小米移动|隐私政策|Select Region</div>
 			<div>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</div> 
@@ -260,7 +161,7 @@
             elem: '#start' //指定元素
         });
 
-<<<<<<< HEAD
+
         //执行一个laydate实例
         laydate.render({
             elem: '#end' //指定元素
@@ -282,7 +183,7 @@
     $("button").click(function(){
         $(this).attr("disabled","disabled");
     });
-=======
+
 	//领取优惠券
 	$(".getDiscount").on('click',function () {
 		let discount_id = $(this).attr('data-discount_id');
@@ -297,6 +198,4 @@
         });
     });
 
-
->>>>>>> jiaxinchen-master
 </script>
