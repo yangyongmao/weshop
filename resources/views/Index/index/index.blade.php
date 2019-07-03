@@ -6,25 +6,17 @@
 		<title>小米商城</title>
 		<link rel="stylesheet" type="text/css" href="/indexStatic/css/style.css">
 		<script src="/indexStatic/js/index/index.js"></script>
-<<<<<<< HEAD
-
-=======
->>>>>>> jiaxinchen-master
 		<script type="text/javascript" src="/adminStatic/lib/layui/layui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="/adminStatic/js/xadmin.js"></script>
 		<script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
 		<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     </head>
     <body>
-<<<<<<< HEAD
+
 
 	<!-- start header -->
 	@include('index.layouts.header')
 
-=======
-	<!-- start header -->
-	@include('index.layouts.header')
->>>>>>> jiaxinchen-master
 	<!--end header -->
 	<!-- start banner_x -->
 	@include('index.layouts.navx')
@@ -186,7 +178,9 @@
                     alert('抢购成功');
                 }else if(res==3){
                    alert('抢购失败');
-                }else{
+                }else if(res == 4){
+                    alert('活动时间已过');
+				}else{
                     alert('您还没有登录，请先去登录');
 				}
             });

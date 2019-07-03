@@ -60,7 +60,7 @@ Route::get('goodsdetail','GoodslistController@detail');
 Route::get('getaddr','AddrController@getdata');
 //搜索商品
 Route::get('seargoodslist','GoodslistController@searlist');
-<<<<<<< HEAD
+
 
 //抢购
 
@@ -73,8 +73,7 @@ Route::get('delcollect','GoodslistController@delcollect');
 
 Route::get('index/add',"IndexController@add");
 
-=======
->>>>>>> jiaxinchen-master
+
 
 
 
