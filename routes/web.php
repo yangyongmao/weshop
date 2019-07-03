@@ -37,7 +37,12 @@ Route::middleware([
     Route::get('collection','PersonController@collection');
     //领取优惠券
     Route::get('getdiscount','PersonController@getdiscount');
-
+    //抢购
+    Route::get('index/add',"IndexController@add");
+    //收藏
+    Route::get('addcollect','GoodslistController@collect');
+    //取消收藏
+    Route::get('delcollect','GoodslistController@delcollect');
 });
 //前台主页
 Route::get("","IndexController@index");
@@ -55,6 +60,7 @@ Route::get('goodsdetail','GoodslistController@detail');
 Route::get('getaddr','AddrController@getdata');
 //搜索商品
 Route::get('seargoodslist','GoodslistController@searlist');
+<<<<<<< HEAD
 
 //抢购
 
@@ -67,6 +73,8 @@ Route::get('delcollect','GoodslistController@delcollect');
 
 Route::get('index/add',"IndexController@add");
 
+=======
+>>>>>>> jiaxinchen-master
 
 
 
