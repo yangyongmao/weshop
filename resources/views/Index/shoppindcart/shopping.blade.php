@@ -18,18 +18,22 @@
 			<div class="wxts fl ml20">温馨提示：产品是否购买成功，以最终下单为准哦，请尽快结算</div>
 			<div class="dlzc fr">
 				<ul>
-					<li><a href="me" target="_blank">{{$thisUser['uname']}}</a></li>
+					@if(!empty($thisUser))
+						<li><a href="me" target="_blank">{{$thisUser['uname']}}</a></li>
+					@else
+						<li><a href="login" target="_self">登录</a></li>
+					@endif
 				</ul>
-				
 			</div>
 			<div class="clear"></div>
 		</div>
+
 		<div class="xiantiao"></div>
-		<div class="gwcxqbj">
+		<div class="gwcxqbj" style="height: auto;">
 			<div class="gwcxd center">
 				<div class="top2 center">
 					<div class="sub_top fl">
-						<input type="checkbox" value="quanxuan" class="quanxuan" />全选
+						<input type="checkbox" value="quanxuan" class="quanxuan" title="点击全选" />全选
 					</div>
 					<div class="sub_top fl">商品名称</div>
 					<div class="sub_top fl">单价</div>
@@ -38,27 +42,32 @@
 					<div class="sub_top fr">操作</div>
 					<div class="clear"></div>
 				</div>
+
 				@foreach($carList as $k => $v)
 				<div class="content2 center">
 					<div class="sub_content fl ">
-						<input type="checkbox" value="{{$v->carid}}" class="quanxuan" />
+						<input type="checkbox" value="{{$v->carid}}" data-carid="{{$v->carid}}" data-goods_id="{{$v->goods_id}}" data-goods_num="{{$v->num}}" class="quanxuan" title=""/>
 					</div>
-					<div class="sub_content fl"><img src="{{asset('/storage/goodsImg/'.$v->goods_img)}}" width="100px" height="100px"></div>
+					<div class="sub_content fl">
+						<img src="{{asset('/storage/goodsImg/'.$v->goods_img)}}" width="100px" height="100px">
+					</div>
 					<div class="sub_content fl ft20">{{$v->goods_name}}</div>
 					<div class="sub_content fl ">{{$v->goods_price}}</div>
 					<div class="sub_content fl">
-						<input class="shuliang" type="number" value="{{$v->num}}" step="1" min="1"  id="{{$v->carid}}">
+						<input class="shuliang" type="number" value="{{$v->num}}" title="" step="1" min="1"  id="{{$v->carid}}" {{$v->carid=='#'?'disabled':''}}>
 					</div>
 					<div class="sub_content fl">{{$v->goods_price * $v->num}}</div>
-					<div class="sub_content fl"><a href="javascript:;" class="del" id="{{$v->carid}}">×</a></div>
+					<div class="sub_content fl"><a href="javascript:;" class="del" id="{{$v->carid}}" title="删除">×</a></div>
 					<div class="clear"></div>
 				</div>
-					@endforeach
+				@endforeach
+
 			</div>
+
 			<div class="jiesuandan mt20 center">
 				<div class="tishi fl ml20">
 					<ul>
-						<li><a href="./liebiao.html">继续购物</a></li>
+						<li><a href="/">继续购物</a></li>
 						<li>|</li>
 						<li>共<span>{{$count}}</span>件商品，已选择<span id="num">0</span>件</li>
 						<div class="clear"></div>
@@ -66,7 +75,7 @@
 				</div>
 				<div class="jiesuan fr">
 					<div class="jiesuanjiage fl">合计（不含运费）：<span id="money">0元</span></div>
-					<div class="jsanniu fr"><input class="jsan" type="submit" name="jiesuan"  value="去结算"/></div>
+					<div class="jsanniu fr"><input class="jsan" type="button" name="jiesuan"  value="去结算"/></div>
 					<div class="clear"></div>
 				</div>
 				<div class="clear"></div>
@@ -74,21 +83,23 @@
 			
 		</div>
 
-  
 
-	
 	<!-- footer -->
 	<footer class="center">
 			
 			<div class="mt20">小米商城|MIUI|米聊|多看书城|小米路由器|视频电话|小米天猫店|小米淘宝直营店|小米网盟|小米移动|隐私政策|Select Region</div>
 			<div>©mi.com 京ICP证110507号 京ICP备10046444号 京公网安备11010802020134号 京网文[2014]0059-0009号</div> 
 			<div>违法和不良信息举报电话：185-0130-1238，本网站所列数据，除特殊说明，所有数据均出自我司实验室测试</div>
-		</footer>
+	</footer>
 
 	</body>
 </html>
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
+
+
+
+
 	$('.quanxuan').change(function () {
 		if($(this).val() == 'quanxuan'){
 			if($(this).prop('checked')){

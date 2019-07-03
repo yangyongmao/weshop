@@ -7,6 +7,7 @@
  */
 namespace App\Http\Controllers;
 use Mews\Captcha\Facades\Captcha;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -37,6 +38,7 @@ class LoginController extends Controller
                 if(!empty($apiMsg_array['data'])){
                     request()->session()->put("thisUser",$apiMsg_array['data']);
                 }
+                $this->updateSessionCar();
                 return $apiMsg;
             }
         }else{
@@ -50,5 +52,48 @@ class LoginController extends Controller
         return redirect('/');
     }
 
+    //更新session购物车
+    public function updateSessionCar()
+    {
+        $u_id = request()->session()->get('thisUser')['data']['uid'];
+
+        $sessionGoodsId = substr(request()->session()->get('shopcar'),0,-1);
+        //若session购物车为空  直接返回
+        if(!$sessionGoodsId){return "NULL";}
+        $sessionGoodsId = explode(',',$sessionGoodsId);
+
+        /**
+         * 数组的 key是goods_id val是session中这个商品的数量
+         */
+        $sessionGoodsId = array_count_values($sessionGoodsId);
+
+        foreach($sessionGoodsId as $k => $v){
+            //检查当前数据是否存在数据表中
+            $thisGoodsInDb = DB::table('shoppingcar')
+                ->where([
+                    'uid' => $u_id,
+                    'goods_id' => $k,
+                ])
+                ->first('carid');
+
+            //若存在
+            if(!empty($thisGoodsInDb)){
+                DB::table('shoppingcar')
+                    ->where([
+                        'uid' => $u_id,
+                        'goods_id' => $k,
+                    ])
+                    ->increment('num',$v);
+            }else{
+                DB::table('shoppingcar')->insert([
+                    'uid' => $u_id,
+                    'goods_id' => $k,
+                    'num' => $v
+                ]);
+            }
+        }
+        //清除session购物车
+        request()->session()->forget('shopcar');
+    }
 
 }

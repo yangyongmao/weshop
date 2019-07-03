@@ -60,7 +60,8 @@ Route::get('goodsdetail','GoodslistController@detail');
 Route::get('getaddr','AddrController@getdata');
 //搜索商品
 Route::get('seargoodslist','GoodslistController@searlist');
-
+//加入购物车
+Route::get('addshopcar','ShoppingCartController@addgood');
 
 
 
@@ -298,6 +299,7 @@ Route::middleware([
 //品牌展示
     Route::any("admin/brandallow","Admin\BrandController@allow");
 });
-Route::any('shopping','Auth\ShoppingCartController@shopping');
-Route::any('shopcar/cardel','Auth\ShoppingCartController@cardel');
-Route::any('shocar/carchange','Auth\ShoppingCartController@carchange');
+//购物车
+Route::any('shopping','ShoppingCartController@shopping');
+Route::any('shopcar/cardel','ShoppingCartController@cardel');
+Route::any('shocar/carchange','ShoppingCartController@carchange');
