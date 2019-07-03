@@ -27,6 +27,9 @@ class OrderController extends Controller
 
 
     }
-
-
+    public function list(){
+        $data = DB::table('order')
+            ->get();
+        return view('index.order.list');
+    }
 }
