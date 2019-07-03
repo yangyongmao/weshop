@@ -6,7 +6,7 @@
 		<title>小米商城</title>
 		<link rel="stylesheet" type="text/css" href="/indexStatic/css/style.css">
 		<script src="/indexStatic/js/index/index.js"></script>
-<<<<<<< HEAD
+
 		<script type="text/javascript" src="/adminStatic/lib/layui/layui.js" charset="utf-8"></script>
 		<script type="text/javascript" src="/adminStatic/js/xadmin.js"></script>
 
@@ -14,14 +14,10 @@
             <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     </head>
     <body>
-    <!-- start header -->
-	@include('index.layouts.header');
-=======
-	</head>
-	<body>
+
 	<!-- start header -->
 	@include('index.layouts.header')
->>>>>>> jiaxinchen-master
+
 	<!--end header -->
 
 	<!-- start banner_x -->

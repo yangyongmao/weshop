@@ -55,15 +55,15 @@ Route::get('goodsdetail','GoodslistController@detail');
 Route::get('getaddr','AddrController@getdata');
 //搜索商品
 Route::get('seargoodslist','GoodslistController@searlist');
-<<<<<<< HEAD
+
 //抢购
-=======
+
 //收藏
 Route::get('addcollect','GoodslistController@collect');
 //取消收藏
 Route::get('delcollect','GoodslistController@delcollect');
 
->>>>>>> jiaxinchen-master
+
 
 Route::get('index/add',"IndexController@add");
 

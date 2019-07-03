@@ -18,7 +18,7 @@ class IndexController extends Controller
     {
         $userinfo = request()->session()->get('thisUser');
         //轮播图信息
-<<<<<<< HEAD
+
         $carousel = curl('http://weshop.io/api/Carousel','GET');
         $recommend = DB::table('goods')
             ->orderBy('goods_price','desc')
@@ -30,12 +30,12 @@ class IndexController extends Controller
             ->select('goods_img','goods_number','goods_name','goods_desc','goods_price','purchase.goods_id','purchase.new_money','purchase.start','purchase.end')
             ->get();
 //        var_dump($purchase);die;
-=======
+
         $carousel = curl('http://weshop.io/api/Car0ousel','GET');
 
         $recommend = DB::table('goods')->orderBy('goods_price','desc')->limit(5 )->select('goods_img','goods_name','goods_desc','goods_price','goods_id')->get();
 
->>>>>>> jiaxinchen-master
+
 
         $catGoods = Db::table('cat')
                     ->leftJoin('goods', 'cat.cat_id', '=', 'goods.cat_id')
@@ -61,11 +61,11 @@ class IndexController extends Controller
             'sear_title' => '小米手机',
             'recommend' => $recommend,
             'catGoods' => $catGoods,
-<<<<<<< HEAD
-            'purchase'=>$purchase
-=======
+
+            'purchase'=>$purchase,
+
             'discount' => $discount,
->>>>>>> jiaxinchen-master
+
 
         ]);
     }
@@ -76,7 +76,7 @@ class IndexController extends Controller
         if($userinfo==null){
             return 1;
         }else{
-
+            
             $data = DB::table('purchase')->where('goods_id',$goods_id)->select('new_money')->first();
 //            var_dump($data);die;
             $money = $data->new_money;
