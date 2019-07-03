@@ -20,6 +20,7 @@ class IndexController extends Controller
         $userinfo = request()->session()->get('thisUser');
 
         //轮播图信息
+
         $carousel = curl('http://weshop.io/api/Carousel','GET');
 
         //抢购活动
@@ -40,12 +41,22 @@ class IndexController extends Controller
             )
             ->get();
 
+//        var_dump($purchase);die;
+
+        $carousel = curl('http://weshop.io/api/Car0ousel','GET');
+
+        $recommend = DB::table('goods')->orderBy('goods_price','desc')->limit(5 )->select('goods_img','goods_name','goods_desc','goods_price','goods_id')->get();
+
+
+
+
         //推荐商品
         $recommend = DB::table('goods')
             ->orderBy('goods_price','desc')
             ->limit(5 )
             ->select('goods_img','goods_name','goods_desc','goods_price','goods_id')
             ->get();
+
 
         //分类+商品
         $catGoods = Db::table('cat')
@@ -72,6 +83,8 @@ class IndexController extends Controller
             'recommend' => $recommend,
             'catGoods' => $catGoods,
             'purchase'=>$purchase,
+            'discount' => $discount,
+            'purchase'=>$purchase,
             'discount' => $discount
         ]);
     }
@@ -82,26 +95,32 @@ class IndexController extends Controller
         if($userinfo==null){
             return 1;
         }else{
-
-            $data = DB::table('purchase')->where('goods_id',$goods_id)->select('new_money')->first();
+            
+            $data = DB::table('purchase')->where('goods_id',$goods_id)->select('new_money','end')->first();
             $money = $data->new_money;
-            $arr = [
-                'o_num' =>1,
-                'o_total'=>$money,
-                'o_price'=>$money,
-                'o_status'=>1,
-                'o_addtime'=>time(),
-                'uid'=>$userinfo['data']['uid'],
-            ];
-            $res = DB::table('order')->insert($arr);
-            $lastid = DB::getPdo()->lastInsertId();
+            $end = $data->end;
+            if($end >= time()){
+                $arr = [
+                    'o_num' =>1,
+                    'o_total'=>$money,
+                    'o_price'=>$money,
+                    'o_status'=>1,
+                    'o_addtime'=>time(),
+                    'uid'=>$userinfo['data']['uid'],
+                ];
+                $res = DB::table('order')->insert($arr);
+                $lastid = DB::getPdo()->lastInsertId();
 
-            if($res){
-                DB::table('ordergoods')->insert(['order_id'=>$lastid,'goods_id'=>$goods_id]);
-                return 2;
+                if($res){
+                    DB::table('ordergoods')->insert(['order_id'=>$lastid,'goods_id'=>$goods_id]);
+                    return 2;
+                }else{
+                    return 3;
+                }
             }else{
-                return 3;
+                return 4;
             }
+
         }
     }
 

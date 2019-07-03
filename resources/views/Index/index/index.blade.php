@@ -12,8 +12,11 @@
 		<script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     </head>
     <body>
+
+
 	<!-- start header -->
 	@include('index.layouts.header')
+
 	<!--end header -->
 	<!-- start banner_x -->
 	@include('index.layouts.navx')
@@ -175,7 +178,9 @@
                     alert('抢购成功');
                 }else if(res==3){
                    alert('抢购失败');
-                }else{
+                }else if(res == 4){
+                    alert('活动时间已过');
+				}else{
                     alert('您还没有登录，请先去登录');
 				}
             });
