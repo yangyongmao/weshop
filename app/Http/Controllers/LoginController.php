@@ -73,6 +73,7 @@ class LoginController extends Controller
                 ->where([
                     'uid' => $u_id,
                     'goods_id' => $k,
+                    'status' => 1
                 ])
                 ->first('carid');
 

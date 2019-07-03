@@ -106,6 +106,7 @@ class ShoppingCartController extends Controller
                     ->where([
                         'uid' => $u_id,
                         'goods_id' => $newGoodsId,
+                        'status' => 1,
                     ])
                     ->first('carid');
 

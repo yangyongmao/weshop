@@ -123,6 +123,10 @@
 			}
         });
 
+		if(carid.length <= 0){
+		    alert('请勾选商品');return false;
+		}
+
 		$.get('/inputorder',{data:data,carid:carid},function (jsonMsg) {
 			if(jsonMsg.errorCode == 200){
 			    alert('提交成功');
