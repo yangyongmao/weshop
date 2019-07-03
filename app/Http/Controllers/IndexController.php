@@ -20,7 +20,6 @@ class IndexController extends Controller
         $userinfo = request()->session()->get('thisUser');
 
         //轮播图信息
-
         $carousel = curl('http://weshop.io/api/Carousel','GET');
 
         //抢购活动
@@ -41,14 +40,7 @@ class IndexController extends Controller
             )
             ->get();
 
-//        var_dump($purchase);die;
-
         $carousel = curl('http://weshop.io/api/Car0ousel','GET');
-
-        $recommend = DB::table('goods')->orderBy('goods_price','desc')->limit(5 )->select('goods_img','goods_name','goods_desc','goods_price','goods_id')->get();
-
-
-
 
         //推荐商品
         $recommend = DB::table('goods')
@@ -84,8 +76,6 @@ class IndexController extends Controller
             'catGoods' => $catGoods,
             'purchase'=>$purchase,
             'discount' => $discount,
-            'purchase'=>$purchase,
-            'discount' => $discount
         ]);
     }
     public function add(Request $request){
