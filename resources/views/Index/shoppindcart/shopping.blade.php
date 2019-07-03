@@ -46,7 +46,7 @@
 				@foreach($carList as $k => $v)
 				<div class="content2 center">
 					<div class="sub_content fl ">
-						<input type="checkbox" value="{{$v->carid}}" data-carid="{{$v->carid}}" data-goods_id="{{$v->goods_id}}" data-goods_num="{{$v->num}}" class="quanxuan" title=""/>
+						<input type="checkbox" value="{{$v->carid}}" data-carid="{{$v->carid}}" data-goods_id="{{$v->goods_id}}" data-goods_price="{{$v->goods_price}}" class="quanxuan" title=""/>
 					</div>
 					<div class="sub_content fl">
 						<img src="{{asset('/storage/goodsImg/'.$v->goods_img)}}" width="100px" height="100px">
@@ -54,7 +54,7 @@
 					<div class="sub_content fl ft20">{{$v->goods_name}}</div>
 					<div class="sub_content fl ">{{$v->goods_price}}</div>
 					<div class="sub_content fl">
-						<input class="shuliang" type="number" value="{{$v->num}}" title="" step="1" min="1"  id="{{$v->carid}}" {{$v->carid=='#'?'disabled':''}}>
+						<input class="shuliang goods_num_{{$v->carid}}" type="number" value="{{$v->num}}" title="" step="1" min="1"  id="{{$v->carid}}" {{$v->carid=='#'?'disabled':''}}>
 					</div>
 					<div class="sub_content fl">{{$v->goods_price * $v->num}}</div>
 					<div class="sub_content fl"><a href="javascript:;" class="del" id="{{$v->carid}}" title="删除">×</a></div>
@@ -97,6 +97,42 @@
 <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script>
 
+	//结算订单
+	$("input[name='jiesuan']").on('click',function () {
+	    var carid = [];
+		var data = [];
+		var tr_goods = $("input[type='checkbox']");
+
+		if(tr_goods.length <= 1){
+		    alert('您的购物车是空的，快去购物吧');return false;
+		}
+
+		//整理必要数据  购物车数据编号  购买的商品id及数量
+		$.each(tr_goods,function (k,v) {
+			if(k != 0){
+				if($(v).prop('checked')){
+				    carid.push($(v).attr('data-carid'));
+				    data.push(
+                        {
+							'goods_id':$(v).attr('data-goods_id'),
+							'goods_num':$(".goods_num_" + $(v).attr('data-carid')).val(),
+							'goods_price':$(v).attr('data-goods_price'),
+                        }
+					);
+				}
+			}
+        });
+
+		$.get('/inputorder',{data:data,carid:carid},function (jsonMsg) {
+			if(jsonMsg.errorCode == 200){
+			    alert('提交成功');
+				console.log(jsonMsg.data);
+			}else{
+				alert('提交订单失败,请重试');
+			}
+        })
+
+    });
 
 
 

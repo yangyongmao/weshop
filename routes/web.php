@@ -43,6 +43,8 @@ Route::middleware([
     Route::get('addcollect','GoodslistController@collect');
     //取消收藏
     Route::get('delcollect','GoodslistController@delcollect');
+    //生成订单
+    Route::get('inputorder','OrderController@inputorder');
 });
 //前台主页
 Route::get("","IndexController@index");
