@@ -59,10 +59,13 @@ class OrderController extends Controller
             ->leftJoin('ordergoods',function($join){
                 $join->on('order.o_id','=','ordergoods.order_id');
             })
+            ->leftJoin('status',function($join){
+                $join->on('order.o_status','=','status.s_id');
+            })
             ->leftJoin('goods',function($join){
                 $join->on('ordergoods.goods_id','=','goods.goods_id');
             })
-//            ->select('goods_img','goods_name')
+//            ->select('goods_img','goods_')
             ->where(
                 [
                     'o_id'=>$o_id,
