@@ -5,33 +5,54 @@
         <meta name="author" content="order by dede58.com"/>
 		<title>小米商城-个人中心</title>
 		<link rel="stylesheet" type="text/css" href="/indexStatic/css/style.css">
+
 	</head>
 	<body>
 	<!-- start header -->
 		@include('index.layouts.header');
 	<!--end header -->
-	<!-- start banner_x -->
-		{{--@include('index.layouts.navx');--}}
-<!-- end banner_x -->
+
 <!-- self_info -->
 		@include('index.layouts.personleft')
 
 
-		<div class="rtcont fr">
-			<div class="grzlbt ml40">我的资料  &nbsp;&nbsp;<a href="updatemyself" style="font-size: 13px;color: #1d643b;">编辑</a></div>
-			<div class="subgrzl ml40"><span>昵称</span><span>{{$thisUser['uname']}}</span></div>
-			<div class="subgrzl ml40"><span>手机号</span><span>{{$thisUser['uphone']}}</span></div>
-			<div class="subgrzl ml40"><span>密码</span><span>************</span></div>
-			<div class="subgrzl ml40">
-				<span>收货地址</span>
-				@if($address!=null)
-				<span  style="width: 450px;">{{$address->a_country}} {{$address->a_province}} {{$address->a_city}} {{$address->a_sec_city}} {{$address->a_town}} {{$address->a_info}}
-				</span>
-					@else
-					<span  style="width: 450px;"></span>
-					@endif
+
+			<div class="gwcxqbj" style="height: auto;">
+				<div class="gwcxd center" >
+					<div class="top2 center" >
+			<div class="gwcxd center" >
+				<div class="top2 center"  >
+					<div class="sub_top fl" style="width: 220px;">商品名称</div>
+					<div class="sub_top fl">总价</div>
+					<div class="sub_top fl">操作</div>
+					<div class="clear"></div>
+				</div>
+
+				@foreach($data as  $v)
+					<div class="content2 center" style="text-align: center;" >
+
+
+                        <div class="sub_content fl" style="width: auto;width: 220px;" >
+                        @foreach($v->order as $val)
+                                <img src="{{asset('/storage/goodsImg/'.$val->goods_img)}}" width="100px" height="100px" style="float: left;margin-left: 1px;margin-top: 10px;">
+                            @endforeach
+                        </div>
+						<div class="sub_content fl" style="margin-left: 100px;">{{$v->o_price}}</div>
+
+							<div >
+								<div class="">
+                                    <a href="details?o_id={{$v->o_id}}"><input style="width: 100px;height: 50px;background-color: red;font-size: 20px;margin-top: 35px;" type="button"  value="去结算"/></a>
+                                    <a href="details?o_id={{$v->o_id}}"><input style="width: 100px;height: 50px;background-color: #38ff2c;font-size: 20px;margin-top: 35px;margin-left: 5px;" type="button" value="查看详情"/></a>
+                                </div>
+							</div>
+					</div>
+				@endforeach
+
+			            </div>
+			        </div>
+                </div>
 			</div>
-		</div>
+
 		<div class="clear"></div>
 		</div>
 	</div>

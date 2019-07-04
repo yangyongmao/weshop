@@ -49,7 +49,8 @@ Route::middleware([
 
     //生成订单
     Route::get('inputorder','OrderController@inputorder');
-
+    //订单详情
+    Route::get('order/details','OrderController@details');
 });
 //前台主页
 Route::get("","IndexController@index");
