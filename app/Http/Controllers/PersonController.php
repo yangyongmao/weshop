@@ -23,7 +23,7 @@ class PersonController extends Controller
         $address = DB::table('address')
             ->where('u_id','=',$thisUser['data']['uid'])
             ->first();
-
+//        var_dump($address);die;
 
         return view('index.person.personinfo')->with([
 //            'carousel' => $carousel,

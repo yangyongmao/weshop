@@ -22,12 +22,57 @@ class OrderController extends Controller
             return view('index.order.order')->with(['data'=>$res]);
         }else{
 
-            return view('index.login.login');
+            return view('index.login.login',['thisUser'=>$data]);
         }
 
 
     }
 
+    public function list(){
+        $res = \request()->session()->get('thisUser');
+        $uid = \request()->session()->get('thisUser')['data']['uid'];
+
+        $data = DB::table('order')
+
+            ->where('uid',$uid)
+            ->select('o_id','o_price','o_status')
+            ->get();
+
+        foreach ($data as $v){
+            $order = DB::table('ordergoods')->where('order_id',$v->o_id)->select('goods_id')->get();
+            $v->order = $order;
+            foreach ($v->order as $v){
+                $child = DB::table('goods')->where('goods_id',$v->goods_id)->select('goods_img')->first();
+                $v->goods_img = $child->goods_img;
+            }
+        }
+//        echo "<pre>";
+//        print_r($data);die;
+        return view('index.order.list',['data'=>$data,'thisUser'=>$res['data']]);
+    }
+
+    public function details(){
+
+        $res = \request()->session()->get('thisUser');
+        $o_id = \request()->input('o_id');
+        $data = DB::table('order')
+            ->leftJoin('ordergoods',function($join){
+                $join->on('order.o_id','=','ordergoods.order_id');
+            })
+            ->leftJoin('goods',function($join){
+                $join->on('ordergoods.goods_id','=','goods.goods_id');
+            })
+//            ->select('goods_img','goods_name')
+            ->where(
+                [
+                    'o_id'=>$o_id,
+                    'uid'=>$res['data']['uid']
+                ]
+            )
+            ->get();
+
+        return view('index.order.details',['data'=>$data,'thisUser'=>$res['data']]);
+    }
 
     public function inputorder()
     {
@@ -119,6 +164,5 @@ class OrderController extends Controller
 
         }
     }
-
 
 }

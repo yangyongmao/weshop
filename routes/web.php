@@ -43,8 +43,14 @@ Route::middleware([
     Route::get('addcollect','GoodslistController@collect');
     //取消收藏
     Route::get('delcollect','GoodslistController@delcollect');
+
+    //订单
+    Route::get('order/list','OrderController@list');
+
     //生成订单
     Route::get('inputorder','OrderController@inputorder');
+    //订单详情
+    Route::get('order/details','OrderController@details');
 });
 //前台主页
 Route::get("","IndexController@index");
@@ -65,16 +71,10 @@ Route::get('seargoodslist','GoodslistController@searlist');
 //加入购物车
 Route::get('addshopcar','ShoppingCartController@addgood');
 
-//抢购
-
-//收藏
-Route::get('addcollect','GoodslistController@collect');
-//取消收藏
-Route::get('delcollect','GoodslistController@delcollect');
 
 
 
-Route::get('index/add',"IndexController@add");
+
 
 
 
