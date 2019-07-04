@@ -27,7 +27,6 @@
 				<div class="sub_top fl">商品名称</div>
 				<div class="sub_top fl" >单价</div>
 
-				<div class="sub_top fr">操作</div>
 				<div class="clear"></div>
 			</div>
 
@@ -43,7 +42,7 @@
 					</div>
 					<div class="sub_content fl ft20">{{$v->goods_name}}</div>
 					<div class="sub_content fl ft20">{{$v->goods_price}}</div>
-					<div class="sub_content fl"><a href="javascript:;" class="del" id="" title="删除">×</a></div>
+
 
 					<div class="clear"></div>
 				</div>
