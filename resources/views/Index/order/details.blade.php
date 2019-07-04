@@ -22,28 +22,27 @@
 		<div class="gwcxd center">
 			<div class="top2 center">
 				<div class="sub_top fl">
-					<input type="checkbox" value="quanxuan" class="quanxuan" title="点击全选" />全选
 				</div>
 				<div class="sub_top fl">商品名称</div>
 				<div class="sub_top fl" >单价</div>
-
+                <div class="sub_top fl" >状态</div>
 				<div class="clear"></div>
 			</div>
 
 			@foreach($data as  $v)
 				<div class="content2 center">
 					<div class="sub_content fl ">
-						<input type="checkbox" value="" data-carid="" data-goods_id="" data-goods_price="" class="quanxuan" title=""/>
+
 					</div>
 					<div class="sub_content fl">
 						{{--@foreach($v->order as $val)--}}
 						<img src="{{asset('/storage/goodsImg/'.$v->goods_img)}}" width="100px" height="100px">
 							{{--@endforeach--}}
 					</div>
-					<div class="sub_content fl ft20">{{$v->goods_name}}</div>
-					<div class="sub_content fl ft20">{{$v->goods_price}}</div>
+					<div class="sub_content fl ft20" style="margin-left: 80px;">{{$v->goods_name}}</div>
+					<div class="sub_content fl ft20" >{{$v->goods_price}}</div>
 
-
+                    <div class="sub_content fl ft20" style="width: 70px;">{{$v->status}}</div>
 					<div class="clear"></div>
 				</div>
 			@endforeach
