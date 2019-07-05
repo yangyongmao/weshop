@@ -25,7 +25,6 @@ class Category extends Model
             $v->child = $child;
         }
 
-
         return $data;
     }
 

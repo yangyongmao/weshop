@@ -37,7 +37,20 @@ Route::middleware([
     Route::get('collection','PersonController@collection');
     //领取优惠券
     Route::get('getdiscount','PersonController@getdiscount');
+    //抢购
+    Route::get('index/add',"IndexController@add");
+    //收藏
+    Route::get('addcollect','GoodslistController@collect');
+    //取消收藏
+    Route::get('delcollect','GoodslistController@delcollect');
 
+    //订单
+    Route::get('order/list','OrderController@list');
+
+    //生成订单
+    Route::get('inputorder','OrderController@inputorder');
+    //订单详情
+    Route::get('order/details','OrderController@details');
 });
 //前台主页
 Route::get("","IndexController@index");
@@ -55,10 +68,11 @@ Route::get('goodsdetail','GoodslistController@detail');
 Route::get('getaddr','AddrController@getdata');
 //搜索商品
 Route::get('seargoodslist','GoodslistController@searlist');
-//收藏
-Route::get('addcollect','GoodslistController@collect');
-//取消收藏
-Route::get('delcollect','GoodslistController@delcollect');
+//加入购物车
+Route::get('addshopcar','ShoppingCartController@addgood');
+
+
+
 
 
 
@@ -123,10 +137,14 @@ Route::middleware([
     //活动管理
 
 });
+//优惠卷
 Route::get('discount/list',"Admin\DiscountController@list");
 Route::get('discount/add',"Admin\DiscountController@add");
 Route::get('discount/del',"Admin\DiscountController@delete");
 Route::get('discount/update',"Admin\DiscountController@update");
+//限时活动
+Route::get('purchase/list',"Admin\PurchaseController@list");
+Route::get('purchase/add',"Admin\PurchaseController@add");
 /**
  * Jiaxinchen的路由组
  */
@@ -273,7 +291,7 @@ Route::middleware([
     Route::any('admin/orderList',"Admin\OrderController@orderList");
     Route::any('admin/orderDelall',"Admin\OrderController@orderDelall");
     Route::any('admin/orderDesc',"Admin\OrderController@orderDesc");
-//用户意见
+    //用户意见
     Route::any('admin/opinionDelall',"Admin\OpinionController@opinionDelall");
     Route::any('admin/opinionDesc','Admin\OpinionController@opinionDesc');
     Route::any('admin/isokAll','Admin\OpinionController@isokAll');
@@ -297,3 +315,7 @@ Route::middleware([
 //品牌展示
     Route::any("admin/brandallow","Admin\BrandController@allow");
 });
+//购物车
+Route::any('shopping','ShoppingCartController@shopping');
+Route::any('shopcar/cardel','ShoppingCartController@cardel');
+Route::any('shocar/carchange','ShoppingCartController@carchange');

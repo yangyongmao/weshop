@@ -39,7 +39,7 @@
 		{{--</div>	--}}
 	{{--</div>--}}
 	
-	<div class="jieshao mt20 w">
+	<div class="jieshao mt20 w" style="height: auto;">
 		<div class="left fl" style="text-align: center;padding-top: 80px;">
 			<img src="{{asset("/storage/goodsImg/".$goodsDetail->goods_img)}}" style="width: 400px;height: 400px;">
 		</div>
@@ -48,31 +48,31 @@
 			<div class="jianjie mr40 ml20 mt10">{{$goodsDetail->goods_desc}}</div>
 			<div class="jiage ml20 mt10">{{$goodsDetail->goods_price}}元</div>
 			<div class="ft20 ml20 mt20">选择版本</div>
-			<div class="xzbb ml20 mt10">
-				<div class="banben fl">
+			<div class="xzbb ml20 mt10" style="margin-bottom: 30px;">
+				<div class="banben fl" style="width: 580px;">
 					<a>
-						<span>全网通版 6GB+64GB </span>
-						<span>2499元</span>
+						<span>{{$goodsDetail->goods_desc}}</span>
+						<span>{{$goodsDetail->goods_price}}</span>
 					</a>
 				</div>
-				<div class="banben fr">
-					<a>
-						<span>全网通版 6GB+128GB</span>
-						<span>2899元</span>
-					</a>
-				</div>
+				{{--<div class="banben fr">--}}
+					{{--<a>--}}
+						{{--<span>全网通版 6GB+128GB</span>--}}
+						{{--<span>2899元</span>--}}
+					{{--</a>--}}
+				{{--</div>--}}
 				<div class="clear"></div>
 			</div>
-			<div class="ft20 ml20 mt20">选择颜色</div>
-			<div class="xzbb ml20 mt10">
-				<div class="banben">
-					<a>
-						<span class="yuandian"></span>
-						<span class="yanse">亮黑色</span>
-					</a>
-				</div>
-				
-			</div>
+			{{--<div class="ft20 ml20 mt20">选择颜色</div>--}}
+			{{--<div class="xzbb ml20 mt10">--}}
+				{{--<div class="banben">--}}
+					{{--<a>--}}
+						{{--<span class="yuandian"></span>--}}
+						{{--<span class="yanse">亮黑色</span>--}}
+					{{--</a>--}}
+				{{--</div>--}}
+				{{----}}
+			{{--</div>--}}
 			{{--<div class="xqxq mt20 ml20">--}}
 				{{--<div class="top1 mt10">--}}
 					{{--<div class="left1 fl">小米6 全网通版 6GB内存 64GB 亮黑色</div>--}}
@@ -82,10 +82,9 @@
 				{{--<div class="bot mt20 ft20 ftbc">总计：2499元</div>--}}
 			{{--</div>--}}
 			<div class="xiadan ml20 mt20">
-					<input class="jrgwc"  type="button" name="jrgwc" value="立即选购" />
-					<input class="jrgwc" type="button" name="jrgwc" value="加入购物车" />
-					<input class="jrgwc" type="button" name="shoucang" data-goods_id="{{$goodsDetail->goods_id}}" data-goods_img="{{$goodsDetail->goods_img}}" value="收藏此商品" />
-
+					{{--<input class="jrgwc"  type="button" name="jrgwc" value="立即选购" />--}}
+					<input class="jrgwc" type="button" name="addshopcar" value="加入购物车" data-goods_id="{{$goodsDetail->goods_id}}"/>
+					<input class="jrgwc" type="button" name="shoucang" data-goods_id="{{$goodsDetail->goods_id}}" data-goods_img="{{$goodsDetail->goods_img}}" value="收藏此商品" style="margin-top: 30px;" />
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -104,6 +103,14 @@
 </html>
 <script src="/indexStatic/js/jquery-3.4.1.js"></script>
 <script>
+
+	//加入购物车
+	$("input[name='addshopcar']").on('click',function () {
+		let goods_id = $(this).attr('data-goods_id');
+		$.get('/addshopcar',{goods_id:goods_id},function (jsonMsg) {
+				alert(jsonMsg.errorMsg);
+        });
+    });
 
 	//收藏
 	$("input[name='shoucang']").on('click',function () {

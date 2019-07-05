@@ -56,14 +56,18 @@
 		$.post("login",{uname:$("input[name='uname']").val(),upwd:$("input[name='upwd']").val(),captcha:$("input[name='captcha']").val()},function (jsonMsg) {
 			let objMsg = $.parseJSON(jsonMsg);
 			console.log(objMsg);
+			//登录异常
 			if(objMsg.errorCode != 200){
 				alert(objMsg.errorMsg);
 				location.href = '';
 				return false;
-			}
-			location.href = "http://weshop.io/";
+			}else{
+			    //登录正常
+                location.href = "http://weshop.io/";
+            }
 		});
     })	;
+
 
     /**
 	 * 点击验证码

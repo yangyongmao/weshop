@@ -24,8 +24,12 @@
 			<div class="subgrzl ml40"><span>密码</span><span>************</span></div>
 			<div class="subgrzl ml40">
 				<span>收货地址</span>
+				@if($address!=null)
 				<span  style="width: 450px;">{{$address->a_country}} {{$address->a_province}} {{$address->a_city}} {{$address->a_sec_city}} {{$address->a_town}} {{$address->a_info}}
 				</span>
+					@else
+					<span  style="width: 450px;"></span>
+					@endif
 			</div>
 		</div>
 		<div class="clear"></div>
