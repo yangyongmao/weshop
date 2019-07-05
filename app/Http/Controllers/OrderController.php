@@ -36,6 +36,8 @@ class OrderController extends Controller
             return;
         }
 
+//        var_dump($data);die();
+
         //用户id
         $u_id = \request()->session()->get('thisUser')['data']['uid'];
         //订单id
@@ -44,6 +46,8 @@ class OrderController extends Controller
         $redis = new \Redis();
         $redis->connect('127.0.0.1',6379);
         $discount_id = $redis->get($order_id);
+        //实际支付价格
+        $actual_price = $data['total_amount'];
 
         DB::beginTransaction();
 
@@ -57,7 +61,10 @@ class OrderController extends Controller
                 'uid' => $u_id,
                 'o_num' => $order_id,
             ])
-            ->update(['o_status' => 2]);
+            ->update([
+                'o_status' => 2,
+                'actual_price' => $actual_price
+            ]);
 
         DB::commit();
 

@@ -130,6 +130,7 @@
 		$.get('/inputorder',{data:data,carid:carid},function (jsonMsg) {
 			if(jsonMsg.errorCode == 200){
 			    alert('提交成功');
+			    location.href = "/order/list";
 				console.log(jsonMsg.data);
 			}else if(jsonMsg.errorCode == 501){
 			    alert('请先登录');
